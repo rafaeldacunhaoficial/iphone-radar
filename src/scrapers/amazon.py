@@ -6,6 +6,7 @@ Se falhar, retorna lista vazia e registra o erro (não trava o sistema).
 
 import re
 import logging
+from typing import Optional
 import requests
 from bs4 import BeautifulSoup
 
@@ -83,7 +84,6 @@ def _scrape_model(model_name: str, query: str) -> list[dict]:
             href = link_el.get("href", "") if link_el else ""
             url = f"https://www.amazon.com.br{href.split('?')[0]}" if href else ""
 
-            # Filtro básico de relevância
             title_lower = title.lower()
             if "iphone" not in title_lower:
                 continue
@@ -105,9 +105,6 @@ def _scrape_model(model_name: str, query: str) -> list[dict]:
     except Exception as e:
         logger.warning(f"[AMZ] Erro ao scraper '{query}': {e}")
         return []
-
-
-from typing import Optional
 
 
 def get_prices() -> list[dict]:
