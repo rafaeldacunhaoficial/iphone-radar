@@ -19,7 +19,12 @@ sys.path.insert(0, os.path.dirname(__file__))
 import price_db
 import analyzer
 import notifier
-from scrapers import mercadolivre, amazon, magalu, kabum
+from scrapers import (
+    mercadolivre, amazon, magalu, kabum,
+    americanas, via_varejo, shopee, fastshop, iplace,
+    extra, carrefour, fnac, terabyte, apple_store,
+    zoom, ricardo, conecta,
+)
 
 logging.basicConfig(
     level=logging.INFO,
@@ -28,12 +33,27 @@ logging.basicConfig(
 )
 logger = logging.getLogger(__name__)
 
-# Lojas ativas — comente para desativar temporariamente
+# 20 lojas monitoradas — comente qualquer linha para desativar temporariamente
 SCRAPERS = [
-    ("MercadoLivre", mercadolivre.get_prices),
-    ("Amazon BR", amazon.get_prices),
+    # ── Lojas grandes ──────────────────────────────────────
+    ("MercadoLivre",   mercadolivre.get_prices),
+    ("Amazon BR",      amazon.get_prices),
     ("Magazine Luiza", magalu.get_prices),
-    ("KaBuM!", kabum.get_prices),
+    ("KaBuM!",         kabum.get_prices),
+    ("Americanas",     americanas.get_prices),   # inclui Submarino + Shoptime
+    ("Casas Bahia",    via_varejo.get_prices),   # inclui Ponto
+    ("Shopee BR",      shopee.get_prices),
+    ("FastShop",       fastshop.get_prices),
+    ("iPlace",         iplace.get_prices),
+    # ── Lojas menores ──────────────────────────────────────
+    ("Extra",          extra.get_prices),
+    ("Carrefour",      carrefour.get_prices),
+    ("Fnac",           fnac.get_prices),
+    ("Terabyte Shop",  terabyte.get_prices),
+    ("Apple Store",    apple_store.get_prices),
+    ("Zoom",           zoom.get_prices),
+    ("Ricardo Eletro", ricardo.get_prices),
+    ("Conecta",        conecta.get_prices),
 ]
 
 
@@ -41,6 +61,7 @@ def run():
     logger.info("=" * 60)
     logger.info("🚀 iPhone Radar iniciado")
     logger.info(f"⏰ {datetime.now(timezone.utc).strftime('%Y-%m-%d %H:%M UTC')}")
+    logger.info(f"🏪 {len(SCRAPERS)} lojas monitoradas")
     logger.info("=" * 60)
 
     # Carrega banco de dados
@@ -51,11 +72,11 @@ def run():
 
     # Coleta preços de todas as lojas
     for store_name, scraper_fn in SCRAPERS:
-        logger.info(f"🔍 Coletando preços: {store_name}...")
+        logger.info(f"🔍 Coletando: {store_name}...")
         try:
             items = scraper_fn()
             all_items.extend(items)
-            logger.info(f"   ✓ {len(items)} itens encontrados")
+            logger.info(f"   ✓ {len(items)} itens")
         except Exception as e:
             logger.error(f"   ✗ Erro em {store_name}: {e}")
 
@@ -64,10 +85,11 @@ def run():
     # Processa cada oferta
     for item in all_items:
         try:
-            key = price_db._product_key(item)
+            key = f"{item['store']}_{item['model']}_{item['product_id']}"
 
             # Atualiza histórico
-            record = price_db.update_price(db, item)
+            price_db.update_price(db, item)
+            record = db.get(key, {})
 
             # Calcula estatísticas
             stats = price_db.get_stats(record)
@@ -100,18 +122,20 @@ def run():
 
     # Salva banco atualizado
     price_db.save_db(db)
-    logger.info(f"\n✅ Concluído — {alerts_sent} alertas enviados, {len(db['products'])} produtos rastreados.")
+    logger.info(
+        f"\n\u2705 Concluído — {alerts_sent} alertas enviados, "
+        f"{len(db)} produtos rastreados."
+    )
 
     # Heartbeat diário (às 09:00 UTC)
-    current_hour = datetime.now(timezone.utc).hour
-    if current_hour == 9:
+    if datetime.now(timezone.utc).hour == 9:
         _send_daily_summary(db)
 
 
 def _send_daily_summary(db: dict):
-    total = len(db["products"])
-    by_store = {}
-    for key, record in db["products"].items():
+    total = len(db)
+    by_store: dict[str, int] = {}
+    for record in db.values():
         store = record.get("store", "?")
         by_store[store] = by_store.get(store, 0) + 1
 
