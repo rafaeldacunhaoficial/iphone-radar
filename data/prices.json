@@ -1,3 +1,675 @@
 {
-  "products": {}
+  "products": {},
+  "apple_store_iPhone 17 Pro_apple_iphone-17-pro_13999": {
+    "store": "apple_store",
+    "model": "iPhone 17 Pro",
+    "title": "iPhone 17 Pro",
+    "samples": [
+      {
+        "timestamp": "2026-06-19T19:39:47.873696+00:00",
+        "price": 13999.0,
+        "url": "https://www.apple.com/br/shop/buy-iphone/iphone-17-pro"
+      }
+    ],
+    "last_alerted_price": null,
+    "last_alerted_at": null
+  },
+  "apple_store_iPhone 17_apple_iphone-17_7999": {
+    "store": "apple_store",
+    "model": "iPhone 17",
+    "title": "iPhone 17",
+    "samples": [
+      {
+        "timestamp": "2026-06-19T19:39:47.873764+00:00",
+        "price": 7999.0,
+        "url": "https://www.apple.com/br/shop/buy-iphone/iphone-17"
+      }
+    ],
+    "last_alerted_price": null,
+    "last_alerted_at": null
+  },
+  "apple_store_iPhone 16_apple_iphone-16_9299": {
+    "store": "apple_store",
+    "model": "iPhone 16",
+    "title": "iPhone 16",
+    "samples": [
+      {
+        "timestamp": "2026-06-19T19:39:47.873784+00:00",
+        "price": 9299.0,
+        "url": "https://www.apple.com/br/shop/buy-iphone/iphone-16"
+      }
+    ],
+    "last_alerted_price": null,
+    "last_alerted_at": null
+  },
+  "zoom_iPhone 17 Pro Max_zoom_419668": {
+    "store": "zoom",
+    "model": "iPhone 17 Pro Max",
+    "title": "iPhone 17 Pro Max 256GB",
+    "samples": [
+      {
+        "timestamp": "2026-06-19T19:39:47.873800+00:00",
+        "price": 8339.0,
+        "url": "https://www.zoom.com.br/celular/iphone-17-pro-max"
+      }
+    ],
+    "last_alerted_price": null,
+    "last_alerted_at": null
+  },
+  "zoom_iPhone 17 Pro Max_zoom_843018": {
+    "store": "zoom",
+    "model": "iPhone 17 Pro Max",
+    "title": "iPhone 15 Pro Max 8 GB 256GB ",
+    "samples": [
+      {
+        "timestamp": "2026-06-19T19:39:47.873816+00:00",
+        "price": 6289.0,
+        "url": "https://www.zoom.com.br/celular/iphone-17-pro-max"
+      }
+    ],
+    "last_alerted_price": null,
+    "last_alerted_at": null
+  },
+  "zoom_iPhone 17 Pro Max_zoom_369264": {
+    "store": "zoom",
+    "model": "iPhone 17 Pro Max",
+    "title": "iPhone 17 Pro Max 512GB",
+    "samples": [
+      {
+        "timestamp": "2026-06-19T19:39:47.873832+00:00",
+        "price": 10448.95,
+        "url": "https://www.zoom.com.br/celular/iphone-17-pro-max"
+      }
+    ],
+    "last_alerted_price": null,
+    "last_alerted_at": null
+  },
+  "zoom_iPhone 17 Pro Max_zoom_58901": {
+    "store": "zoom",
+    "model": "iPhone 17 Pro Max",
+    "title": "Celular Apple iPhone 15 Pro Max 512GB 8 GB",
+    "samples": [
+      {
+        "timestamp": "2026-06-19T19:39:47.873846+00:00",
+        "price": 7329.0,
+        "url": "https://www.zoom.com.br/celular/iphone-17-pro-max"
+      }
+    ],
+    "last_alerted_price": null,
+    "last_alerted_at": null
+  },
+  "zoom_iPhone 17 Pro Max_zoom_841293": {
+    "store": "zoom",
+    "model": "iPhone 17 Pro Max",
+    "title": "iPhone 17 Pro Max 1TB",
+    "samples": [
+      {
+        "timestamp": "2026-06-19T19:39:47.873862+00:00",
+        "price": 11999.99,
+        "url": "https://www.zoom.com.br/celular/iphone-17-pro-max"
+      }
+    ],
+    "last_alerted_price": null,
+    "last_alerted_at": null
+  },
+  "zoom_iPhone 17 Pro_zoom_419668": {
+    "store": "zoom",
+    "model": "iPhone 17 Pro",
+    "title": "iPhone 17 Pro Max 256GB",
+    "samples": [
+      {
+        "timestamp": "2026-06-19T19:39:47.873882+00:00",
+        "price": 8339.0,
+        "url": "https://www.zoom.com.br/celular/iphone-17-pro"
+      }
+    ],
+    "last_alerted_price": null,
+    "last_alerted_at": null
+  },
+  "zoom_iPhone 17 Pro_zoom_715595": {
+    "store": "zoom",
+    "model": "iPhone 17 Pro",
+    "title": "iPhone 17 Pro 256GB",
+    "samples": [
+      {
+        "timestamp": "2026-06-19T19:39:47.873896+00:00",
+        "price": 8337.84,
+        "url": "https://www.zoom.com.br/celular/iphone-17-pro"
+      }
+    ],
+    "last_alerted_price": null,
+    "last_alerted_at": null
+  },
+  "zoom_iPhone 17 Pro_zoom_843018": {
+    "store": "zoom",
+    "model": "iPhone 17 Pro",
+    "title": "iPhone 15 Pro Max 8 GB 256GB ",
+    "samples": [
+      {
+        "timestamp": "2026-06-19T19:39:47.873911+00:00",
+        "price": 6289.0,
+        "url": "https://www.zoom.com.br/celular/iphone-17-pro"
+      }
+    ],
+    "last_alerted_price": null,
+    "last_alerted_at": null
+  },
+  "zoom_iPhone 17 Pro_zoom_369264": {
+    "store": "zoom",
+    "model": "iPhone 17 Pro",
+    "title": "iPhone 17 Pro Max 512GB",
+    "samples": [
+      {
+        "timestamp": "2026-06-19T19:39:47.873922+00:00",
+        "price": 10448.95,
+        "url": "https://www.zoom.com.br/celular/iphone-17-pro"
+      }
+    ],
+    "last_alerted_price": null,
+    "last_alerted_at": null
+  },
+  "zoom_iPhone 17 Pro_zoom_58901": {
+    "store": "zoom",
+    "model": "iPhone 17 Pro",
+    "title": "Celular Apple iPhone 15 Pro Max 512GB 8 GB",
+    "samples": [
+      {
+        "timestamp": "2026-06-19T19:39:47.873934+00:00",
+        "price": 7329.0,
+        "url": "https://www.zoom.com.br/celular/iphone-17-pro"
+      }
+    ],
+    "last_alerted_price": null,
+    "last_alerted_at": null
+  },
+  "zoom_iPhone 17_zoom_357417": {
+    "store": "zoom",
+    "model": "iPhone 17",
+    "title": "iPhone 17 256GB",
+    "samples": [
+      {
+        "timestamp": "2026-06-19T19:39:47.873947+00:00",
+        "price": 5749.0,
+        "url": "https://www.zoom.com.br/celular/iphone-17"
+      }
+    ],
+    "last_alerted_price": null,
+    "last_alerted_at": null
+  },
+  "zoom_iPhone 17_zoom_419668": {
+    "store": "zoom",
+    "model": "iPhone 17",
+    "title": "iPhone 17 Pro Max 256GB",
+    "samples": [
+      {
+        "timestamp": "2026-06-19T19:39:47.873959+00:00",
+        "price": 8339.0,
+        "url": "https://www.zoom.com.br/celular/iphone-17"
+      }
+    ],
+    "last_alerted_price": null,
+    "last_alerted_at": null
+  },
+  "zoom_iPhone 17_zoom_156704": {
+    "store": "zoom",
+    "model": "iPhone 17",
+    "title": "iPhone 15 128GB 6GB",
+    "samples": [
+      {
+        "timestamp": "2026-06-19T19:39:47.873970+00:00",
+        "price": 3999.0,
+        "url": "https://www.zoom.com.br/celular/iphone-17"
+      }
+    ],
+    "last_alerted_price": null,
+    "last_alerted_at": null
+  },
+  "zoom_iPhone 17_zoom_106059": {
+    "store": "zoom",
+    "model": "iPhone 17",
+    "title": "Celular Apple iPhone 15 Plus 256GB 6 GB",
+    "samples": [
+      {
+        "timestamp": "2026-06-19T19:39:47.873982+00:00",
+        "price": 4949.1,
+        "url": "https://www.zoom.com.br/celular/iphone-17"
+      }
+    ],
+    "last_alerted_price": null,
+    "last_alerted_at": null
+  },
+  "zoom_iPhone 17_zoom_715595": {
+    "store": "zoom",
+    "model": "iPhone 17",
+    "title": "iPhone 17 Pro 256GB",
+    "samples": [
+      {
+        "timestamp": "2026-06-19T19:39:47.873993+00:00",
+        "price": 8337.84,
+        "url": "https://www.zoom.com.br/celular/iphone-17"
+      }
+    ],
+    "last_alerted_price": null,
+    "last_alerted_at": null
+  },
+  "zoom_iPhone 16 Pro Max_zoom_843018": {
+    "store": "zoom",
+    "model": "iPhone 16 Pro Max",
+    "title": "iPhone 15 Pro Max 8 GB 256GB ",
+    "samples": [
+      {
+        "timestamp": "2026-06-19T19:39:47.874007+00:00",
+        "price": 6289.0,
+        "url": "https://www.zoom.com.br/celular/iphone-16-pro-max"
+      }
+    ],
+    "last_alerted_price": null,
+    "last_alerted_at": null
+  },
+  "zoom_iPhone 16 Pro Max_zoom_58901": {
+    "store": "zoom",
+    "model": "iPhone 16 Pro Max",
+    "title": "Celular Apple iPhone 15 Pro Max 512GB 8 GB",
+    "samples": [
+      {
+        "timestamp": "2026-06-19T19:39:47.874020+00:00",
+        "price": 7329.0,
+        "url": "https://www.zoom.com.br/celular/iphone-16-pro-max"
+      }
+    ],
+    "last_alerted_price": null,
+    "last_alerted_at": null
+  },
+  "zoom_iPhone 16 Pro Max_zoom_677242": {
+    "store": "zoom",
+    "model": "iPhone 16 Pro Max",
+    "title": "Celular Apple iPhone 14 Pro Max 128GB 6 GB",
+    "samples": [
+      {
+        "timestamp": "2026-06-19T19:39:47.874032+00:00",
+        "price": 4719.99,
+        "url": "https://www.zoom.com.br/celular/iphone-16-pro-max"
+      }
+    ],
+    "last_alerted_price": null,
+    "last_alerted_at": null
+  },
+  "zoom_iPhone 16 Pro Max_zoom_220625": {
+    "store": "zoom",
+    "model": "iPhone 16 Pro Max",
+    "title": "iPhone 16 Pro Max 256GB",
+    "samples": [
+      {
+        "timestamp": "2026-06-19T19:39:47.874044+00:00",
+        "price": 9490.39,
+        "url": "https://www.zoom.com.br/celular/iphone-16-pro-max"
+      }
+    ],
+    "last_alerted_price": null,
+    "last_alerted_at": null
+  },
+  "zoom_iPhone 16 Pro Max_zoom_981622": {
+    "store": "zoom",
+    "model": "iPhone 16 Pro Max",
+    "title": " iPhone 15 Pro Max 8 GB 1TB ",
+    "samples": [
+      {
+        "timestamp": "2026-06-19T19:39:47.874056+00:00",
+        "price": 9999.0,
+        "url": "https://www.zoom.com.br/celular/iphone-16-pro-max"
+      }
+    ],
+    "last_alerted_price": null,
+    "last_alerted_at": null
+  },
+  "zoom_iPhone 16 Pro_zoom_843018": {
+    "store": "zoom",
+    "model": "iPhone 16 Pro",
+    "title": "iPhone 15 Pro Max 8 GB 256GB ",
+    "samples": [
+      {
+        "timestamp": "2026-06-19T19:39:47.874068+00:00",
+        "price": 6289.0,
+        "url": "https://www.zoom.com.br/celular/iphone-16-pro"
+      }
+    ],
+    "last_alerted_price": null,
+    "last_alerted_at": null
+  },
+  "zoom_iPhone 16 Pro_zoom_989025": {
+    "store": "zoom",
+    "model": "iPhone 16 Pro",
+    "title": "Celular Apple iPhone 14 Pro 256GB 6 GB",
+    "samples": [
+      {
+        "timestamp": "2026-06-19T19:39:47.874080+00:00",
+        "price": 4157.61,
+        "url": "https://www.zoom.com.br/celular/iphone-16-pro"
+      }
+    ],
+    "last_alerted_price": null,
+    "last_alerted_at": null
+  },
+  "zoom_iPhone 16 Pro_zoom_58901": {
+    "store": "zoom",
+    "model": "iPhone 16 Pro",
+    "title": "Celular Apple iPhone 15 Pro Max 512GB 8 GB",
+    "samples": [
+      {
+        "timestamp": "2026-06-19T19:39:47.874091+00:00",
+        "price": 7329.0,
+        "url": "https://www.zoom.com.br/celular/iphone-16-pro"
+      }
+    ],
+    "last_alerted_price": null,
+    "last_alerted_at": null
+  },
+  "zoom_iPhone 16 Pro_zoom_677242": {
+    "store": "zoom",
+    "model": "iPhone 16 Pro",
+    "title": "Celular Apple iPhone 14 Pro Max 128GB 6 GB",
+    "samples": [
+      {
+        "timestamp": "2026-06-19T19:39:47.874103+00:00",
+        "price": 4719.99,
+        "url": "https://www.zoom.com.br/celular/iphone-16-pro"
+      }
+    ],
+    "last_alerted_price": null,
+    "last_alerted_at": null
+  },
+  "zoom_iPhone 16 Pro_zoom_220625": {
+    "store": "zoom",
+    "model": "iPhone 16 Pro",
+    "title": "iPhone 16 Pro Max 256GB",
+    "samples": [
+      {
+        "timestamp": "2026-06-19T19:39:47.874114+00:00",
+        "price": 9490.39,
+        "url": "https://www.zoom.com.br/celular/iphone-16-pro"
+      }
+    ],
+    "last_alerted_price": null,
+    "last_alerted_at": null
+  },
+  "zoom_iPhone 16_zoom_598994": {
+    "store": "zoom",
+    "model": "iPhone 16",
+    "title": "iPhone 16 128GB",
+    "samples": [
+      {
+        "timestamp": "2026-06-19T19:39:47.874127+00:00",
+        "price": 5097.0,
+        "url": "https://www.zoom.com.br/celular/iphone-16"
+      }
+    ],
+    "last_alerted_price": null,
+    "last_alerted_at": null
+  },
+  "zoom_iPhone 16_zoom_156704": {
+    "store": "zoom",
+    "model": "iPhone 16",
+    "title": "iPhone 15 128GB 6GB",
+    "samples": [
+      {
+        "timestamp": "2026-06-19T19:39:47.874142+00:00",
+        "price": 3999.0,
+        "url": "https://www.zoom.com.br/celular/iphone-16"
+      }
+    ],
+    "last_alerted_price": null,
+    "last_alerted_at": null
+  },
+  "zoom_iPhone 16_zoom_365248": {
+    "store": "zoom",
+    "model": "iPhone 16",
+    "title": "iPhone 16 256GB",
+    "samples": [
+      {
+        "timestamp": "2026-06-19T19:39:47.874153+00:00",
+        "price": 5297.0,
+        "url": "https://www.zoom.com.br/celular/iphone-16"
+      }
+    ],
+    "last_alerted_price": null,
+    "last_alerted_at": null
+  },
+  "zoom_iPhone 16_zoom_282701": {
+    "store": "zoom",
+    "model": "iPhone 16",
+    "title": "iPhone 13 4 GB 256GB",
+    "samples": [
+      {
+        "timestamp": "2026-06-19T19:39:47.874165+00:00",
+        "price": 2934.47,
+        "url": "https://www.zoom.com.br/celular/iphone-16"
+      }
+    ],
+    "last_alerted_price": null,
+    "last_alerted_at": null
+  },
+  "zoom_iPhone 16_zoom_156657": {
+    "store": "zoom",
+    "model": "iPhone 16",
+    "title": "Celular Apple iPhone 17e 5G 256GB",
+    "samples": [
+      {
+        "timestamp": "2026-06-19T19:39:47.874177+00:00",
+        "price": 4497.9,
+        "url": "https://www.zoom.com.br/celular/iphone-16"
+      }
+    ],
+    "last_alerted_price": null,
+    "last_alerted_at": null
+  },
+  "zoom_iPhone 15 Pro Max_zoom_843018": {
+    "store": "zoom",
+    "model": "iPhone 15 Pro Max",
+    "title": "iPhone 15 Pro Max 8 GB 256GB ",
+    "samples": [
+      {
+        "timestamp": "2026-06-19T19:39:47.874189+00:00",
+        "price": 6289.0,
+        "url": "https://www.zoom.com.br/celular/iphone-15-pro-max"
+      }
+    ],
+    "last_alerted_price": null,
+    "last_alerted_at": null
+  },
+  "zoom_iPhone 15 Pro Max_zoom_58901": {
+    "store": "zoom",
+    "model": "iPhone 15 Pro Max",
+    "title": "Celular Apple iPhone 15 Pro Max 512GB 8 GB",
+    "samples": [
+      {
+        "timestamp": "2026-06-19T19:39:47.874202+00:00",
+        "price": 7329.0,
+        "url": "https://www.zoom.com.br/celular/iphone-15-pro-max"
+      }
+    ],
+    "last_alerted_price": null,
+    "last_alerted_at": null
+  },
+  "zoom_iPhone 15 Pro Max_zoom_981622": {
+    "store": "zoom",
+    "model": "iPhone 15 Pro Max",
+    "title": " iPhone 15 Pro Max 8 GB 1TB ",
+    "samples": [
+      {
+        "timestamp": "2026-06-19T19:39:47.874214+00:00",
+        "price": 9999.0,
+        "url": "https://www.zoom.com.br/celular/iphone-15-pro-max"
+      }
+    ],
+    "last_alerted_price": null,
+    "last_alerted_at": null
+  },
+  "zoom_iPhone 15 Pro Max_zoom_464689": {
+    "store": "zoom",
+    "model": "iPhone 15 Pro Max",
+    "title": "Celular Apple iPhone 13 Pro Max 128GB 6 GB Usado",
+    "samples": [
+      {
+        "timestamp": "2026-06-19T19:39:47.874226+00:00",
+        "price": 3166.66,
+        "url": "https://www.zoom.com.br/celular/iphone-15-pro-max"
+      }
+    ],
+    "last_alerted_price": null,
+    "last_alerted_at": null
+  },
+  "zoom_iPhone 15 Pro Max_zoom_865157": {
+    "store": "zoom",
+    "model": "iPhone 15 Pro Max",
+    "title": "Celular Apple iPhone 13 Pro Max 128GB 6 GB",
+    "samples": [
+      {
+        "timestamp": "2026-06-19T19:39:47.874238+00:00",
+        "price": 10142.0,
+        "url": "https://www.zoom.com.br/celular/iphone-15-pro-max"
+      }
+    ],
+    "last_alerted_price": null,
+    "last_alerted_at": null
+  },
+  "zoom_iPhone 15 Pro_zoom_843018": {
+    "store": "zoom",
+    "model": "iPhone 15 Pro",
+    "title": "iPhone 15 Pro Max 8 GB 256GB ",
+    "samples": [
+      {
+        "timestamp": "2026-06-19T19:39:47.874252+00:00",
+        "price": 6289.0,
+        "url": "https://www.zoom.com.br/celular/iphone-15-pro"
+      }
+    ],
+    "last_alerted_price": null,
+    "last_alerted_at": null
+  },
+  "zoom_iPhone 15 Pro_zoom_58901": {
+    "store": "zoom",
+    "model": "iPhone 15 Pro",
+    "title": "Celular Apple iPhone 15 Pro Max 512GB 8 GB",
+    "samples": [
+      {
+        "timestamp": "2026-06-19T19:39:47.874260+00:00",
+        "price": 7329.0,
+        "url": "https://www.zoom.com.br/celular/iphone-15-pro"
+      }
+    ],
+    "last_alerted_price": null,
+    "last_alerted_at": null
+  },
+  "zoom_iPhone 15 Pro_zoom_828311": {
+    "store": "zoom",
+    "model": "iPhone 15 Pro",
+    "title": "Celular Apple iPhone 13 Pro 128GB 6 GB Usado",
+    "samples": [
+      {
+        "timestamp": "2026-06-19T19:39:47.874267+00:00",
+        "price": 2744.44,
+        "url": "https://www.zoom.com.br/celular/iphone-15-pro"
+      }
+    ],
+    "last_alerted_price": null,
+    "last_alerted_at": null
+  },
+  "zoom_iPhone 15 Pro_zoom_957684": {
+    "store": "zoom",
+    "model": "iPhone 15 Pro",
+    "title": "Celular Apple iPhone 14 256GB 6 GB Usado",
+    "samples": [
+      {
+        "timestamp": "2026-06-19T19:39:47.874274+00:00",
+        "price": 2744.45,
+        "url": "https://www.zoom.com.br/celular/iphone-15-pro"
+      }
+    ],
+    "last_alerted_price": null,
+    "last_alerted_at": null
+  },
+  "zoom_iPhone 15 Pro_zoom_150149": {
+    "store": "zoom",
+    "model": "iPhone 15 Pro",
+    "title": "Celular Apple iPhone 12 Pro 128GB 6 GB",
+    "samples": [
+      {
+        "timestamp": "2026-06-19T19:39:47.874283+00:00",
+        "price": 3283.38,
+        "url": "https://www.zoom.com.br/celular/iphone-15-pro"
+      }
+    ],
+    "last_alerted_price": null,
+    "last_alerted_at": null
+  },
+  "zoom_iPhone 15_zoom_156704": {
+    "store": "zoom",
+    "model": "iPhone 15",
+    "title": "iPhone 15 128GB 6GB",
+    "samples": [
+      {
+        "timestamp": "2026-06-19T19:39:47.874290+00:00",
+        "price": 3999.0,
+        "url": "https://www.zoom.com.br/celular/iphone-15"
+      }
+    ],
+    "last_alerted_price": null,
+    "last_alerted_at": null
+  },
+  "zoom_iPhone 15_zoom_282701": {
+    "store": "zoom",
+    "model": "iPhone 15",
+    "title": "iPhone 13 4 GB 256GB",
+    "samples": [
+      {
+        "timestamp": "2026-06-19T19:39:47.874297+00:00",
+        "price": 2934.47,
+        "url": "https://www.zoom.com.br/celular/iphone-15"
+      }
+    ],
+    "last_alerted_price": null,
+    "last_alerted_at": null
+  },
+  "zoom_iPhone 15_zoom_106059": {
+    "store": "zoom",
+    "model": "iPhone 15",
+    "title": "Celular Apple iPhone 15 Plus 256GB 6 GB",
+    "samples": [
+      {
+        "timestamp": "2026-06-19T19:39:47.874304+00:00",
+        "price": 4949.1,
+        "url": "https://www.zoom.com.br/celular/iphone-15"
+      }
+    ],
+    "last_alerted_price": null,
+    "last_alerted_at": null
+  },
+  "zoom_iPhone 15_zoom_843018": {
+    "store": "zoom",
+    "model": "iPhone 15",
+    "title": "iPhone 15 Pro Max 8 GB 256GB ",
+    "samples": [
+      {
+        "timestamp": "2026-06-19T19:39:47.874311+00:00",
+        "price": 6289.0,
+        "url": "https://www.zoom.com.br/celular/iphone-15"
+      }
+    ],
+    "last_alerted_price": null,
+    "last_alerted_at": null
+  },
+  "zoom_iPhone 15_zoom_390011": {
+    "store": "zoom",
+    "model": "iPhone 15",
+    "title": "iPhone 14 128GB 6GB",
+    "samples": [
+      {
+        "timestamp": "2026-06-19T19:39:47.874318+00:00",
+        "price": 3599.0,
+        "url": "https://www.zoom.com.br/celular/iphone-15"
+      }
+    ],
+    "last_alerted_price": null,
+    "last_alerted_at": null
+  }
 }
