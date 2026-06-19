@@ -22,6 +22,21 @@ STORE_NAMES = {
     "magalu": "Magazine Luiza",
     "kabum": "KaBuM!",
     "americanas": "Americanas",
+    "submarino": "Submarino",
+    "shoptime": "Shoptime",
+    "casasbahia": "Casas Bahia",
+    "ponto": "Ponto",
+    "shopee": "Shopee BR",
+    "fastshop": "FastShop",
+    "iplace": "iPlace",
+    "extra": "Extra",
+    "carrefour": "Carrefour",
+    "fnac": "Fnac",
+    "terabyte": "Terabyte Shop",
+    "apple_store": "Apple Store",
+    "zoom": "Zoom",
+    "ricardo": "Ricardo Eletro",
+    "conecta": "Conecta",
 }
 
 LEVEL_HEADERS = {
