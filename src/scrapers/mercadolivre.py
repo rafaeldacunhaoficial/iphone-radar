@@ -1,119 +1,91 @@
 """
-Scraper MercadoLivre — usa a API oficial pública (sem auth).
-Endpoint: https://api.mercadolibre.com/sites/MLB/search
+Scraper MercadoLivre — scraping HTML da página de listagem (SSR).
+A API oficial exige OAuth desde 2024.
 """
-
-import requests
+import re
 import logging
-from typing import Optional
+import requests
+from bs4 import BeautifulSoup
 
 logger = logging.getLogger(__name__)
 
-API_BASE = "https://api.mercadolibre.com/sites/MLB/search"
-
-IPHONE_MODELS = [
-    "iPhone 17 Pro Max",
-    "iPhone 17 Pro",
-    "iPhone 17 Plus",
-    "iPhone 17",
-    "iPhone 16 Pro Max",
-    "iPhone 16 Pro",
-    "iPhone 16 Plus",
-    "iPhone 16",
-    "iPhone 15 Pro Max",
-    "iPhone 15 Pro",
-    "iPhone 15 Plus",
-    "iPhone 15",
-]
-
 HEADERS = {
-    "User-Agent": "Mozilla/5.0 (compatible; iPhoneRadar/1.0)",
-    "Accept": "application/json",
+    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36",
+    "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
+    "Accept-Language": "pt-BR,pt;q=0.9",
+    "Referer": "https://www.mercadolivre.com.br/",
 }
 
+IPHONE_QUERIES = [
+    ("iPhone 17 Pro Max", "iphone-17-pro-max"),
+    ("iPhone 17 Pro",     "iphone-17-pro"),
+    ("iPhone 17",         "iphone-17"),
+    ("iPhone 16 Pro Max", "iphone-16-pro-max"),
+    ("iPhone 16 Pro",     "iphone-16-pro"),
+    ("iPhone 16",         "iphone-16"),
+    ("iPhone 15 Pro Max", "iphone-15-pro-max"),
+    ("iPhone 15 Pro",     "iphone-15-pro"),
+    ("iPhone 15",         "iphone-15"),
+]
 
-def _fetch_listings(query: str, limit: int = 20) -> list[dict]:
-    """Chama a API do MercadoLivre e retorna os melhores anúncios de novo."""
+BLACKLIST = ["capa", "capinha", "película", "case", "carregador", "cabo",
+             "fone", "airpods", "watch", "ipad", "suporte", "holder", "usado"]
+
+
+def _parse_price(text: str) -> float:
+    clean = re.sub(r"[^\d,]", "", text.replace(".", "")).replace(",", ".")
+    try: return float(clean)
+    except: return 0.0
+
+
+def _scrape_model(model_name: str, slug: str) -> list[dict]:
     try:
-        resp = requests.get(
-            API_BASE,
-            params={"q": query, "limit": limit, "condition": "new", "sort": "price_asc"},
-            headers=HEADERS,
-            timeout=15,
-        )
-        resp.raise_for_status()
-        data = resp.json()
-        return data.get("results", [])
+        url = f"https://lista.mercadolivre.com.br/{slug}_NoIndex_True"
+        resp = requests.get(url, headers=HEADERS, timeout=25)
+        if resp.status_code != 200: return []
+        soup = BeautifulSoup(resp.text, "html.parser")
+        results = []
+        seen = set()
+        cards = soup.select(".poly-card, .ui-search-result__wrapper, [class*='ui-search-layout__item']")
+        for card in cards[:10]:
+            title_el = card.select_one(".poly-component__title, .ui-search-item__title, [class*='title']")
+            if not title_el: continue
+            title = title_el.get_text(strip=True)
+            if not title or title in seen or "iphone" not in title.lower(): continue
+            if any(w in title.lower() for w in BLACKLIST): continue
+            price_el = card.select_one(".andes-money-amount__fraction, .price-tag-amount, [class*='price']")
+            if not price_el: continue
+            price = _parse_price(price_el.get_text(strip=True))
+            if price < 500: continue
+            link_el = card.select_one("a[href]")
+            link = (link_el.get("href", "") if link_el else "").split("?")[0] or f"https://lista.mercadolivre.com.br/{slug}"
+            seen.add(title)
+            results.append({"store": "mercadolivre", "model": model_name, "title": title[:120],
+                "price": price, "url": link, "seller": "MerCadOLb�re",
+                "product_id": f"ml_{abs(hash(link)) % 9999999}"})
+        if not results:
+            for m in re.finditer(r'"price"\s*:\s*(\d+\.?\d*)[^}]{0,200}"title"\s*:\s*"([^"]*iphone[^"]*)"', resp.text, re.IGNORECASE|re.DOTALL):
+                price = float(m.group(1)); title = m.group(2)
+                if price < 500 or title in seen: continue
+                if any(w in title.lower() for w in BLACKLIST): continue
+                seen.add(title)
+                results.append({"store": "mercadolivre", "model": model_name, "title": title[:120],
+                    "price": price, "url": f"https://lista.mercadolivre.com.br/{slug}",
+                    "seller": "MerCadOLb�re", "product_id": f"ml_{abs(hash(title)) % 9999999}"})
+                if len(results) >= 5: break
+        return results[:5]
     except Exception as e:
-        logger.warning(f"[ML] Erro ao buscar '{query}': {e}")
+        logger.warning(f"[ML] Erro: {e}")
         return []
 
 
-def _is_valid_iphone(title: str, model: str) -> bool:
-    """Filtra anúncios que não correspondem ao modelo buscado (capas, películas, etc.)."""
-    title_lower = title.lower()
-    model_lower = model.lower()
-
-    # Deve conter as palavras-chave do modelo
-    parts = model_lower.split()
-    if not all(p in title_lower for p in parts):
-        return False
-
-    # Exclui acessórios
-    blacklist = ["capa", "capinha", "película", "case", "carregador", "cabo",
-                 "fone", "airpods", "watch", "ipad", "suporte", "holder",
-                 "remanufaturado", "recondicionado", "usado"]
-    for word in blacklist:
-        if word in title_lower:
-            return False
-
-    return True
-
-
 def get_prices() -> list[dict]:
-    """
-    Retorna lista de ofertas:
-    {
-        "store": "mercadolivre",
-        "model": "iPhone 16 Pro Max",
-        "title": "...",
-        "price": 9999.00,
-        "url": "https://...",
-        "seller": "Apple Store",
-        "product_id": "MLB123456"
-    }
-    """
     results = []
     seen_ids = set()
-
-    for model in IPHONE_MODELS:
-        listings = _fetch_listings(model)
-        for item in listings:
-            item_id = item.get("id", "")
-            if item_id in seen_ids:
-                continue
-
-            title = item.get("title", "")
-            if not _is_valid_iphone(title, model):
-                continue
-
-            price = item.get("price")
-            if not price or price < 500:  # ignora preços absurdos
-                continue
-
-            permalink = item.get("permalink", "")
-            seller = (item.get("seller", {}) or {}).get("nickname", "Vendedor")
-
-            seen_ids.add(item_id)
-            results.append({
-                "store": "mercadolivre",
-                "model": model,
-                "title": title,
-                "price": float(price),
-                "url": permalink,
-                "seller": seller,
-                "product_id": item_id,
-            })
-
+    for model_name, slug in IPHONE_QUERIES:
+        for item in _scrape_model(model_name, slug):
+            if item["product_id"] not in seen_ids:
+                seen_ids.add(item["product_id"])
+                results.append(item)
     logger.info(f"[ML] {len(results)} ofertas encontradas.")
     return results
