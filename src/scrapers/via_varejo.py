@@ -1,78 +1,88 @@
 """
-Scraper Via Varejo Group — Casas Bahia e Ponto compartilham o mesmo backend.
+Scraper Casas Bahia - API propria + fallback VTEX.
 """
 import logging
-import re
 import requests
 
 logger = logging.getLogger(__name__)
 
-IPHONE_QUERIES = [
-    ("iPhone 17 Pro Max", "iphone-17-pro-max"),
-    ("iPhone 17 Pro", "iphone-17-pro"),
-    ("iPhone 17", "iphone-17"),
-    ("iPhone 16 Pro Max", "iphone-16-pro-max"),
-    ("iPhone 16 Pro", "iphone-16-pro"),
-    ("iPhone 16", "iphone-16"),
-    ("iPhone 15 Pro Max", "iphone-15-pro-max"),
-    ("iPhone 15 Pro", "iphone-15-pro"),
-    ("iPhone 15", "iphone-15"),
-]
-
-STORES = [
-    ("casasbahia", "Casas Bahia", "casasbahia.com.br"),
-    ("ponto", "Ponto", "ponto.com.br"),
-]
-
 HEADERS = {
     "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36",
-    "Accept": "text/html,application/xhtml+xml",
-    "Accept-Language": "pt-BR,pt;q=0.9",
+    "Accept": "application/json",
+    "Referer": "https://www.casasbahia.com.br/",
 }
 
-BLACKLIST = ["capa", "pelicula", "case", "carregador", "capinha", "cabo", "fone", "suporte"]
+IPHONE_QUERIES = [
+    ("iPhone 17 Pro Max", "iphone 17 pro max"),
+    ("iPhone 17 Pro",     "iphone 17 pro"),
+    ("iPhone 17",         "iphone 17"),
+    ("iPhone 16 Pro Max", "iphone 16 pro max"),
+    ("iPhone 16 Pro",     "iphone 16 pro"),
+    ("iPhone 16",         "iphone 16"),
+    ("iPhone 15 Pro Max", "iphone 15 pro max"),
+    ("iPhone 15 Pro",     "iphone 15 pro"),
+    ("iPhone 15",         "iphone 15"),
+]
 
+BLACKLIST = ["capa","capinha","pelicula","case","carregador","cabo","fone","airpods","watch","ipad","suporte","holder","recondicionado","seminovo","usado"]
 
-def _scrape_store(model_name, query, store_id, store_name, domain):
+def _try_api(model_name, query):
     try:
-        url = f"https://www.{domain}/busca/{query}/"
-        resp = requests.get(url, headers=HEADERS, timeout=20)
+        resp = requests.get(
+            "https://api.casasbahia.com.br/v1/product/search",
+            params={"q": query, "size": 20, "page": 0, "sortBy": "relevance"},
+            headers=HEADERS, timeout=20
+        )
         if resp.status_code != 200:
             return []
-        patterns = [
-            r'"productName"\s*:\s*"([^"]*(?:iPhone|iphone)[^"]*)"[^}]{0,300}?"bestPrice"\s*:\s*(\d+(?:\.\d+)?)',
-            r'"name"\s*:\s*"([^"]*(?:iPhone|iphone)[^"]*)"[^}]{0,300}?"Price"\s*:\s*(\d+(?:\.\d+)?)',
-        ]
-        matches = []
-        for pattern in patterns:
-            matches = re.findall(pattern, resp.text, re.DOTALL)
-            if matches:
-                break
-        results = []
-        seen = set()
-        for title, price_str in matches[:5]:
-            if title in seen or any(w in title.lower() for w in BLACKLIST):
+        data = resp.json()
+        products = data.get("products") or data.get("data") or data.get("results") or []
+        results = []; seen = set()
+        for p in products[:15]:
+            title = p.get("name") or p.get("productName") or p.get("title") or ""
+            if not title or title in seen or "iphone" not in title.lower():
                 continue
-            try:
-                price = float(price_str)
-            except ValueError:
+            if any(w in title.lower() for w in BLACKLIST):
                 continue
+            price = 0
+            for pf in ["salePrice","price","salesPrice","bestPrice","lowPrice","sellingPrice"]:
+                try:
+                    v = p.get(pf) or (p.get("offers") or {}).get(pf) or (p.get("priceRange") or {}).get("sellingPrice",{}).get("lowEndInclusive")
+                    if v:
+                        price = float(v); break
+                except Exception:
+                    pass
             if price < 500:
                 continue
+            pid = p.get("productId") or p.get("id") or abs(hash(title)) % 9999999
+            slug = p.get("linkText") or p.get("slug") or str(pid)
+            url = f"https://www.casasbahia.com.br/{slug}/p"
             seen.add(title)
-            results.append({"store": store_id, "model": model_name, "title": title[:120],
-                "price": price, "url": url, "seller": store_name,
-                "product_id": f"{store_id}_{hash(title) % 999999}"})
+            results.append({"store":"casas_bahia","model":model_name,"title":title[:120],"price":price,"url":url,"seller":"Casas Bahia","product_id":f"cb_{pid}"})
         return results
     except Exception as e:
-        logger.warning(f"[{store_name}] Erro: {e}")
+        logger.warning(f"[CB] API: {e}")
         return []
 
+def _try_vtex(model_name, query):
+    try:
+        from src.scrapers._vtex_base import scrape_vtex_store
+        return scrape_vtex_store("https://www.casasbahia.com.br", "casasbahia","Casas Bahia")
+    except Exception as e:
+        logger.warning(f"[CB] VTEX fallback: {e}")
+        return []
+
+def _scrape_model(model_name, query):
+    r = _try_api(model_name, query)
+    if r:
+        return r
+    return _try_vtex(model_name, query)
 
 def get_prices():
-    results = []
-    for model_name, query in IPHONE_QUERIES:
-        for store_id, store_name, domain in STORES:
-            results.extend(_scrape_store(model_name, query, store_id, store_name, domain))
-    logger.info(f"[Via Varejo] {len(results)} ofertas encontradas.")
+    results = []; seen_ids = set()
+    for mn, q in IPHONE_QUERIES:
+        for it in _scrape_model(mn, q):
+            if it["product_id"] not in seen_ids:
+                seen_ids.add(it["product_id"]); results.append(it)
+    logger.info(f"[CasasBahia] {len(results)} ofertas.")
     return results
