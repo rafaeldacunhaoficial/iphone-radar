@@ -1,82 +1,109 @@
 """
-Scraper Magazine Luiza — extrai dados do __NEXT_DATA__ (SSR).
-A página de busca renderiza os produtos no servidor, incluindo o JSON
-completo no <script id="__NEXT_DATA__">.
+Scraper Magazine Luiza - extrai __NEXT_DATA__ com sessao para cookies.
 """
 import json
 import logging
+import re
 import requests
-from bs4 import BeautifulSoup
 
 logger = logging.getLogger(__name__)
 
 HEADERS = {
     "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36",
-    "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
+    "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8",
     "Accept-Language": "pt-BR,pt;q=0.9",
-    "Referer": "https://www.magazineluiza.com.br/",
+    "Accept-Encoding": "gzip, deflate, br",
 }
 
 IPHONE_QUERIES = [
-    ("iPhone 17 Pro Max", "iphone+17+pro+max"),
-    ("iPhone 17 Pro",     "iphone+17+pro"),
-    ("iPhone 17",         "iphone+17"),
-    ("iPhone 16 Pro Max", "iphone+16+pro+max"),
-    ("iPhone 16 Pro",     "iphone+16+pro"),
-    ("iPhone 16",         "iphone+16"),
-    ("iPhone 15 Pro Max", "iphone+15+pro+max"),
-    ("iPhone 15 Pro",     "iphone+15+pro"),
-    ("iPhone 15",         "iphone+15"),
+    ("iPhone 17 Pro Max", "iphone-17-pro-max"),
+    ("iPhone 17 Pro",     "iphone-17-pro"),
+    ("iPhone 17",         "iphone-17"),
+    ("iPhone 16 Pro Max", "iphone-16-pro-max"),
+    ("iPhone 16 Pro",     "iphone-16-pro"),
+    ("iPhone 16",         "iphone-16"),
+    ("iPhone 15 Pro Max", "iphone-15-pro-max"),
+    ("iPhone 15 Pro",     "iphone-15-pro"),
+    ("iPhone 15",         "iphone-15"),
 ]
 
-BLACKLIST = ["capa", "película", "case", "carregador", "capinha", "cabo", "fone", "suporte"]
+BLACKLIST = ["capa","capinha","pelicula","case","carregador","cabo","fone","airpods","watch","ipad","suporte","holder","recondicionado","seminovo","usado"]
 
+def _extract_price(p):
+    for pf in ["bestPrice","salesPrice","price","salePrice","sellingPrice","lowPrice"]:
+        try:
+            v = p.get(pf) or (p.get("price_data") or {}).get(pf) or (p.get("priceData") or {}).get(pf)
+            if v:
+                return float(v)
+        except Exception:
+            pass
+    # try nested price
+    for key in ["price","prices"]:
+        try:
+            sub = p.get(key)
+            if isinstance(sub, dict):
+                for pf in ["bestPrice","salesPrice","price","salePrice","sellingPrice","lowPrice"]:
+                    if sub.get(pf):
+                        return float(sub[pf])
+        except Exception:
+            pass
+    return 0
 
-def _scrape_model(model_name: str, query: str) -> list[dict]:
+def _scrape_model(model_name, slug):
     try:
-        url = f"https://www.magazineluiza.com.br/busca/{query}/"
-        resp = requests.get(url, headers=HEADERS, timeout=25)
+        session = requests.Session()
+        session.get("https://www.magazineluiza.com.br/", headers=HEADERS, timeout=15)
+        url = f"https://www.magazineluiza.com.br/busca/{slug}/"
+        resp = session.get(url, headers=HEADERS, timeout=20)
         if resp.status_code != 200:
             return []
-        soup = BeautifulSoup(resp.text, "html.parser")
-        nd_tag = soup.find("script", id="__NEXT_DATA__")
-        if not nd_tag:
+        html = resp.text
+        m = re.search(r'<script id="__NEXT_DATA__" type="application/json">(.*?)</script>', html, re.DOTALL)
+        if not m:
             return []
-        data = json.loads(nd_tag.string)
-        products = (
-            data.get("props", {}).get("pageProps", {})
-                .get("data", {}).get("search", {}).get("products", [])
-        )
-        results = []
-        seen = set()
-        for p in products[:10]:
-            title = p.get("title", "")
-            if not title or title in seen or not "iphone" in title.lower(): continue
-            if any(w in title.lower() for w in BLACKLIST): continue
-            price_data = p.get("price", {})
-            price = float(price_data.get("bestPrice") or price_data.get("price") or 0)
-            if price < 500: continue
-            path = p.get("path", "")
-            product_url = f"https://www.magazineluiza.com.br{path}" if path else "https://www.magazineluiza.com.br"
-            product_id = p.get("id") or p.get("variationId") or str(hash(title) % 999999)
+        data = json.loads(m.group(1))
+        # try path 1: props.pageProps.data.search.products
+        products = None
+        try:
+            products = data["props"]["pageProps"]["data"]["search"]["products"]
+        except Exception:
+            pass
+        # try path 2: props.pageProps.initialState.entities.products
+        if not products:
+            try:
+                ent = data["props"]["pageProps"]["initialState"]["entities"]["products"]
+                products = list(ent.values()) if isinstance(ent, dict) else ent
+            except Exception:
+                pass
+        if not products:
+            return []
+        results = []; seen = set()
+        for p in (products or [])[:15]:
+            title = p.get("title") or p.get("description") or p.get("name") or p.get("productName") or ""
+            if not title or title in seen or "iphone" not in title.lower():
+                continue
+            if any(w in title.lower() for w in BLACKLIST):
+                continue
+            price = _extract_price(p)
+            if price < 500:
+                continue
+            pid = p.get("id") or p.get("productId") or abs(hash(title)) % 9999999
+            purl = p.get("url") or p.get("link") or f"https://www.magazineluiza.com.br/busca/{slug}/"
+            if not purl.startswith("http"):
+                purl = "https://www.magazineluiza.com.br" + purl
+            seller = (p.get("seller") or {}).get("name") if isinstance(p.get("seller"), dict) else p.get("seller", "Magalu")
             seen.add(title)
-            results.append({"store": "magalu", "model": model_name, "title": title[:120],
-                "price": price, "url": product_url,
-                "seller": (p.get("seller") or {}).get("description", "Magazine Luiza"),
-                "product_id": f"ml_{product_id}"})
+            results.append({"store":"magalu","model":model_name,"title":title[:120],"price":price,"url":purl,"seller":seller or "Magalu","product_id":f"ml2_{pid}"})
         return results
     except Exception as e:
-        logger.warning(f"[Magalu] Erro: {e}")
+        logger.warning(f"[Magalu] {slug}: {e}")
         return []
 
-
-def get_prices() -> list[dict]:
-    results = []
-    seen_ids: set[str] = set()
-    for model_name, query in IPHONE_QUERIES:
-        for item in _scrape_model(model_name, query):
-            if item["product_id"] not in seen_ids:
-                seen_ids.add(item["product_id"])
-                results.append(item)
-    logger.info(f"[Magalu] {len(results)} ofertas encontradas.")
+def get_prices():
+    results = []; seen_ids = set()
+    for mn, slug in IPHONE_QUERIES:
+        for it in _scrape_model(mn, slug):
+            if it["product_id"] not in seen_ids:
+                seen_ids.add(it["product_id"]); results.append(it)
+    logger.info(f"[Magalu] {len(results)} ofertas.")
     return results
