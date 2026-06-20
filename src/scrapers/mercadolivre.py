@@ -1,5 +1,5 @@
 """
-Scraper MercadoLivre â€” scraping HTML da pÃ¡gina de listagem (SSR).
+Scraper MercadoLivre - scraping HTML da pagina de listagem (SSR).
 A API oficial exige OAuth desde 2024.
 """
 import re
@@ -28,7 +28,7 @@ IPHONE_QUERIES = [
     ("iPhone 15",         "iphone-15"),
 ]
 
-BLACKLIST = ["capa", "capinha", "pelÃ­cula", "case", "carregador", "cabo",
+BLACKLIST = ["capa", "capinha", "pelicula", "case", "carregador", "cabo",
              "fone", "airpods", "watch", "ipad", "suporte", "holder", "usado"]
 
 
@@ -61,7 +61,7 @@ def _scrape_model(model_name: str, slug: str) -> list[dict]:
             link = (link_el.get("href", "") if link_el else "").split("?")[0] or f"https://lista.mercadolivre.com.br/{slug}"
             seen.add(title)
             results.append({"store": "mercadolivre", "model": model_name, "title": title[:120],
-                "price": price, "url": link, "seller": "MerCadOLböre",
+                "price": price, "url": link, "seller": "MercadoLivre",
                 "product_id": f"ml_{abs(hash(link)) % 9999999}"})
         if not results:
             for m in re.finditer(r'"price"\s*:\s*(\d+\.?\d*)[^}]{0,200}"title"\s*:\s*"([^"]*iphone[^"]*)"', resp.text, re.IGNORECASE|re.DOTALL):
@@ -71,7 +71,7 @@ def _scrape_model(model_name: str, slug: str) -> list[dict]:
                 seen.add(title)
                 results.append({"store": "mercadolivre", "model": model_name, "title": title[:120],
                     "price": price, "url": f"https://lista.mercadolivre.com.br/{slug}",
-                    "seller": "MerCadOLböre", "product_id": f"ml_{abs(hash(title)) % 9999999}"})
+                    "seller": "MercadoLivre", "product_id": f"ml_{abs(hash(title)) % 9999999}"})
                 if len(results) >= 5: break
         return results[:5]
     except Exception as e:
