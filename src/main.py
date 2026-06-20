@@ -1,11 +1,11 @@
 """
-iPhone Price Radar — orquestrador principal.
+iPhone Price Radar - orquestrador principal.
 
 Fluxo:
-  1. Carrega histórico de preços (JSON)
-  2. Coleta preços de todas as lojas configuradas
-  3. Para cada oferta: atualiza histórico, analisa e envia alerta se necessário
-  4. Salva histórico atualizado (será commitado pelo GitHub Actions)
+  1. Carrega historico de precos (JSON)
+  2. Coleta precos de todas as lojas configuradas
+  3. Para cada oferta: atualiza historico, analisa e envia alerta se necessario
+  4. Salva historico atualizado (sera commitado pelo GitHub Actions)
 """
 
 import logging
@@ -13,17 +13,18 @@ import sys
 import os
 from datetime import datetime, timezone
 
-# Adiciona /src ao path para imports relativos
 sys.path.insert(0, os.path.dirname(__file__))
 
 import price_db
 import analyzer
 import notifier
 from scrapers import (
-    mercadolivre, amazon, magalu, kabum,
-    americanas, via_varejo, shopee, fastshop, iplace,
-    extra, carrefour, fnac, terabyte, apple_store,
-    zoom, ricardo, conecta,
+    mercadolivre,
+    shopee,
+    americanas,
+    via_varejo,
+    magalu,
+    kabum,
 )
 
 logging.basicConfig(
@@ -33,118 +34,47 @@ logging.basicConfig(
 )
 logger = logging.getLogger(__name__)
 
-# 20 lojas monitoradas — comente qualquer linha para desativar temporariamente
 SCRAPERS = [
-    # ── Lojas grandes ──────────────────────────────────────
-    ("MercadoLivre",   mercadolivre.get_prices),
-    ("Amazon BR",      amazon.get_prices),
-    ("Magazine Luiza", magalu.get_prices),
-    ("KaBuM!",         kabum.get_prices),
-    ("Americanas",     americanas.get_prices),   # inclui Submarino + Shoptime
-    ("Casas Bahia",    via_varejo.get_prices),   # inclui Ponto
-    ("Shopee BR",      shopee.get_prices),
-    ("FastShop",       fastshop.get_prices),
-    ("iPlace",         iplace.get_prices),
-    # ── Lojas menores ──────────────────────────────────────
-    ("Extra",          extra.get_prices),
-    ("Carrefour",      carrefour.get_prices),
-    ("Fnac",           fnac.get_prices),
-    ("Terabyte Shop",  terabyte.get_prices),
-    ("Apple Store",    apple_store.get_prices),
-    ("Zoom",           zoom.get_prices),
-    ("Ricardo Eletro", ricardo.get_prices),
-    ("Conecta",        conecta.get_prices),
+    mercadolivre.get_prices,
+    shopee.get_prices,
+    americanas.get_prices,
+    via_varejo.get_prices,
+    magalu.get_prices,
+    kabum.get_prices,
 ]
 
 
-def run():
-    logger.info("=" * 60)
-    logger.info("🚀 iPhone Radar iniciado")
-    logger.info(f"⏰ {datetime.now(timezone.utc).strftime('%Y-%m-%d %H:%M UTC')}")
-    logger.info(f"🏪 {len(SCRAPERS)} lojas monitoradas")
-    logger.info("=" * 60)
+def main():
+    logger.info("=== iPhone Price Radar iniciando ===")
+    db = price_db.load()
 
-    # Carrega banco de dados
-    db = price_db.load_db()
+    all_offers = []
+    for scraper_fn in SCRAPERS:
+        name = scraper_fn.__module__.split(".")[-1]
+        try:
+            offers = scraper_fn()
+            logger.info(f"[{name}] {len(offers)} oferta(s) coletada(s)")
+            all_offers.extend(offers)
+        except Exception as e:
+            logger.error(f"[{name}] Erro fatal: {e}")
 
-    all_items = []
+    logger.info(f"Total de ofertas coletadas: {len(all_offers)}")
+
     alerts_sent = 0
+    for offer in all_offers:
+        pid = offer["product_id"]
+        price = offer["price"]
+        db = price_db.add_entry(db, pid, price)
+        history = price_db.get_history(db, pid)
+        alert = analyzer.analyze(offer, history)
+        if alert:
+            notifier.send(alert)
+            alerts_sent += 1
 
-    # Coleta preços de todas as lojas
-    for store_name, scraper_fn in SCRAPERS:
-        logger.info(f"🔍 Coletando: {store_name}...")
-        try:
-            items = scraper_fn()
-            all_items.extend(items)
-            logger.info(f"   ✓ {len(items)} itens")
-        except Exception as e:
-            logger.error(f"   ✗ Erro em {store_name}: {e}")
-
-    logger.info(f"\n📦 Total de ofertas coletadas: {len(all_items)}")
-
-    # Processa cada oferta
-    for item in all_items:
-        try:
-            key = f"{item['store']}_{item['model']}_{item['product_id']}"
-
-            # Atualiza histórico
-            price_db.update_price(db, item)
-            record = db.get(key, {})
-
-            # Calcula estatísticas
-            stats = price_db.get_stats(record)
-
-            # Analisa preço
-            alert = analyzer.analyze(item["price"], stats)
-
-            # Verifica se deve enviar alerta
-            if not analyzer.should_alert(alert):
-                continue
-
-            # Evita spam (mesmo preço nas últimas 24h)
-            if price_db.was_recently_alerted(record, item["price"]):
-                logger.debug(f"Alerta recente ignorado: {item['title'][:50]}")
-                continue
-
-            # Envia alerta
-            logger.info(
-                f"🔔 {alert.level.value}: {item['model']} "
-                f"R${item['price']:.2f} em {item['store']}"
-            )
-            sent = notifier.send_alert(item, alert)
-
-            if sent:
-                price_db.mark_alerted(db, key, item["price"])
-                alerts_sent += 1
-
-        except Exception as e:
-            logger.error(f"Erro ao processar {item.get('title', '?')[:50]}: {e}")
-
-    # Salva banco atualizado
-    price_db.save_db(db)
-    logger.info(
-        f"\n\u2705 Concluído — {alerts_sent} alertas enviados, "
-        f"{len(db)} produtos rastreados."
-    )
-
-    # Heartbeat diário (às 09:00 UTC)
-    if datetime.now(timezone.utc).hour == 9:
-        _send_daily_summary(db)
-
-
-def _send_daily_summary(db: dict):
-    total = len(db)
-    by_store: dict[str, int] = {}
-    for record in db.values():
-        store = record.get("store", "?")
-        by_store[store] = by_store.get(store, 0) + 1
-
-    lines = [f"🛒 Produtos monitorados: {total}"]
-    for store, count in sorted(by_store.items()):
-        lines.append(f"  • {store}: {count}")
-
-    notifier.send_heartbeat("\n".join(lines))
+    logger.info(f"Alertas enviados: {alerts_sent}")
+    price_db.save(db)
+    logger.info("=== Radar finalizado ===")
 
 
 if __name__ == "__main__":
-    run()
+    main()
