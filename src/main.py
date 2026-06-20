@@ -1,6 +1,4 @@
-"""
-iPhone Price Radar - orquestrador principal.
-"""
+"""iPhone Price Radar - orquestrador principal."""
 import logging
 import sys
 import os
@@ -11,12 +9,13 @@ import price_db
 import analyzer
 import notifier
 from scrapers import (
-    mercadolivre,
-    shopee,
-    americanas,
+    carrefour,
+    fastshop,
+    iplace,
+    extra,
+    fnac,
     via_varejo,
-    magalu,
-    kabum,
+    apple_store,
 )
 
 logging.basicConfig(
@@ -27,12 +26,13 @@ logging.basicConfig(
 logger = logging.getLogger(__name__)
 
 SCRAPERS = [
-    mercadolivre.get_prices,
-    shopee.get_prices,
-    americanas.get_prices,
+    carrefour.get_prices,
+    fastshop.get_prices,
+    iplace.get_prices,
+    extra.get_prices,
+    fnac.get_prices,
     via_varejo.get_prices,
-    magalu.get_prices,
-    kabum.get_prices,
+    apple_store.get_prices,
 ]
 
 
