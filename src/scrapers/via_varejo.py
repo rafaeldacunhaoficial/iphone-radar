@@ -26,63 +26,80 @@ IPHONE_QUERIES = [
 
 BLACKLIST = ["capa","capinha","pelicula","case","carregador","cabo","fone","airpods","watch","ipad","suporte","holder","recondicionado","seminovo","usado"]
 
+
+def _get_price(p):
+    for pf in ["salePrice", "price", "salesPrice", "bestPrice", "lowPrice", "sellingPrice"]:
+        try:
+            v = p.get(pf) or (p.get("offers") or {}).get(pf)
+            if v:
+                return float(v)
+        except Exception:
+            pass
+    return 0
+
+
 def _try_api(model_name, query):
     try:
         resp = requests.get(
             "https://api.casasbahia.com.br/v1/product/search",
             params={"q": query, "size": 20, "page": 0, "sortBy": "relevance"},
-            headers=HEADERS, timeout=20
+            headers=HEADERS,
+            timeout=20,
         )
         if resp.status_code != 200:
             return []
         data = resp.json()
         products = data.get("products") or data.get("data") or data.get("results") or []
-        results = []; seen = set()
+        results = []
+        seen = set()
         for p in products[:15]:
             title = p.get("name") or p.get("productName") or p.get("title") or ""
             if not title or title in seen or "iphone" not in title.lower():
                 continue
             if any(w in title.lower() for w in BLACKLIST):
                 continue
-            price = 0
-            for pf in ["salePrice","price","salesPrice","bestPrice","lowPrice","sellingPrice"]:
-                try:
-                    v = p.get(pf) or (p.get("offers") or {}).get(pf) or (p.get("priceRange") or {}).get("sellingPrice",{}).get("lowEndInclusive")
-                    if v:
-                        price = float(v); break
-                except Exception:
-                    pass
+            price = _get_price(p)
             if price < 500:
                 continue
             pid = p.get("productId") or p.get("id") or abs(hash(title)) % 9999999
             slug = p.get("linkText") or p.get("slug") or str(pid)
-            url = f"https://www.casasbahia.com.br/{slug}/p"
             seen.add(title)
-            results.append({"store":"casas_bahia","model":model_name,"title":title[:120],"price":price,"url":url,"seller":"Casas Bahia","product_id":f"cb_{pid}"})
+            results.append({
+                "store": "casas_bahia",
+                "model": model_name,
+                "title": title[:120],
+                "price": price,
+                "url": f"https://www.casasbahia.com.br/{slug}/p",
+                "seller": "Casas Bahia",
+                "product_id": f"cb_{pid}",
+            })
         return results
     except Exception as e:
         logger.warning(f"[CB] API: {e}")
         return []
 
+
 def _try_vtex(model_name, query):
     try:
         from src.scrapers._vtex_base import scrape_vtex_store
-        return scrape_vtex_store("https://www.casasbahia.com.br", "casasbahia","Casas Bahia")
+        return scrape_vtex_store("https://www.casasbahia.com.br", "casasbahia", "Casas Bahia")
     except Exception as e:
-        logger.warning(f"[CB] VTEX fallback: {e}")
+        logger.warning(f"[CB] VTEX: {e}")
         return []
+
 
 def _scrape_model(model_name, query):
     r = _try_api(model_name, query)
-    if r:
-        return r
-    return _try_vtex(model_name, query)
+    return r if r else _try_vtex(model_name, query)
+
 
 def get_prices():
-    results = []; seen_ids = set()
+    results = []
+    seen_ids = set()
     for mn, q in IPHONE_QUERIES:
         for it in _scrape_model(mn, q):
             if it["product_id"] not in seen_ids:
-                seen_ids.add(it["product_id"]); results.append(it)
+                seen_ids.add(it["product_id"])
+                results.append(it)
     logger.info(f"[CasasBahia] {len(results)} ofertas.")
     return results
