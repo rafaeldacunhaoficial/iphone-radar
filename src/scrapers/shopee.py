@@ -11,7 +11,7 @@ HEADERS = {
     "Accept": "application/json",
     "Referer": "https://shopee.com.br/",
     "X-Requested-With": "XMLHttpRequest",
-    "X-API-Source": "pc",
+    "X-API-SOURCE": "pc",
 }
 
 IPHONE_QUERIES = [
@@ -28,28 +28,64 @@ IPHONE_QUERIES = [
 
 BLACKLIST = ["capa","capinha","pelicula","case","carregador","cabo","fone","airpods","watch","ipad","suporte","holder","recondicionado","seminovo","usado"]
 
-def _scrape_model(model_name,query):
+
+def _scrape_model(model_name, query):
     try:
-        resp=requests.get("https://shopee.com.br/api/v4/search/search_items",params={"by":"relevancy","keyword":query,"limit":30,"newest":0,"order":"desc","page_type":"search","scenario":"PAGE_GLOBAL_SEARCH","version":2},headers=HEADERS,ttimeout=20)
-        if resp.status_code!=200:return []
-        results=[];seen=set()
+        resp = requests.get(
+            "https://shopee.com.br/api/v4/search/search_items",
+            params={
+                "by": "relevancy",
+                "keyword": query,
+                "limit": 30,
+                "newest": 0,
+                "order": "desc",
+                "page_type": "search",
+                "scenario": "PAGE_GLOBAL_SEARCH",
+                "version": 2,
+            },
+            headers=HEADERS,
+            timeout=20,
+        )
+        if resp.status_code != 200:
+            return []
+        results = []
+        seen = set()
         for entry in (resp.json().get("items") or [])[:15]:
-            item=entry.get("item_basic",{})
-            title=item.get("name","")
-            if not title or title in seen or not "iphone" in title.lower():continue
-            if any(w in title.lower() for w in BLACKLIST):continue
-            price=(item.get("price") or item.get("price_min") or 0)/100000
-            if price<500:continue
-            id=item.get("itemid","");sid=item.get("shopid","")
+            item = entry.get("item_basic", {})
+            title = item.get("name", "")
+            if not title or title in seen or "iphone" not in title.lower():
+                continue
+            if any(w in title.lower() for w in BLACKLIST):
+                continue
+            raw_price = item.get("price") or item.get("price_min") or 0
+            price = raw_price / 100000
+            if price < 500:
+                continue
+            item_id = item.get("itemid", "")
+            shop_id = item.get("shopid", "")
             seen.add(title)
-            results.append({"store":"shopee","model":model_name,"title":title[:120],"price":round(price,2),url":f"https://shopee.com.br/product/{sid}/{id}","seller":item.get("shop_name","Shopee"),"product_id":f"sp_{id}"})
+            results.append({
+                "store": "shopee",
+                "model": model_name,
+                "title": title[:120],
+                "price": round(price, 2),
+                "url": f"https://shopee.com.br/product/{shop_id}/{item_id}",
+                "seller": item.get("shop_name", "Shopee"),
+                "product_id": f"sp_{item_id}",
+            })
         return results
-    except Exception as e:logger.warning(f"[Shopee] {e}");return []
+    except Exception as e:
+        logger.warning(f"[Shopee] {e}")
+        return []
+
 
 def get_prices():
-    results=[];seen_ids=set()
-    for mn,q in IPHONE_QUERIES:
-        for it in _scrape_model(mn,q):
-            if it["product_id"] not in seen_ids:seen_ids.add(it["product_id"]);results.append(it)
+    results = []
+    seen_ids = set()
+    for mn, q in IPHONE_QUERIES:
+        for it in _scrape_model(mn, q):
+            if it["product_id"] not in seen_ids:
+                seen_ids.add(it["product_id"])
+                results.append(it)
     logger.info(f"[Shopee] {len(results)} ofertas.")
     return results
