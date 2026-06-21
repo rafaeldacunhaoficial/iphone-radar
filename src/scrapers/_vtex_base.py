@@ -3,7 +3,7 @@ Base VTEX - 3 estrategias de endpoint: IS Shelf, Catalog API, IS Legacy GraphQL.
 Usado por: casas_bahia (fallback), fastshop, iplace, extra, carrefour, fnac.
 """
 import logging
-import requests
+from . import _http
 
 logger = logging.getLogger(__name__)
 
@@ -36,7 +36,6 @@ def _parse_vtex_items(products, store_id, display_name):
         if any(w in title.lower() for w in BLACKLIST):
             continue
         price = 0
-        # VTEX nested: items[0].sellers[0].commertialOffer.Price
         try:
             for item in p.get("items", [])[:3]:
                 for seller in item.get("sellers", [])[:2]:
@@ -72,7 +71,7 @@ def _try_is_shelf(base_url, store_id, model_name, query):
     try:
         url = f"{base_url}/_v/api/intelligent-search/product_search/shelf"
         params = {"query": query, "count": 20, "locale": "pt-BR", "hideUnavailableItems": "true", "selectedFacets": ""}
-        resp = requests.get(url, params=params, headers=HEADERS, timeout=20)
+        resp = _http.get(url, params=params, headers=HEADERS, timeout=20)
         if resp.status_code != 200:
             return []
         data = resp.json()
@@ -86,7 +85,7 @@ def _try_catalog(base_url, store_id, model_name, query):
     try:
         url = f"{base_url}/api/catalog_system/pub/products/search/"
         params = {"_q": query, "_from": 0, "_to": 9, "O": "OrderByBestDiscountDESC"}
-        resp = requests.get(url, params=params, headers=HEADERS, timeout=20)
+        resp = _http.get(url, params=params, headers=HEADERS, timeout=20)
         if resp.status_code != 200:
             return []
         data = resp.json()
@@ -105,7 +104,7 @@ def _try_is_legacy(base_url, store_id, model_name, query):
         url = f"{base_url}/_v/segment/graphql/v1"
         params = {"workspace": "master", "maxAge": "short", "appsEtag": "remove", "domain": "store", "locale": "pt-BR", "__bindingId": "any"}
         body = {"query": gql, "variables": {"q": query}}
-        resp = requests.post(url, json=body, params=params, headers={**HEADERS, "Content-Type": "application/json"}, timeout=20)
+        resp = _http.post(url, json=body, params=params, headers={**HEADERS, "Content-Type": "application/json"}, timeout=20)
         if resp.status_code != 200:
             return []
         data = resp.json()
@@ -126,7 +125,6 @@ def scrape_vtex_store(base_url, store_id, display_name):
             for it in items:
                 it["model"] = model_name
             all_results.extend(items)
-    # dedup
     seen = set(); out = []
     for it in all_results:
         if it["product_id"] not in seen:
