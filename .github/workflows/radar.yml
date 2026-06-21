@@ -1,48 +1,45 @@
-name: 📡 iPhone Price Radar
+name: "📡 iPhone Price Radar"
 
 on:
   schedule:
-    # Roda a cada hora (minuto 0 de cada hora), UTC
     - cron: '0 * * * *'
-  # Permite rodar manualmente pela aba "Actions" no GitHub
   workflow_dispatch:
 
 jobs:
   radar:
-    name: Scan de Preços
+    name: "Scan de Preços"
     runs-on: ubuntu-latest
     timeout-minutes: 10
 
-    # Permissão para commitar o histórico de preços de volta no repo
     permissions:
       contents: write
 
     steps:
-      - name: 📥 Checkout do repositório
+      - name: "📥 Checkout do repositório"
         uses: actions/checkout@v4
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: 🐍 Configurar Python 3.11
+      - name: "🐍 Configurar Python 3.11"
         uses: actions/setup-python@v5
         with:
           python-version: '3.11'
           cache: 'pip'
 
-      - name: 📦 Instalar dependências
+      - name: "📦 Instalar dependências"
         run: pip install -r requirements.txt
 
-      - name: 🔍 Executar radar de preços
+      - name: "🔍 Executar radar de preços"
         env:
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
         run: python src/main.py
 
-      - name: 💾 Commitar histórico de preços atualizado
+      - name: "💾 Commitar histórico de preços atualizado"
         run: |
           git config --local user.email "iphone-radar[bot]@github.com"
           git config --local user.name "iPhone Radar Bot"
-          git add data/prices.json
-          # Só faz commit se houver mudanças
+          git add data/prices.json data/debug.json
           git diff --staged --quiet || git commit -m "📊 Preços atualizados — $(date -u '+%Y-%m-%d %H:%M UTC')"
+          git pull --rebase origin main
           git push
