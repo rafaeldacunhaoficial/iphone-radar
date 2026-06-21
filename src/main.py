@@ -9,7 +9,11 @@ sys.path.insert(0, os.path.dirname(__file__))
 import price_db
 import analyzer
 import notifier
-from scrapers import mercadolivre, carrefour, apple_store, amazon, casasbahia, iplace, fastshop, kabum
+from scrapers import (
+    carrefour, iplace, fastshop, kabum,
+    apple_store, casasbahia, mercadolivre, amazon,
+    magalu,
+)
 
 logging.basicConfig(
     level=logging.INFO,
@@ -26,6 +30,7 @@ SCRAPERS = [
     casasbahia.get_prices,
     mercadolivre.get_prices,
     amazon.get_prices,
+    magalu.get_prices,
 ]
 
 DATA_DIR = os.path.join(os.path.dirname(__file__), "..", "data")
@@ -56,18 +61,10 @@ def main() -> None:
             logger.info(f"[{name}] {count} oferta(s)")
             all_offers.extend(offers)
             extra = getattr(scraper_fn, "_last_debug", None)
-            debug_scrapers[name] = {
-                "count": count,
-                "error": None,
-                "detail": extra,
-            }
+            debug_scrapers[name] = {"count": count, "error": None, "detail": extra}
         except Exception as e:
             logger.error(f"[{name}] Erro fatal: {e}", exc_info=True)
-            debug_scrapers[name] = {
-                "count": 0,
-                "error": str(e),
-                "detail": None,
-            }
+            debug_scrapers[name] = {"count": 0, "error": str(e), "detail": None}
 
     alerts_sent = 0
     for offer in all_offers:
@@ -77,9 +74,7 @@ def main() -> None:
             record = db.get(key, {})
             stats = price_db.get_stats(record)
             alert = analyzer.analyze(offer["price"], stats)
-            if analyzer.should_alert(alert) and not price_db.was_recently_alerted(
-                record, offer["price"]
-            ):
+            if analyzer.should_alert(alert) and not price_db.was_recently_alerted(record, offer["price"]):
                 if notifier.send_alert(offer, alert):
                     price_db.mark_alerted(db, key, offer["price"])
                     alerts_sent += 1
@@ -87,7 +82,6 @@ def main() -> None:
             logger.warning(f"Erro ao processar {offer.get('product_id')}: {e}")
 
     price_db.save_db(db)
-
     debug_info = {
         "run_time": run_ts,
         "total_offers": len(all_offers),
@@ -95,9 +89,7 @@ def main() -> None:
         "scrapers": debug_scrapers,
     }
     _write_debug(debug_info)
-    logger.info(
-        f"=== Concluido: {len(all_offers)} ofertas, {alerts_sent} alertas enviados ==="
-    )
+    logger.info(f"=== Concluido: {len(all_offers)} ofertas, {alerts_sent} alertas enviados ===")
 
 
 if __name__ == "__main__":
