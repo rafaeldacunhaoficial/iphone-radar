@@ -1,5 +1,5 @@
 {
-  "run_time": "2026-06-21T17:09:08Z",
+  "run_time": "2026-06-21T17:45:34Z",
   "total_offers": 126,
   "alerts_sent": 0,
   "scrapers": {
@@ -93,17 +93,17 @@
       "detail": {
         "iPhone 17 Pro Max / Pro": {
           "status": 200,
-          "size": 395636,
+          "size": 395682,
           "count": 21
         },
         "iPhone 17 / Plus": {
           "status": 200,
-          "size": 334138,
+          "size": 334156,
           "count": 10
         },
         "iPhone 16 / Plus": {
           "status": 200,
-          "size": 378551,
+          "size": 378462,
           "count": 15
         }
       }
@@ -120,7 +120,7 @@
         "iphone-17-pro-max": {
           "url": "https://lista.mercadolivre.com.br/iphone-17-pro-max",
           "status": 200,
-          "html_size": 35439,
+          "html_size": 35448,
           "jsonld_blocks": 0,
           "product_nodes": 0,
           "after_filter": 0,
@@ -129,7 +129,7 @@
         "iphone-17-pro": {
           "url": "https://lista.mercadolivre.com.br/iphone-17-pro",
           "status": 200,
-          "html_size": 35424,
+          "html_size": 35423,
           "jsonld_blocks": 0,
           "product_nodes": 0,
           "after_filter": 0,
@@ -138,7 +138,7 @@
         "iphone-17": {
           "url": "https://lista.mercadolivre.com.br/iphone-17",
           "status": 200,
-          "html_size": 35399,
+          "html_size": 35398,
           "jsonld_blocks": 0,
           "product_nodes": 0,
           "after_filter": 0,
@@ -165,7 +165,7 @@
         "iphone-16": {
           "url": "https://lista.mercadolivre.com.br/iphone-16",
           "status": 200,
-          "html_size": 35398,
+          "html_size": 35403,
           "jsonld_blocks": 0,
           "product_nodes": 0,
           "after_filter": 0,
@@ -174,7 +174,7 @@
         "iphone-15-pro-max": {
           "url": "https://lista.mercadolivre.com.br/iphone-15-pro-max",
           "status": 200,
-          "html_size": 35439,
+          "html_size": 35438,
           "jsonld_blocks": 0,
           "product_nodes": 0,
           "after_filter": 0,
@@ -183,7 +183,7 @@
         "iphone-15-pro": {
           "url": "https://lista.mercadolivre.com.br/iphone-15-pro",
           "status": 200,
-          "html_size": 35488,
+          "html_size": 35418,
           "jsonld_blocks": 0,
           "product_nodes": 0,
           "after_filter": 0,
@@ -192,7 +192,7 @@
         "iphone-15": {
           "url": "https://lista.mercadolivre.com.br/iphone-15",
           "status": 200,
-          "html_size": 35399,
+          "html_size": 35398,
           "jsonld_blocks": 0,
           "product_nodes": 0,
           "after_filter": 0,
@@ -215,7 +215,7 @@
           "has_next_data": false,
           "count": 0,
           "error": "HTTP 403",
-          "html_size": 1082
+          "html_size": 1083
         },
         "iphone-17-pro": {
           "slug": "iphone-17-pro",
@@ -223,7 +223,7 @@
           "has_next_data": false,
           "count": 0,
           "error": "HTTP 403",
-          "html_size": 1082
+          "html_size": 1083
         },
         "iphone-17": {
           "slug": "iphone-17",
@@ -231,7 +231,7 @@
           "has_next_data": false,
           "count": 0,
           "error": "HTTP 403",
-          "html_size": 1081
+          "html_size": 1083
         },
         "iphone-16-pro-max": {
           "slug": "iphone-16-pro-max",
@@ -239,7 +239,7 @@
           "has_next_data": false,
           "count": 0,
           "error": "HTTP 403",
-          "html_size": 1081
+          "html_size": 1083
         },
         "iphone-16-pro": {
           "slug": "iphone-16-pro",
@@ -247,7 +247,7 @@
           "has_next_data": false,
           "count": 0,
           "error": "HTTP 403",
-          "html_size": 1081
+          "html_size": 1083
         },
         "iphone-16": {
           "slug": "iphone-16",
@@ -255,7 +255,7 @@
           "has_next_data": false,
           "count": 0,
           "error": "HTTP 403",
-          "html_size": 1081
+          "html_size": 1083
         },
         "iphone-15-pro-max": {
           "slug": "iphone-15-pro-max",
@@ -263,7 +263,7 @@
           "has_next_data": false,
           "count": 0,
           "error": "HTTP 403",
-          "html_size": 1081
+          "html_size": 1083
         },
         "iphone-15-pro": {
           "slug": "iphone-15-pro",
@@ -271,7 +271,7 @@
           "has_next_data": false,
           "count": 0,
           "error": "HTTP 403",
-          "html_size": 1081
+          "html_size": 1083
         },
         "iphone-15": {
           "slug": "iphone-15",
@@ -279,7 +279,7 @@
           "has_next_data": false,
           "count": 0,
           "error": "HTTP 403",
-          "html_size": 1081
+          "html_size": 1083
         }
       }
     },
