@@ -9,13 +9,10 @@ import price_db
 import analyzer
 import notifier
 from scrapers import (
+    mercadolivre,
     carrefour,
-    fastshop,
-    iplace,
-    extra,
-    fnac,
-    via_varejo,
     apple_store,
+    amazon,
 )
 
 logging.basicConfig(
@@ -26,13 +23,10 @@ logging.basicConfig(
 logger = logging.getLogger(__name__)
 
 SCRAPERS = [
+    mercadolivre.get_prices,
     carrefour.get_prices,
-    fastshop.get_prices,
-    iplace.get_prices,
-    extra.get_prices,
-    fnac.get_prices,
-    via_varejo.get_prices,
     apple_store.get_prices,
+    amazon.get_prices,
 ]
 
 
