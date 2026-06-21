@@ -1,84 +1,98 @@
-"""
-Scraper Apple Store BR — API oficial de produtos Apple no Brasil.
-"""
+"""Scraper Apple Store BR - parse JSON embutido nas paginas buy-iphone."""
+import json
 import logging
+import re
 import requests
 
 logger = logging.getLogger(__name__)
 
 HEADERS = {
-    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36",
-    "Accept": "application/json",
+    "User-Agent": (
+        "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) "
+        "AppleWebKit/537.36 (KHTML, like Gecko) "
+        "Chrome/120.0.0.0 Safari/537.36"
+    ),
+    "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
     "Accept-Language": "pt-BR,pt;q=0.9",
-    "Referer": "https://www.apple.com/br/",
 }
 
-IPHONE_MODELS = [
-    ("iPhone 17 Pro Max", "iphone-17-pro-max"),
-    ("iPhone 17 Pro", "iphone-17-pro"),
-    ("iPhone 17", "iphone-17"),
-    ("iPhone 16 Pro Max", "iphone-16-pro-max"),
-    ("iPhone 16 Pro", "iphone-16-pro"),
-    ("iPhone 16", "iphone-16"),
-    ("iPhone 15 Pro Max", "iphone-15-pro-max"),
-    ("iPhone 15 Pro", "iphone-15-pro"),
-    ("iPhone 15", "iphone-15"),
+# Apple BR buy-iphone pages - each embeds all configs in a JSON script tag
+BUY_IPHONE_URLS = [
+    ("iPhone 17 Pro Max / Pro", "https://www.apple.com/br/shop/buy-iphone/iphone-17-pro"),
+    ("iPhone 17 / Plus", "https://www.apple.com/br/shop/buy-iphone/iphone-17"),
+    ("iPhone 16 / Plus", "https://www.apple.com/br/shop/buy-iphone/iphone-16"),
 ]
 
+BASE_URL = "https://www.apple.com/br/shop/product"
 
-def _fetch_model(model_name: str, slug: str) -> list[dict]:
+
+def _extract_products(html: str, family_label: str) -> list:
+    """Find the embedded JSON script with data.products and extract all items."""
+    # The script tag is a plain JSON block (not application/ld+json)
+    # It contains: {"data":{"products":[{"partNumber":"...","price":{"fullPrice":XXXX},"name":"..."}]}}
+    pattern = re.compile(
+        r'<script[^>]*>(\{\s*"config".*?"data".*?"products".*?\})</script>',
+        re.DOTALL,
+    )
     results = []
-    # Tenta API JSON da Apple BR
-    try:
-        api_url = f"https://www.apple.com/br/shop/buy-iphone/{slug}"
-        resp = requests.get(api_url, headers=HEADERS, timeout=20)
-        # Se retornar JSON com produtos
-        if resp.status_code == 200 and "application/json" in resp.headers.get("Content-Type", ""):
-            data = resp.json()
-            products = data.get("products", [])
-            for p in products[:3]:
-                price = p.get("currentPrice", {}).get("fullPrice", 0)
-                if not price or price < 500:
+    for m in pattern.finditer(html):
+        raw = m.group(1)
+        try:
+            d = json.loads(raw)
+            products = d.get("data", {}).get("products", [])
+            if not products:
+                continue
+            for p in products:
+                name = p.get("name", "")
+                part = p.get("partNumber", "")
+                sku = p.get("sku", "")
+                full_price = p.get("price", {}).get("fullPrice")
+                if not name or not full_price or not part:
                     continue
-                title = p.get("familyType", model_name)
+                # Determine model from name
+                model = name.split(" ")[0] + " " + name.split(" ")[1] if name else family_label
+                if "Pro Max" in name:
+                    model = "iPhone " + name.split("iPhone ")[-1].split(" ")[1] + " Pro Max"
+                elif "Pro" in name:
+                    model = "iPhone " + name.split("iPhone ")[-1].split(" ")[1] + " Pro"
+                elif "Plus" in name:
+                    model = "iPhone " + name.split("iPhone ")[-1].split(" ")[1] + " Plus"
+                else:
+                    model = "iPhone " + name.split("iPhone ")[-1].split(" ")[1]
                 results.append({
                     "store": "apple_store",
-                    "model": model_name,
-                    "title": title[:120],
-                    "price": float(price),
-                    "url": f"https://www.apple.com/br/shop/buy-iphone/{slug}",
+                    "model": model,
+                    "title": name[:120],
+                    "price": float(full_price),
+                    "url": f"{BASE_URL}/{sku}"[:200],
                     "seller": "Apple Store",
-                    "product_id": f"apple_{slug}_{hash(title) % 999999}",
+                    "product_id": f"apple_{part.replace('/', '_')}",
                 })
-        # Fallback: parse HTML simples
-        if not results and resp.status_code == 200:
-            import re
-            prices = re.findall(r'R\$\s*([\d\.]+,[\d]{2})', resp.text)
-            for price_str in prices[:2]:
-                try:
-                    price = float(price_str.replace(".", "").replace(",", "."))
-                    if price < 500:
-                        continue
-                    results.append({
-                        "store": "apple_store",
-                        "model": model_name,
-                        "title": model_name,
-                        "price": price,
-                        "url": f"https://www.apple.com/br/shop/buy-iphone/{slug}",
-                        "seller": "Apple Store",
-                        "product_id": f"apple_{slug}_{int(price)}",
-                    })
-                    break
-                except ValueError:
-                    continue
-    except Exception as e:
-        logger.warning(f"[Apple Store] Erro em {model_name}: {e}")
+            logger.info(f"[Apple] {family_label}: {len(results)} configs extraidos")
+            return results
+        except (json.JSONDecodeError, KeyError, TypeError) as e:
+            logger.debug(f"[Apple] parse error: {e}")
+            continue
     return results
 
 
-def get_prices() -> list[dict]:
-    results = []
-    for model_name, slug in IPHONE_MODELS:
-        results.extend(_fetch_model(model_name, slug))
-    logger.info(f"[Apple Store] {len(results)} ofertas encontradas.")
-    return results
+def get_prices() -> list:
+    all_results = []
+    debug = {}
+    for family_label, url in BUY_IPHONE_URLS:
+        try:
+            r = requests.get(url, headers=HEADERS, timeout=30)
+            html = r.text
+            logger.info(f"[Apple] {family_label}: status={r.status_code} size={len(html)}")
+            if r.status_code != 200:
+                debug[family_label] = {"status": r.status_code, "count": 0}
+                continue
+            items = _extract_products(html, family_label)
+            all_results.extend(items)
+            debug[family_label] = {"status": r.status_code, "size": len(html), "count": len(items)}
+        except requests.RequestException as e:
+            logger.error(f"[Apple] {family_label}: {e}")
+            debug[family_label] = {"error": str(e), "count": 0}
+    logger.info(f"[Apple] Total: {len(all_results)} produtos de {len(BUY_IPHONE_URLS)} paginas")
+    get_prices._last_debug = debug
+    return all_results
