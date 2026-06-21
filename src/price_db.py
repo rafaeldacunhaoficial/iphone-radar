@@ -1,5 +1,5 @@
 """
-Banco de dados de preços — arquivo JSON no repositório.
+Banco de dados de preÃ§os â arquivo JSON no repositÃ³rio.
 """
 
 import json
@@ -31,7 +31,7 @@ def save_db(db: dict) -> None:
 
 
 def _make_key(item: dict) -> str:
-    return f"{item['store']}_{item['model']}_{item['product_id']}"
+    return f"{item['store']}_{item['product_id']}"
 
 
 def update_price(db: dict, item: dict) -> None:
