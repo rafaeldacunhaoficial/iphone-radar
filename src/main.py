@@ -9,7 +9,7 @@ sys.path.insert(0, os.path.dirname(__file__))
 import price_db
 import analyzer
 import notifier
-from scrapers import mercadolivre, carrefour, apple_store, amazon, casasbahia
+from scrapers import mercadolivre, carrefour, apple_store, amazon, casasbahia, iplace, fastshop
 
 logging.basicConfig(
     level=logging.INFO,
@@ -19,8 +19,10 @@ logger = logging.getLogger(__name__)
 
 SCRAPERS = [
     carrefour.get_prices,
-    casasbahia.get_prices,
+    iplace.get_prices,
+    fastshop.get_prices,
     apple_store.get_prices,
+    casasbahia.get_prices,
     mercadolivre.get_prices,
     amazon.get_prices,
 ]
