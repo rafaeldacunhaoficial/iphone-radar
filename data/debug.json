@@ -1,5 +1,5 @@
 {
-  "run_time": "2026-06-21T00:20:57Z",
+  "run_time": "2026-06-21T03:39:15Z",
   "total_offers": 52,
   "alerts_sent": 0,
   "scrapers": {
@@ -10,7 +10,7 @@
         "iphone-17-pro-max": {
           "url": "https://lista.mercadolivre.com.br/iphone-17-pro-max",
           "status": 200,
-          "html_size": 35438,
+          "html_size": 35436,
           "jsonld_blocks": 0,
           "product_nodes": 0,
           "after_filter": 0,
@@ -19,7 +19,7 @@
         "iphone-17-pro": {
           "url": "https://lista.mercadolivre.com.br/iphone-17-pro",
           "status": 200,
-          "html_size": 35418,
+          "html_size": 35416,
           "jsonld_blocks": 0,
           "product_nodes": 0,
           "after_filter": 0,
@@ -28,7 +28,7 @@
         "iphone-17": {
           "url": "https://lista.mercadolivre.com.br/iphone-17",
           "status": 200,
-          "html_size": 35398,
+          "html_size": 35395,
           "jsonld_blocks": 0,
           "product_nodes": 0,
           "after_filter": 0,
@@ -37,7 +37,7 @@
         "iphone-16-pro-max": {
           "url": "https://lista.mercadolivre.com.br/iphone-16-pro-max",
           "status": 200,
-          "html_size": 35443,
+          "html_size": 35436,
           "jsonld_blocks": 0,
           "product_nodes": 0,
           "after_filter": 0,
@@ -46,7 +46,7 @@
         "iphone-16-pro": {
           "url": "https://lista.mercadolivre.com.br/iphone-16-pro",
           "status": 200,
-          "html_size": 37313,
+          "html_size": 35415,
           "jsonld_blocks": 0,
           "product_nodes": 0,
           "after_filter": 0,
@@ -55,7 +55,7 @@
         "iphone-16": {
           "url": "https://lista.mercadolivre.com.br/iphone-16",
           "status": 200,
-          "html_size": 35398,
+          "html_size": 35401,
           "jsonld_blocks": 0,
           "product_nodes": 0,
           "after_filter": 0,
@@ -64,7 +64,7 @@
         "iphone-15-pro-max": {
           "url": "https://lista.mercadolivre.com.br/iphone-15-pro-max",
           "status": 200,
-          "html_size": 35438,
+          "html_size": 35435,
           "jsonld_blocks": 0,
           "product_nodes": 0,
           "after_filter": 0,
@@ -73,7 +73,7 @@
         "iphone-15-pro": {
           "url": "https://lista.mercadolivre.com.br/iphone-15-pro",
           "status": 200,
-          "html_size": 35418,
+          "html_size": 35416,
           "jsonld_blocks": 0,
           "product_nodes": 0,
           "after_filter": 0,
@@ -82,7 +82,7 @@
         "iphone-15": {
           "url": "https://lista.mercadolivre.com.br/iphone-15",
           "status": 200,
-          "html_size": 35398,
+          "html_size": 35395,
           "jsonld_blocks": 0,
           "product_nodes": 0,
           "after_filter": 0,
