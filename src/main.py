@@ -9,7 +9,7 @@ sys.path.insert(0, os.path.dirname(__file__))
 import price_db
 import analyzer
 import notifier
-from scrapers import mercadolivre, carrefour, apple_store, amazon
+from scrapers import mercadolivre, carrefour, apple_store, amazon, casasbahia
 
 logging.basicConfig(
     level=logging.INFO,
@@ -18,9 +18,10 @@ logging.basicConfig(
 logger = logging.getLogger(__name__)
 
 SCRAPERS = [
-    mercadolivre.get_prices,
     carrefour.get_prices,
+    casasbahia.get_prices,
     apple_store.get_prices,
+    mercadolivre.get_prices,
     amazon.get_prices,
 ]
 
@@ -51,7 +52,6 @@ def main() -> None:
             count = len(offers)
             logger.info(f"[{name}] {count} oferta(s)")
             all_offers.extend(offers)
-            # Collect per-scraper debug if available
             extra = getattr(scraper_fn, "_last_debug", None)
             debug_scrapers[name] = {
                 "count": count,
