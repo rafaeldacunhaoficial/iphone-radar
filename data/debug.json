@@ -1,5 +1,5 @@
 {
-  "run_time": "2026-06-21T13:44:21Z",
+  "run_time": "2026-06-21T13:57:11Z",
   "total_offers": 95,
   "alerts_sent": 0,
   "scrapers": {
@@ -29,12 +29,12 @@
       "detail": {
         "iPhone 17 Pro Max / Pro": {
           "status": 200,
-          "size": 395902,
+          "size": 395651,
           "count": 21
         },
         "iPhone 17 / Plus": {
           "status": 200,
-          "size": 334154,
+          "size": 334186,
           "count": 10
         },
         "iPhone 16 / Plus": {
@@ -51,7 +51,7 @@
         "iPhone 17 Pro Max": {
           "url": "https://www.casasbahia.com.br/iphone-17-pro-max/b",
           "status": 403,
-          "html_size": 3146,
+          "html_size": 3147,
           "hrefs_found": 0,
           "prices_found": 0,
           "error": "HTTP 403"
@@ -59,7 +59,7 @@
         "iPhone 17 Pro": {
           "url": "https://www.casasbahia.com.br/iphone-17-pro/b",
           "status": 403,
-          "html_size": 3146,
+          "html_size": 3147,
           "hrefs_found": 0,
           "prices_found": 0,
           "error": "HTTP 403"
@@ -67,7 +67,7 @@
         "iPhone 17": {
           "url": "https://www.casasbahia.com.br/iphone-17/b",
           "status": 403,
-          "html_size": 3146,
+          "html_size": 3147,
           "hrefs_found": 0,
           "prices_found": 0,
           "error": "HTTP 403"
@@ -75,7 +75,7 @@
         "iPhone 16 Pro Max": {
           "url": "https://www.casasbahia.com.br/iphone-16-pro-max/b",
           "status": 403,
-          "html_size": 3146,
+          "html_size": 3147,
           "hrefs_found": 0,
           "prices_found": 0,
           "error": "HTTP 403"
@@ -83,7 +83,7 @@
         "iPhone 16 Pro": {
           "url": "https://www.casasbahia.com.br/iphone-16-pro/b",
           "status": 403,
-          "html_size": 3146,
+          "html_size": 3147,
           "hrefs_found": 0,
           "prices_found": 0,
           "error": "HTTP 403"
@@ -91,7 +91,7 @@
         "iPhone 16": {
           "url": "https://www.casasbahia.com.br/iphone-16/b",
           "status": 403,
-          "html_size": 3146,
+          "html_size": 3147,
           "hrefs_found": 0,
           "prices_found": 0,
           "error": "HTTP 403"
@@ -99,7 +99,7 @@
         "iPhone 15 Pro Max": {
           "url": "https://www.casasbahia.com.br/iphone-15-pro-max/b",
           "status": 403,
-          "html_size": 3146,
+          "html_size": 3147,
           "hrefs_found": 0,
           "prices_found": 0,
           "error": "HTTP 403"
@@ -107,7 +107,7 @@
         "iPhone 15 Pro": {
           "url": "https://www.casasbahia.com.br/iphone-15-pro/b",
           "status": 403,
-          "html_size": 3146,
+          "html_size": 3147,
           "hrefs_found": 0,
           "prices_found": 0,
           "error": "HTTP 403"
@@ -115,7 +115,7 @@
         "iPhone 15": {
           "url": "https://www.casasbahia.com.br/iphone-15/b",
           "status": 403,
-          "html_size": 3146,
+          "html_size": 3147,
           "hrefs_found": 0,
           "prices_found": 0,
           "error": "HTTP 403"
@@ -129,7 +129,7 @@
         "iphone-17-pro-max": {
           "url": "https://lista.mercadolivre.com.br/iphone-17-pro-max",
           "status": 200,
-          "html_size": 35439,
+          "html_size": 35445,
           "jsonld_blocks": 0,
           "product_nodes": 0,
           "after_filter": 0,
@@ -138,7 +138,7 @@
         "iphone-17-pro": {
           "url": "https://lista.mercadolivre.com.br/iphone-17-pro",
           "status": 200,
-          "html_size": 35419,
+          "html_size": 35425,
           "jsonld_blocks": 0,
           "product_nodes": 0,
           "after_filter": 0,
@@ -147,7 +147,7 @@
         "iphone-17": {
           "url": "https://lista.mercadolivre.com.br/iphone-17",
           "status": 200,
-          "html_size": 35473,
+          "html_size": 35400,
           "jsonld_blocks": 0,
           "product_nodes": 0,
           "after_filter": 0,
@@ -156,7 +156,7 @@
         "iphone-16-pro-max": {
           "url": "https://lista.mercadolivre.com.br/iphone-16-pro-max",
           "status": 200,
-          "html_size": 35438,
+          "html_size": 35445,
           "jsonld_blocks": 0,
           "product_nodes": 0,
           "after_filter": 0,
@@ -165,7 +165,7 @@
         "iphone-16-pro": {
           "url": "https://lista.mercadolivre.com.br/iphone-16-pro",
           "status": 200,
-          "html_size": 35419,
+          "html_size": 35420,
           "jsonld_blocks": 0,
           "product_nodes": 0,
           "after_filter": 0,
@@ -174,7 +174,7 @@
         "iphone-16": {
           "url": "https://lista.mercadolivre.com.br/iphone-16",
           "status": 200,
-          "html_size": 35399,
+          "html_size": 35405,
           "jsonld_blocks": 0,
           "product_nodes": 0,
           "after_filter": 0,
@@ -183,7 +183,7 @@
         "iphone-15-pro-max": {
           "url": "https://lista.mercadolivre.com.br/iphone-15-pro-max",
           "status": 200,
-          "html_size": 35448,
+          "html_size": 35440,
           "jsonld_blocks": 0,
           "product_nodes": 0,
           "after_filter": 0,
@@ -192,7 +192,7 @@
         "iphone-15-pro": {
           "url": "https://lista.mercadolivre.com.br/iphone-15-pro",
           "status": 200,
-          "html_size": 35424,
+          "html_size": 35420,
           "jsonld_blocks": 0,
           "product_nodes": 0,
           "after_filter": 0,
@@ -201,7 +201,7 @@
         "iphone-15": {
           "url": "https://lista.mercadolivre.com.br/iphone-15",
           "status": 200,
-          "html_size": 35399,
+          "html_size": 35400,
           "jsonld_blocks": 0,
           "product_nodes": 0,
           "after_filter": 0,
