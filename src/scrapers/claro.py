@@ -13,8 +13,10 @@ HEADERS = {
 
 URL = "https://www.claro.com.br/smartphones/apple"
 
-# Must start with "iPhone" followed by model number/name (not accessories)
-IPHONE_MODEL_RE = re.compile(r"^iPhone\s+\d+", re.IGNORECASE)
+# iPhone model: must contain "iPhone" followed by a model number
+IPHONE_MODEL_RE = re.compile(r"iPhone\s+\d+", re.IGNORECASE)
+# Blacklist accessories
+BLACKLIST_RE = re.compile(r"(carregador|cabo|fone|airpod|watch|ipad|suporte|protetor|recondicionado|compatível|capa)", re.IGNORECASE)
 
 def _parse_price(text: str) -> float:
     cleaned = re.sub(r"[^\d,]", "", text).replace(",", ".")
@@ -34,7 +36,7 @@ def _find_products(obj, depth: int = 0, results: list = None) -> list:
         price_str = None
 
         for key, val in obj.items():
-            if isinstance(val, str) and IPHONE_MODEL_RE.match(val):
+            if isinstance(val, str) and IPHONE_MODEL_RE.search(val) and not BLACKLIST_RE.search(val) and len(val) < 100:
                 iphone_name = val
             if (key == "price" and isinstance(val, dict)
                     and isinstance(val.get("price"), str)
@@ -65,10 +67,7 @@ def get_prices() -> list:
         get_prices._last_debug = {"error": str(exc)}
         return []
 
-    m = re.search(
-        r'<script id="__NEXT_DATA__"[^>]*>(.+?)</script>',
-        r.text, re.DOTALL,
-    )
+    m = re.search(r'<script id="__NEXT_DATA__"[^>]*>(.+?)</script>', r.text, re.DOTALL)
     if not m:
         get_prices._last_debug = {"error": "__NEXT_DATA__ not found", "html_size": len(r.text)}
         return []
@@ -79,10 +78,7 @@ def get_prices() -> list:
         get_prices._last_debug = {"error": str(exc)}
         return []
 
-    dc = (data.get("props", {})
-          .get("pageProps", {})
-          .get("dynamicComponents", {}))
-
+    dc = data.get("props", {}).get("pageProps", {}).get("dynamicComponents", {})
     raw_products = _find_products(dc)
 
     results = []
@@ -98,6 +94,7 @@ def get_prices() -> list:
     get_prices._last_debug = {
         "count": len(results),
         "products": [r["model"] + " R$" + str(r["price"]) for r in results],
+        "html_size": len(r.text)
     }
     logging.info(f"[claro] {len(results)} produto(s)")
     return results
