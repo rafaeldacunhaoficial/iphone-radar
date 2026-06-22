@@ -1,91 +1,49 @@
-"""
-Scraper Shopee Brasil - API interna de busca.
-"""
+"""Shopee Brasil scraper – search API v4."""
+import re
 import logging
-import requests
+from . import _http
 
 logger = logging.getLogger(__name__)
 
+URL = (
+    "https://shopee.com.br/api/v4/search/search_items"
+    "?by=relevancy&keyword=iphone+apple&limit=60&newest=0"
+    "&order=desc&page_type=search&scenario=PAGE_GLOBAL_SEARCH&version=2"
+)
 HEADERS = {
-    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36",
+    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 "
+                  "(KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36",
     "Accept": "application/json",
-    "Referer": "https://shopee.com.br/",
-    "X-Requested-With": "XMLHttpRequest",
-    "X-API-SOURCE": "pc",
+    "X-Shopee-Language": "pt",
+    "Referer": "https://shopee.com.br/search?keyword=iphone+apple",
 }
-
-IPHONE_QUERIES = [
-    ("iPhone 17 Pro Max", "iphone 17 pro max"),
-    ("iPhone 17 Pro",     "iphone 17 pro"),
-    ("iPhone 17",         "iphone 17"),
-    ("iPhone 16 Pro Max", "iphone 16 pro max"),
-    ("iPhone 16 Pro",     "iphone 16 pro"),
-    ("iPhone 16",         "iphone 16"),
-    ("iPhone 15 Pro Max", "iphone 15 pro max"),
-    ("iPhone 15 Pro",     "iphone 15 pro"),
-    ("iPhone 15",         "iphone 15"),
-]
-
-BLACKLIST = ["capa","capinha","pelicula","case","carregador","cabo","fone","airpods","watch","ipad","suporte","holder","recondicionado","seminovo","usado"]
+IPHONE_RE = re.compile(r"\biphone\b", re.IGNORECASE)
+# Price in Shopee is stored as cents * 1000 (divide by 100000)
+PRICE_DIVISOR = 100_000
 
 
-def _scrape_model(model_name, query):
+def get_prices() -> list[dict]:
     try:
-        resp = requests.get(
-            "https://shopee.com.br/api/v4/search/search_items",
-            params={
-                "by": "relevancy",
-                "keyword": query,
-                "limit": 30,
-                "newest": 0,
-                "order": "desc",
-                "page_type": "search",
-                "scenario": "PAGE_GLOBAL_SEARCH",
-                "version": 2,
-            },
-            headers=HEADERS,
-            timeout=20,
-        )
-        if resp.status_code != 200:
-            return []
-        results = []
-        seen = set()
-        for entry in (resp.json().get("items") or [])[:15]:
-            item = entry.get("item_basic", {})
-            title = item.get("name", "")
-            if not title or title in seen or "iphone" not in title.lower():
-                continue
-            if any(w in title.lower() for w in BLACKLIST):
-                continue
-            raw_price = item.get("price") or item.get("price_min") or 0
-            price = raw_price / 100000
-            if price < 500:
-                continue
-            item_id = item.get("itemid", "")
-            shop_id = item.get("shopid", "")
-            seen.add(title)
-            results.append({
-                "store": "shopee",
-                "model": model_name,
-                "title": title[:120],
-                "price": round(price, 2),
-                "url": f"https://shopee.com.br/product/{shop_id}/{item_id}",
-                "seller": item.get("shop_name", "Shopee"),
-                "product_id": f"sp_{item_id}",
-            })
-        return results
-    except Exception as e:
-        logger.warning(f"[Shopee] {e}")
+        r = _http.get(URL, headers=HEADERS, timeout=15)
+        r.raise_for_status()
+        data = r.json()
+    except Exception as exc:
+        logger.warning("shopee fetch error: %s", exc)
         return []
 
-
-def get_prices():
     results = []
-    seen_ids = set()
-    for mn, q in IPHONE_QUERIES:
-        for it in _scrape_model(mn, q):
-            if it["product_id"] not in seen_ids:
-                seen_ids.add(it["product_id"])
-                results.append(it)
-    logger.info(f"[Shopee] {len(results)} ofertas.")
+    for item in data.get("items", []):
+        basic = item.get("item_basic", {})
+        name = basic.get("name", "")
+        if not IPHONE_RE.search(name):
+            continue
+        raw_price = basic.get("price") or basic.get("price_min")
+        if not raw_price:
+            continue
+        price = float(raw_price) / PRICE_DIVISOR
+        if price <= 0:
+            continue
+        results.append({"store": "shopee", "model": name, "price": price})
+
+    logger.info("shopee: %d iPhones", len(results))
     return results
