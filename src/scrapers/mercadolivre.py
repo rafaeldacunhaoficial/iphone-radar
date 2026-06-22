@@ -14,18 +14,24 @@ HEADERS = {
     "User-Agent": "Mozilla/5.0 (compatible; iphone-radar/1.0)",
     "Accept": "application/json",
 }
-IPHONE_RE = re.compile(r"\biPhone\b", re.IGNORECASE)
+IPHONE_RE = re.compile(r"\biphone\b", re.IGNORECASE)
 
 
 def get_prices() -> list[dict]:
     try:
         r = _http.get(URL, headers=HEADERS, timeout=15)
-        r.raise_for_status()
+        status = r.status_code
+        if status != 200:
+            logger.warning("mercadolivre: status %d", status)
+            get_prices._last_debug = {"error": f"HTTP {status}", "status": status}
+            return []
         data = r.json()
     except Exception as exc:
         logger.warning("mercadolivre fetch error: %s", exc)
+        get_prices._last_debug = {"error": str(exc)}
         return []
 
+    total = data.get("paging", {}).get("total", 0)
     results = []
     for item in data.get("results", []):
         title = item.get("title", "")
@@ -38,5 +44,6 @@ def get_prices() -> list[dict]:
             continue
         results.append({"store": "mercadolivre", "model": title, "price": float(price)})
 
-    logger.info("mercadolivre: %d iPhones", len(results))
+    get_prices._last_debug = {"count": len(results), "total_from_api": total, "results_in_response": len(data.get("results", []))}
+    logger.info("mercadolivre: %d iPhones (api_total=%d)", len(results), total)
     return results
