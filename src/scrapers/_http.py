@@ -1,6 +1,6 @@
 """
 HTTP helper com bypass de Cloudflare.
-Estrategia: cloudscraper (gratis) → ScraperAPI (pago, opcional via SCRAPER_API_KEY).
+Estrategia: cloudscraper (gratis) â ScraperAPI (pago, opcional via SCRAPER_API_KEY).
 """
 import logging
 import os
@@ -50,7 +50,7 @@ def _sapi_url(target, params=None):
 
 
 def get(url, *, headers=None, params=None, timeout=20):
-    """GET: cloudscraper → ScraperAPI → requests puro."""
+    """GET: cloudscraper â ScraperAPI â requests puro."""
     # 1. cloudscraper
     cs = _get_scraper()
     if cs:
@@ -66,7 +66,7 @@ def get(url, *, headers=None, params=None, timeout=20):
     # 2. ScraperAPI
     if SCRAPER_API_KEY:
         try:
-            r = _requests.get(_sapi_url(url, params), headers=headers, timeout=60)
+            r = _requests.get(_sapi_url(url, params), headers=headers, timeout=15)
             if r.status_code == 200:
                 logger.debug(f"[sapi:GET] OK {url}")
                 return r
@@ -79,7 +79,7 @@ def get(url, *, headers=None, params=None, timeout=20):
 
 
 def post(url, *, json=None, headers=None, params=None, timeout=20):
-    """POST: cloudscraper → ScraperAPI → requests puro."""
+    """POST: cloudscraper â ScraperAPI â requests puro."""
     cs = _get_scraper()
     if cs:
         try:
@@ -91,7 +91,7 @@ def post(url, *, json=None, headers=None, params=None, timeout=20):
 
     if SCRAPER_API_KEY:
         try:
-            r = _requests.post(_sapi_url(url, params), json=json, headers=headers, timeout=60)
+            r = _requests.post(_sapi_url(url, params), json=json, headers=headers, timeout=15)
             if r.status_code == 200:
                 return r
         except Exception as e:
