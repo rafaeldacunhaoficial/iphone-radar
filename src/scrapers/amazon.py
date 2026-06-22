@@ -2,7 +2,7 @@
 import re
 import logging
 from bs4 import BeautifulSoup
-from ._http import get_session
+from . import _http
 
 logger = logging.getLogger(__name__)
 
@@ -24,9 +24,8 @@ IPHONE_RE = re.compile(r"i[Pp]hone", re.IGNORECASE)
 
 
 def get_prices() -> list[dict]:
-    session = get_session()
     try:
-        r = session.get(URL, headers=HEADERS, timeout=20)
+        r = _http.get(URL, headers=HEADERS, timeout=20)
         r.raise_for_status()
     except Exception as exc:
         logger.warning("amazon fetch error: %s", exc)
