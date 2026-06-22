@@ -1,6 +1,6 @@
 {
-  "run_time": "2026-06-22T21:59:26Z",
-  "total_offers": 209,
+  "run_time": "2026-06-22T23:25:58Z",
+  "total_offers": 255,
   "alerts_sent": 0,
   "scrapers": {
     "carrefour": {
@@ -93,17 +93,17 @@
       "detail": {
         "iPhone 17 Pro Max / Pro": {
           "status": 200,
-          "size": 395613,
+          "size": 395557,
           "count": 21
         },
         "iPhone 17 / Plus": {
           "status": 200,
-          "size": 334114,
+          "size": 334160,
           "count": 10
         },
         "iPhone 16 / Plus": {
           "status": 200,
-          "size": 378424,
+          "size": 378467,
           "count": 15
         }
       }
@@ -152,11 +152,21 @@
       }
     },
     "amazon": {
-      "count": 0,
+      "count": 46,
       "error": null,
       "detail": {
-        "error": "fetch failed",
-        "method": "failed"
+        "count": 46,
+        "html_size": 835787,
+        "method": "cloudscraper",
+        "cards": 48,
+        "no_price": 0,
+        "sample_titles": [
+          "Apple Cabo para recarga de 60W com conector USB-C (1m) ​​​​​",
+          "Celular Samsung Galaxy A17, 256GB, 8GB, 50MP Tela 6.7\", IP54",
+          "Apple iPhone 12 (64 GB) - Preto (Recondicionado)",
+          "Apple iPhone 12 mini (64 GB) - Preto (Recondicionado)",
+          "Apple iPhone 12 (64 GB) - Branco (Recondicionado)"
+        ]
       }
     },
     "magalu": {
@@ -240,7 +250,7 @@
       "detail": {
         "count": 0,
         "products": [],
-        "html_size": 644406
+        "html_size": 644405
       }
     },
     "bemol": {
