@@ -1,5 +1,5 @@
 {
-  "run_time": "2026-06-22T10:36:51Z",
+  "run_time": "2026-06-22T11:11:45Z",
   "total_offers": 135,
   "alerts_sent": 0,
   "scrapers": {
@@ -93,17 +93,17 @@
       "detail": {
         "iPhone 17 Pro Max / Pro": {
           "status": 200,
-          "size": 395644,
+          "size": 395607,
           "count": 21
         },
         "iPhone 17 / Plus": {
           "status": 200,
-          "size": 334051,
+          "size": 334131,
           "count": 10
         },
         "iPhone 16 / Plus": {
           "status": 200,
-          "size": 378439,
+          "size": 378487,
           "count": 15
         }
       }
@@ -129,7 +129,7 @@
         "iphone-17-pro": {
           "url": "https://lista.mercadolivre.com.br/iphone-17-pro",
           "status": 200,
-          "html_size": 35417,
+          "html_size": 35418,
           "jsonld_blocks": 0,
           "product_nodes": 0,
           "after_filter": 0,
@@ -138,7 +138,7 @@
         "iphone-17": {
           "url": "https://lista.mercadolivre.com.br/iphone-17",
           "status": 200,
-          "html_size": 35398,
+          "html_size": 35403,
           "jsonld_blocks": 0,
           "product_nodes": 0,
           "after_filter": 0,
@@ -147,7 +147,7 @@
         "iphone-16-pro-max": {
           "url": "https://lista.mercadolivre.com.br/iphone-16-pro-max",
           "status": 200,
-          "html_size": 35438,
+          "html_size": 35448,
           "jsonld_blocks": 0,
           "product_nodes": 0,
           "after_filter": 0,
@@ -165,7 +165,7 @@
         "iphone-16": {
           "url": "https://lista.mercadolivre.com.br/iphone-16",
           "status": 200,
-          "html_size": 35403,
+          "html_size": 35398,
           "jsonld_blocks": 0,
           "product_nodes": 0,
           "after_filter": 0,
@@ -174,7 +174,7 @@
         "iphone-15-pro-max": {
           "url": "https://lista.mercadolivre.com.br/iphone-15-pro-max",
           "status": 200,
-          "html_size": 35442,
+          "html_size": 35438,
           "jsonld_blocks": 0,
           "product_nodes": 0,
           "after_filter": 0,
@@ -312,6 +312,41 @@
           "error": null
         }
       }
+    },
+    "extra": {
+      "count": 0,
+      "error": null,
+      "detail": null
+    },
+    "via_varejo": {
+      "count": 0,
+      "error": null,
+      "detail": null
+    },
+    "americanas": {
+      "count": 0,
+      "error": null,
+      "detail": null
+    },
+    "shopee": {
+      "count": 0,
+      "error": null,
+      "detail": null
+    },
+    "submarino": {
+      "count": 0,
+      "error": null,
+      "detail": null
+    },
+    "shoptime": {
+      "count": 0,
+      "error": null,
+      "detail": null
+    },
+    "vivo_store": {
+      "count": 0,
+      "error": null,
+      "detail": null
     }
   }
 }
