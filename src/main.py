@@ -67,13 +67,15 @@ def main() -> None:
     for scraper_fn in SCRAPERS:
         name = scraper_fn.__module__.split(".")[-1]
         try:
-            with concurrent.futures.ThreadPoolExecutor(max_workers=1) as _ex:
-                _fut = _ex.submit(scraper_fn)
-                try:
-                    offers = _fut.result(timeout=30)
-                except concurrent.futures.TimeoutError:
-                    logger.warning(f"[{name}] TIMEOUT apos 30s — pulando")
-                    offers = []
+            _ex = concurrent.futures.ThreadPoolExecutor(max_workers=1)
+            _fut = _ex.submit(scraper_fn)
+            try:
+                offers = _fut.result(timeout=30)
+            except concurrent.futures.TimeoutError:
+                logger.warning(f"[{name}] TIMEOUT apos 30s — pulando")
+                offers = []
+            finally:
+                _ex.shutdown(wait=False)
             count = len(offers)
             logger.info(f"[{name}] {count} oferta(s)")
             all_offers.extend(offers)
