@@ -1,5 +1,6 @@
 """iPhone Price Radar - orquestrador principal."""
 import json
+import concurrent.futures
 import logging
 import os
 import sys
@@ -66,7 +67,13 @@ def main() -> None:
     for scraper_fn in SCRAPERS:
         name = scraper_fn.__module__.split(".")[-1]
         try:
-            offers = scraper_fn()
+            with concurrent.futures.ThreadPoolExecutor(max_workers=1) as _ex:
+                _fut = _ex.submit(scraper_fn)
+                try:
+                    offers = _fut.result(timeout=30)
+                except concurrent.futures.TimeoutError:
+                    logger.warning(f"[{name}] TIMEOUT apos 30s — pulando")
+                    offers = []
             count = len(offers)
             logger.info(f"[{name}] {count} oferta(s)")
             all_offers.extend(offers)
