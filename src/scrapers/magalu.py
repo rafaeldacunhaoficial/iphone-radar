@@ -2,7 +2,7 @@
 import json
 import re
 import logging
-from ._http import get_session
+from . import _http
 
 logger = logging.getLogger(__name__)
 
@@ -18,9 +18,8 @@ NEXT_DATA_RE = re.compile(r'<script id="__NEXT_DATA__"[^>]*>(.*?)</script>', re.
 
 
 def get_prices() -> list[dict]:
-    session = get_session()
     try:
-        r = session.get(URL, headers=HEADERS, timeout=20)
+        r = _http.get(URL, headers=HEADERS, timeout=20)
         r.raise_for_status()
     except Exception as exc:
         logger.warning("magalu fetch error: %s", exc)
@@ -33,9 +32,7 @@ def get_prices() -> list[dict]:
 
     try:
         data = json.loads(m.group(1))
-        products = (
-            data["props"]["pageProps"]["data"]["search"]["products"]
-        )
+        products = data["props"]["pageProps"]["data"]["search"]["products"]
     except (KeyError, json.JSONDecodeError) as exc:
         logger.warning("magalu parse error: %s", exc)
         return []
