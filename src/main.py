@@ -13,6 +13,7 @@ from scrapers import (
     carrefour, iplace, fastshop, kabum,
     apple_store, casasbahia, mercadolivre, amazon,
     magalu, goimports, extra,
+    via_varejo, americanas,
 )
 
 logging.basicConfig(
@@ -33,6 +34,8 @@ SCRAPERS = [
     magalu.get_prices,
     goimports.get_prices,
     extra.get_prices,
+    via_varejo.get_prices,
+    americanas.get_prices,
 ]
 
 DATA_DIR = os.path.join(os.path.dirname(__file__), "..", "data")
