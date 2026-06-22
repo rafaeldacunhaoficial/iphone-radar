@@ -19,8 +19,9 @@ HEADERS = {
     ),
     "Accept-Language": "pt-BR,pt;q=0.9",
     "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
+    "Accept-Encoding": "gzip, deflate, br",
 }
-IPHONE_RE = re.compile(r"i[Pp]hone", re.IGNORECASE)
+IPHONE_RE = re.compile(r"iphone", re.IGNORECASE)
 
 
 def get_prices() -> list[dict]:
@@ -35,19 +36,34 @@ def get_prices() -> list[dict]:
     html_size = len(r.text)
     soup = BeautifulSoup(r.text, "html.parser")
     cards = soup.select('[data-component-type="s-search-result"]')
+
+    # Collect all h2 span texts for debug
+    sample_titles = []
+    for card in cards[:5]:
+        spans = card.select("h2 span")
+        for sp in spans:
+            t = sp.get_text(strip=True)
+            if t:
+                sample_titles.append(t[:80])
+                break
+
     if not cards:
-        logger.warning("amazon: 0 cards (html=%d)", html_size)
-        get_prices._last_debug = {"error": "0 cards", "html_size": html_size, "preview": r.text[:300]}
+        get_prices._last_debug = {"error": "0 cards", "html_size": html_size}
         return []
 
     results = []
     for card in cards:
-        title_el = card.select_one("h2 span")
-        if not title_el:
+        # Try multiple selectors for title
+        title = ""
+        for sel in ["h2 span", ".a-size-base-plus", ".a-size-medium", "h2"]:
+            el = card.select_one(sel)
+            if el:
+                title = el.get_text(strip=True)
+                if title:
+                    break
+        if not title or not IPHONE_RE.search(title):
             continue
-        title = title_el.get_text(strip=True)
-        if not IPHONE_RE.search(title):
-            continue
+
         whole_el = card.select_one(".a-price-whole")
         frac_el = card.select_one(".a-price-fraction")
         if not whole_el:
@@ -64,6 +80,9 @@ def get_prices() -> list[dict]:
             continue
         results.append({"store": "amazon", "model": title, "price": price})
 
-    get_prices._last_debug = {"count": len(results), "html_size": html_size, "cards": len(cards)}
-    logger.info("amazon: %d iPhones", len(results))
+    get_prices._last_debug = {
+        "count": len(results), "html_size": html_size,
+        "cards": len(cards), "sample_titles": sample_titles
+    }
+    logger.info("amazon: %d iPhones (cards=%d)", len(results), len(cards))
     return results
