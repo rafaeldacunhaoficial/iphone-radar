@@ -1,4 +1,4 @@
-"""PMGImports scraper – NuvemShop SSR page."""
+"""PMGImports scraper â NuvemShop SSR page."""
 import re
 import logging
 import requests
@@ -13,7 +13,7 @@ HEADERS = {
     "Accept": "text/html,application/xhtml+xml",
     "Accept-Language": "pt-BR,pt;q=0.9",
 }
-PRICE_RE = re.compile(r"R\\$\\s*([\\d.]+),([\\d]{2})")
+PRICE_RE = re.compile(r"R\$\s*([\d.]+),([\d]{2})")
 BLACKLIST = ["capa", "capinha", "pelicula", "case", "carregador", "cabo", "fone", "airpods"]
 
 
