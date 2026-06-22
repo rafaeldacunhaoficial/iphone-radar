@@ -1,11 +1,10 @@
-"""MercadoLivre scraper – REST API (no CORS from server-side)."""
+"""MercadoLivre scraper – REST API."""
 import re
 import logging
-from ._http import get_session
+from . import _http
 
 logger = logging.getLogger(__name__)
 
-# MLB1055 = Celulares e Smartphones category
 URL = (
     "https://api.mercadolibre.com/sites/MLB/search"
     "?q=iphone+apple&category=MLB1055"
@@ -19,9 +18,8 @@ IPHONE_RE = re.compile(r"\biPhone\b", re.IGNORECASE)
 
 
 def get_prices() -> list[dict]:
-    session = get_session()
     try:
-        r = session.get(URL, headers=HEADERS, timeout=15)
+        r = _http.get(URL, headers=HEADERS, timeout=15)
         r.raise_for_status()
         data = r.json()
     except Exception as exc:
@@ -34,10 +32,9 @@ def get_prices() -> list[dict]:
         if not IPHONE_RE.search(title):
             continue
         price = item.get("price")
-        currency = item.get("currency_id", "BRL")
         if not price or float(price) <= 0:
             continue
-        if currency != "BRL":
+        if item.get("currency_id") != "BRL":
             continue
         results.append({"store": "mercadolivre", "model": title, "price": float(price)})
 
