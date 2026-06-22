@@ -1,5 +1,5 @@
 {
-  "run_time": "2026-06-22T17:32:13Z",
+  "run_time": "2026-06-22T17:54:03Z",
   "total_offers": 203,
   "alerts_sent": 0,
   "scrapers": {
@@ -103,7 +103,7 @@
         },
         "iPhone 16 / Plus": {
           "status": 200,
-          "size": 378396,
+          "size": 378483,
           "count": 15
         }
       }
@@ -124,18 +124,7 @@
     "amazon": {
       "count": 0,
       "error": null,
-      "detail": {
-        "count": 0,
-        "html_size": 670930,
-        "cards": 48,
-        "sample_titles": [
-          "Apple Cabo para recarga de 60W com conector USB-C (1m) ​​​​​​​",
-          "Celular Samsung Galaxy A17, 256GB, 8GB, 50MP Tela 6.7\", IP54 - Preto",
-          "Apple iPhone 11 (64 GB) Branco (Recondicionado)",
-          "Apple iPhone 12 (64 GB) - Preto (Recondicionado)",
-          "Apple iPhone 12 mini (64 GB) - Preto (Recondicionado)"
-        ]
-      }
+      "detail": null
     },
     "magalu": {
       "count": 0,
