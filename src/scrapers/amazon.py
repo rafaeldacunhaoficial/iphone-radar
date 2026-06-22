@@ -29,12 +29,15 @@ def get_prices() -> list[dict]:
         r.raise_for_status()
     except Exception as exc:
         logger.warning("amazon fetch error: %s", exc)
+        get_prices._last_debug = {"error": str(exc)}
         return []
 
+    html_size = len(r.text)
     soup = BeautifulSoup(r.text, "html.parser")
     cards = soup.select('[data-component-type="s-search-result"]')
     if not cards:
-        logger.warning("amazon: 0 cards found (html size=%d)", len(r.text))
+        logger.warning("amazon: 0 cards (html=%d)", html_size)
+        get_prices._last_debug = {"error": "0 cards", "html_size": html_size, "preview": r.text[:300]}
         return []
 
     results = []
@@ -45,25 +48,22 @@ def get_prices() -> list[dict]:
         title = title_el.get_text(strip=True)
         if not IPHONE_RE.search(title):
             continue
-
         whole_el = card.select_one(".a-price-whole")
         frac_el = card.select_one(".a-price-fraction")
         if not whole_el:
             continue
-
         whole = re.sub(r"[^0-9]", "", whole_el.get_text())
         frac = re.sub(r"[^0-9]", "", frac_el.get_text()) if frac_el else "00"
         if not whole:
             continue
-
         try:
             price = float(f"{whole}.{frac[:2]}")
         except ValueError:
             continue
         if price <= 0:
             continue
-
         results.append({"store": "amazon", "model": title, "price": price})
 
+    get_prices._last_debug = {"count": len(results), "html_size": html_size, "cards": len(cards)}
     logger.info("amazon: %d iPhones", len(results))
     return results
