@@ -1,7 +1,7 @@
 """KaBuM scraper – grupokabum catalog API."""
 import re
 import logging
-from ._http import get_session
+from . import _http
 
 logger = logging.getLogger(__name__)
 
@@ -21,9 +21,8 @@ IPHONE_RE = re.compile(r"i[Pp]hone", re.IGNORECASE)
 
 
 def get_prices() -> list[dict]:
-    session = get_session()
     try:
-        r = session.get(URL, headers=HEADERS, timeout=15)
+        r = _http.get(URL, headers=HEADERS, timeout=15)
         r.raise_for_status()
         data = r.json()
     except Exception as exc:
