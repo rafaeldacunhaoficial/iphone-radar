@@ -23,11 +23,14 @@ def get_prices() -> list[dict]:
         r.raise_for_status()
     except Exception as exc:
         logger.warning("magalu fetch error: %s", exc)
+        get_prices._last_debug = {"error": str(exc)}
         return []
 
+    html_size = len(r.text)
     m = NEXT_DATA_RE.search(r.text)
     if not m:
-        logger.warning("magalu: __NEXT_DATA__ not found (html size=%d)", len(r.text))
+        logger.warning("magalu: __NEXT_DATA__ not found (html=%d)", html_size)
+        get_prices._last_debug = {"error": "__NEXT_DATA__ not found", "html_size": html_size, "preview": r.text[:200]}
         return []
 
     try:
@@ -35,6 +38,7 @@ def get_prices() -> list[dict]:
         products = data["props"]["pageProps"]["data"]["search"]["products"]
     except (KeyError, json.JSONDecodeError) as exc:
         logger.warning("magalu parse error: %s", exc)
+        get_prices._last_debug = {"error": str(exc), "html_size": html_size}
         return []
 
     results = []
@@ -54,5 +58,6 @@ def get_prices() -> list[dict]:
             continue
         results.append({"store": "magalu", "model": title, "price": price})
 
+    get_prices._last_debug = {"count": len(results), "html_size": html_size, "products_in_json": len(products)}
     logger.info("magalu: %d iPhones", len(results))
     return results
