@@ -1,4 +1,4 @@
-"""PMGImports scraper â NuvemShop SSR page."""
+"""PMGImports scraper – NuvemShop SSR page."""
 import re
 import logging
 import requests
