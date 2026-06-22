@@ -14,25 +14,31 @@ HEADERS = {
     "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 "
                   "(KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36",
     "Accept": "application/json",
+    "Accept-Language": "pt-BR,pt;q=0.9",
     "X-Shopee-Language": "pt",
     "Referer": "https://shopee.com.br/search?keyword=iphone+apple",
+    "If-None-Match": "",
 }
-IPHONE_RE = re.compile(r"\biphone\b", re.IGNORECASE)
-# Price in Shopee is stored as cents * 1000 (divide by 100000)
+IPHONE_RE = re.compile(r"iphone", re.IGNORECASE)
 PRICE_DIVISOR = 100_000
 
 
 def get_prices() -> list[dict]:
     try:
         r = _http.get(URL, headers=HEADERS, timeout=15)
-        r.raise_for_status()
+        if r.status_code != 200:
+            get_prices._last_debug = {"error": f"HTTP {r.status_code}", "status": r.status_code}
+            logger.warning("shopee: status %d", r.status_code)
+            return []
         data = r.json()
     except Exception as exc:
         logger.warning("shopee fetch error: %s", exc)
+        get_prices._last_debug = {"error": str(exc)}
         return []
 
+    items = data.get("items", [])
     results = []
-    for item in data.get("items", []):
+    for item in items:
         basic = item.get("item_basic", {})
         name = basic.get("name", "")
         if not IPHONE_RE.search(name):
@@ -45,5 +51,6 @@ def get_prices() -> list[dict]:
             continue
         results.append({"store": "shopee", "model": name, "price": price})
 
-    logger.info("shopee: %d iPhones", len(results))
+    get_prices._last_debug = {"count": len(results), "total_items": len(items), "status": r.status_code}
+    logger.info("shopee: %d iPhones (total=%d)", len(results), len(items))
     return results
