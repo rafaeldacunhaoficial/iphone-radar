@@ -12,7 +12,7 @@ import notifier
 from scrapers import (
     carrefour, iplace, fastshop, kabum,
     apple_store, casasbahia, mercadolivre, amazon,
-    magalu, terabyte,
+    magalu, goimports,
 )
 
 logging.basicConfig(
@@ -31,7 +31,7 @@ SCRAPERS = [
     mercadolivre.get_prices,
     amazon.get_prices,
     magalu.get_prices,
-    terabyte.get_prices,
+    goimports.get_prices,
 ]
 
 DATA_DIR = os.path.join(os.path.dirname(__file__), "..", "data")
