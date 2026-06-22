@@ -17,6 +17,7 @@ from scrapers import (
     via_varejo, americanas, shopee,
     submarino, shoptime, vivo_store,
     claro,
+    bemol,
 )
 
 logging.basicConfig(
@@ -44,6 +45,7 @@ SCRAPERS = [
     shoptime.get_prices,
     vivo_store.get_prices,
     claro.get_prices,
+    bemol.get_prices,
 ]
 
 DATA_DIR = os.path.join(os.path.dirname(__file__), "..", "data")
@@ -74,7 +76,7 @@ def main() -> None:
             try:
                 offers = _fut.result(timeout=30)
             except concurrent.futures.TimeoutError:
-                logger.warning(f"[{name}] TIMEOUT apos 30s â pulando")
+                logger.warning(f"[{name}] TIMEOUT apos 30s Ã¢ÂÂ pulando")
                 offers = []
             finally:
                 _ex.shutdown(wait=False)
