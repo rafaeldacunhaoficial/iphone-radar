@@ -13,28 +13,17 @@ HEADERS = {
 
 URL = "https://www.claro.com.br/smartphones/apple"
 
-BLACKLIST = [
-    "acessorio", "capa", "carregador", "cabo", "fone", "airpod",
-    "watch", "ipad", "suporte", "kit", "protetor", "recondicionado",
-]
-
+# Must start with "iPhone" followed by model number/name (not accessories)
+IPHONE_MODEL_RE = re.compile(r"^iPhone\s+\d+", re.IGNORECASE)
 
 def _parse_price(text: str) -> float:
-    """'R$ 4.999,00' -> 4999.0"""
     cleaned = re.sub(r"[^\d,]", "", text).replace(",", ".")
     try:
         return float(cleaned)
     except ValueError:
         return 0.0
 
-
-def _is_blacklisted(name: str) -> bool:
-    n = name.lower()
-    return any(b in n for b in BLACKLIST)
-
-
 def _find_products(obj, depth: int = 0, results: list = None) -> list:
-    """Recursive walk — collect objects with iPhone name + price.price co-located."""
     if results is None:
         results = []
     if depth > 20 or not obj:
@@ -45,14 +34,14 @@ def _find_products(obj, depth: int = 0, results: list = None) -> list:
         price_str = None
 
         for key, val in obj.items():
-            if isinstance(val, str) and "iphone" in val.lower():
+            if isinstance(val, str) and IPHONE_MODEL_RE.match(val):
                 iphone_name = val
             if (key == "price" and isinstance(val, dict)
                     and isinstance(val.get("price"), str)
                     and "R$" in val["price"]):
                 price_str = val["price"]
 
-        if iphone_name and price_str and not _is_blacklisted(iphone_name):
+        if iphone_name and price_str:
             results.append({"name": iphone_name, "price": price_str})
 
         for v in obj.values():
@@ -81,20 +70,18 @@ def get_prices() -> list:
         r.text, re.DOTALL,
     )
     if not m:
-        logging.warning("[claro] __NEXT_DATA__ nao encontrado")
         get_prices._last_debug = {"error": "__NEXT_DATA__ not found", "html_size": len(r.text)}
         return []
 
     try:
         data = json.loads(m.group(1))
     except json.JSONDecodeError as exc:
-        logging.error(f"[claro] JSON parse error: {exc}")
         get_prices._last_debug = {"error": str(exc)}
         return []
 
     dc = (data.get("props", {})
-               .get("pageProps", {})
-               .get("dynamicComponents", {}))
+          .get("pageProps", {})
+          .get("dynamicComponents", {}))
 
     raw_products = _find_products(dc)
 
@@ -106,18 +93,11 @@ def get_prices() -> list:
         if price <= 0 or name in seen:
             continue
         seen.add(name)
-        pid = "claro_" + re.sub(r"[^a-z0-9]", "_", name.lower())[:40]
-        results.append({
-            "store": "Claro",
-            "store_product_id": pid,
-            "name": name,
-            "price": price,
-            "url": URL,
-        })
+        results.append({"store": "claro", "model": name, "price": price})
 
     get_prices._last_debug = {
         "count": len(results),
-        "products": [r["name"] + " R$" + str(r["price"]) for r in results],
+        "products": [r["model"] + " R$" + str(r["price"]) for r in results],
     }
     logging.info(f"[claro] {len(results)} produto(s)")
     return results
