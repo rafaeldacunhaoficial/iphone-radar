@@ -14,6 +14,7 @@ from scrapers import (
     apple_store, casasbahia, mercadolivre, amazon,
     magalu, goimports, extra,
     via_varejo, americanas, shopee,
+    submarino, shoptime, vivo_store,
 )
 
 logging.basicConfig(
@@ -37,6 +38,9 @@ SCRAPERS = [
     via_varejo.get_prices,
     americanas.get_prices,
     shopee.get_prices,
+    submarino.get_prices,
+    shoptime.get_prices,
+    vivo_store.get_prices,
 ]
 
 DATA_DIR = os.path.join(os.path.dirname(__file__), "..", "data")
