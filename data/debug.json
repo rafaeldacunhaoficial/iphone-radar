@@ -1,5 +1,5 @@
 {
-  "run_time": "2026-06-22T21:31:48Z",
+  "run_time": "2026-06-22T21:59:26Z",
   "total_offers": 209,
   "alerts_sent": 0,
   "scrapers": {
@@ -93,17 +93,17 @@
       "detail": {
         "iPhone 17 Pro Max / Pro": {
           "status": 200,
-          "size": 395820,
+          "size": 395613,
           "count": 21
         },
         "iPhone 17 / Plus": {
           "status": 200,
-          "size": 334100,
+          "size": 334114,
           "count": 10
         },
         "iPhone 16 / Plus": {
           "status": 200,
-          "size": 378431,
+          "size": 378424,
           "count": 15
         }
       }
@@ -240,7 +240,7 @@
       "detail": {
         "count": 0,
         "products": [],
-        "html_size": 644407
+        "html_size": 644406
       }
     },
     "bemol": {
