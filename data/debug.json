@@ -1,10 +1,10 @@
 {
-  "run_time": "2026-06-22T19:22:06Z",
-  "total_offers": 203,
+  "run_time": "2026-06-22T21:31:48Z",
+  "total_offers": 209,
   "alerts_sent": 0,
   "scrapers": {
     "carrefour": {
-      "count": 50,
+      "count": 49,
       "error": null,
       "detail": null
     },
@@ -93,17 +93,17 @@
       "detail": {
         "iPhone 17 Pro Max / Pro": {
           "status": 200,
-          "size": 395585,
+          "size": 395820,
           "count": 21
         },
         "iPhone 17 / Plus": {
           "status": 200,
-          "size": 334079,
+          "size": 334100,
           "count": 10
         },
         "iPhone 16 / Plus": {
           "status": 200,
-          "size": 378376,
+          "size": 378431,
           "count": 15
         }
       }
@@ -111,14 +111,44 @@
     "casasbahia": {
       "count": 0,
       "error": null,
-      "detail": null
+      "detail": {
+        "error": "listing fetch failed"
+      }
     },
     "mercadolivre": {
       "count": 0,
       "error": null,
       "detail": {
-        "error": "HTTP 403",
-        "status": 403
+        "count": 0,
+        "queries": {
+          "iphone 17 pro max apple": {
+            "count": 0
+          },
+          "iphone 17 pro apple": {
+            "count": 0
+          },
+          "iphone 17 apple": {
+            "count": 0
+          },
+          "iphone 16 pro max apple": {
+            "count": 0
+          },
+          "iphone 16 pro apple": {
+            "count": 0
+          },
+          "iphone 16 apple": {
+            "count": 0
+          },
+          "iphone 15 pro max apple": {
+            "count": 0
+          },
+          "iphone 15 pro apple": {
+            "count": 0
+          },
+          "iphone 15 apple": {
+            "count": 0
+          }
+        }
       }
     },
     "amazon": {
@@ -210,13 +240,28 @@
       "detail": {
         "count": 0,
         "products": [],
-        "html_size": 645363
+        "html_size": 644407
       }
     },
     "bemol": {
       "count": 7,
       "error": null,
       "detail": null
+    },
+    "terabyte": {
+      "count": 0,
+      "error": null,
+      "detail": null
+    },
+    "pmgimports": {
+      "count": 7,
+      "error": null,
+      "detail": {
+        "count": 7,
+        "html_size": 650537,
+        "method": "requests",
+        "anchors_found": 104
+      }
     }
   }
 }
