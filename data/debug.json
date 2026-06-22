@@ -1,6 +1,6 @@
 {
-  "run_time": "2026-06-22T16:58:47Z",
-  "total_offers": 204,
+  "run_time": "2026-06-22T17:15:20Z",
+  "total_offers": 203,
   "alerts_sent": 0,
   "scrapers": {
     "carrefour": {
@@ -93,7 +93,7 @@
       "detail": {
         "iPhone 17 Pro Max / Pro": {
           "status": 200,
-          "size": 395529,
+          "size": 395642,
           "count": 21
         },
         "iPhone 17 / Plus": {
@@ -103,7 +103,7 @@
         },
         "iPhone 16 / Plus": {
           "status": 200,
-          "size": 378470,
+          "size": 378489,
           "count": 15
         }
       }
@@ -116,17 +116,26 @@
     "mercadolivre": {
       "count": 0,
       "error": null,
-      "detail": null
+      "detail": {
+        "error": "HTTP 403",
+        "status": 403
+      }
     },
     "amazon": {
       "count": 0,
       "error": null,
-      "detail": null
+      "detail": {
+        "count": 0,
+        "html_size": 670781,
+        "cards": 48
+      }
     },
     "magalu": {
       "count": 0,
       "error": null,
-      "detail": null
+      "detail": {
+        "error": "403 Client Error: Forbidden for url: https://www.magazineluiza.com.br/busca/iphone/"
+      }
     },
     "goimports": {
       "count": 9,
@@ -194,13 +203,11 @@
       "detail": null
     },
     "claro": {
-      "count": 1,
+      "count": 0,
       "error": null,
       "detail": {
-        "count": 1,
-        "products": [
-          "Compacto e eficiente, oferece recarga rápida para iPhone compatível, alcançando até 50% da bateria em cerca de 35 minutos, ideal para o dia a dia. R$219.0"
-        ]
+        "count": 0,
+        "products": []
       }
     },
     "bemol": {
