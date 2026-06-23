@@ -1,8 +1,67 @@
 {
-  "run_time": "2026-06-23T06:47:06Z",
-  "total_offers": 209,
-  "alerts_sent": 0,
+  "run_at": "2026-06-23T10:31:30.942339+00:00",
+  "total_items": 255,
+  "alerts": 0,
   "scrapers": {
+    "pmgimports": {
+      "count": 7,
+      "error": null,
+      "detail": {
+        "count": 7,
+        "html_size": 650553,
+        "method": "requests",
+        "anchors_found": 104
+      }
+    },
+    "amazon": {
+      "count": 46,
+      "error": null,
+      "detail": {
+        "count": 46,
+        "html_size": 840852,
+        "method": "requests",
+        "cards": 48,
+        "no_price": 0,
+        "sample_titles": [
+          "Apple Cabo para recarga de 60W com conector USB-C (1m) ​​​​​",
+          "Celular Samsung Galaxy A17, 256GB, 8GB, 50MP Tela 6.7\", IP54",
+          "Apple iPhone 12 (64 GB) - Preto (Recondicionado)",
+          "Apple iPhone 12 mini (64 GB) - Preto (Recondicionado)",
+          "Apple iPhone 12 (64 GB) - Branco (Recondicionado)"
+        ]
+      }
+    },
+    "bemol": {
+      "count": 7,
+      "error": null,
+      "detail": null
+    },
+    "kabum": {
+      "count": 60,
+      "error": null,
+      "detail": null
+    },
+    "apple_store": {
+      "count": 46,
+      "error": null,
+      "detail": {
+        "iPhone 17 Pro Max / Pro": {
+          "status": 200,
+          "size": 395644,
+          "count": 21
+        },
+        "iPhone 17 / Plus": {
+          "status": 200,
+          "size": 334138,
+          "count": 10
+        },
+        "iPhone 16 / Plus": {
+          "status": 200,
+          "size": 378495,
+          "count": 15
+        }
+      }
+    },
     "carrefour": {
       "count": 49,
       "error": null,
@@ -77,130 +136,6 @@
         }
       }
     },
-    "fastshop": {
-      "count": 0,
-      "error": null,
-      "detail": {
-        "count": 0,
-        "method": "catalog",
-        "base": "https://fastshop.vtexcommercestable.com.br"
-      }
-    },
-    "kabum": {
-      "count": 60,
-      "error": null,
-      "detail": null
-    },
-    "apple_store": {
-      "count": 46,
-      "error": null,
-      "detail": {
-        "iPhone 17 Pro Max / Pro": {
-          "status": 200,
-          "size": 395613,
-          "count": 21
-        },
-        "iPhone 17 / Plus": {
-          "status": 200,
-          "size": 334142,
-          "count": 10
-        },
-        "iPhone 16 / Plus": {
-          "status": 200,
-          "size": 378468,
-          "count": 15
-        }
-      }
-    },
-    "casasbahia": {
-      "count": 0,
-      "error": null,
-      "detail": {
-        "count": 0,
-        "method": "catalog",
-        "status": 404,
-        "base": "https://casasbahia.vtexcommercestable.com.br"
-      }
-    },
-    "mercadolivre": {
-      "count": 0,
-      "error": null,
-      "detail": {
-        "count": 0,
-        "queries": {
-          "iphone 17 pro max 256gb": {
-            "query": "iphone 17 pro max 256gb",
-            "status": 403,
-            "count": 0,
-            "error": "HTTP 403"
-          },
-          "iphone 17 pro 128gb": {
-            "query": "iphone 17 pro 128gb",
-            "status": 403,
-            "count": 0,
-            "error": "HTTP 403"
-          },
-          "iphone 17 128gb": {
-            "query": "iphone 17 128gb",
-            "status": 403,
-            "count": 0,
-            "error": "HTTP 403"
-          },
-          "iphone 16 pro max 256gb": {
-            "query": "iphone 16 pro max 256gb",
-            "status": 403,
-            "count": 0,
-            "error": "HTTP 403"
-          },
-          "iphone 16 pro 128gb": {
-            "query": "iphone 16 pro 128gb",
-            "status": 403,
-            "count": 0,
-            "error": "HTTP 403"
-          },
-          "iphone 16 128gb": {
-            "query": "iphone 16 128gb",
-            "status": 403,
-            "count": 0,
-            "error": "HTTP 403"
-          },
-          "iphone 15 pro max 256gb": {
-            "query": "iphone 15 pro max 256gb",
-            "status": 403,
-            "count": 0,
-            "error": "HTTP 403"
-          },
-          "iphone 15 128gb": {
-            "query": "iphone 15 128gb",
-            "status": 403,
-            "count": 0,
-            "error": "HTTP 403"
-          },
-          "iphone 14 128gb": {
-            "query": "iphone 14 128gb",
-            "status": 403,
-            "count": 0,
-            "error": "HTTP 403"
-          }
-        }
-      }
-    },
-    "amazon": {
-      "count": 0,
-      "error": null,
-      "detail": {
-        "error": "fetch failed",
-        "method": "failed"
-      }
-    },
-    "magalu": {
-      "count": 0,
-      "error": null,
-      "detail": {
-        "count": 0,
-        "method": "api_v3"
-      }
-    },
     "goimports": {
       "count": 9,
       "error": null,
@@ -229,87 +164,6 @@
           "count": 0,
           "error": null
         }
-      }
-    },
-    "extra": {
-      "count": 0,
-      "error": null,
-      "detail": null
-    },
-    "via_varejo": {
-      "count": 0,
-      "error": null,
-      "detail": null
-    },
-    "americanas": {
-      "count": 0,
-      "error": null,
-      "detail": null
-    },
-    "shopee": {
-      "count": 0,
-      "error": null,
-      "detail": {
-        "error": "HTTP 403",
-        "status": 403
-      }
-    },
-    "submarino": {
-      "count": 0,
-      "error": null,
-      "detail": null
-    },
-    "shoptime": {
-      "count": 0,
-      "error": null,
-      "detail": null
-    },
-    "vivo_store": {
-      "count": 0,
-      "error": null,
-      "detail": null
-    },
-    "claro": {
-      "count": 0,
-      "error": null,
-      "detail": {
-        "count": 0,
-        "products": [],
-        "html_size": 644406
-      }
-    },
-    "bemol": {
-      "count": 7,
-      "error": null,
-      "detail": null
-    },
-    "terabyte": {
-      "count": 0,
-      "error": null,
-      "detail": {
-        "count": 0,
-        "method": "catalog",
-        "base": "https://terabyteshop.vtexcommercestable.com.br"
-      }
-    },
-    "pmgimports": {
-      "count": 7,
-      "error": null,
-      "detail": {
-        "count": 7,
-        "html_size": 650553,
-        "method": "requests",
-        "anchors_found": 104
-      }
-    },
-    "ponto": {
-      "count": 0,
-      "error": null,
-      "detail": {
-        "count": 0,
-        "method": "catalog",
-        "status": 404,
-        "base": "https://ponto.vtexcommercestable.com.br"
       }
     }
   }
