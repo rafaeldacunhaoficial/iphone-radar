@@ -1,63 +1,140 @@
-"""Magalu scraper – parse __NEXT_DATA__ from search page."""
-import json
-import re
+"""Magazine Luiza scraper – API pública de busca."""
 import logging
+import requests
 from . import _http
 
 logger = logging.getLogger(__name__)
 
-URL = "https://www.magazineluiza.com.br/busca/iphone/"
+# Magalu usa API própria (não VTEX)
+SEARCH_URL = "https://www.magazineluiza.com.br/busca/api/v1/search"
+# Fallback: endpoint antigo
+SEARCH_URL2 = "https://ms.magazineluiza.com.br/luizaproduct/products/v3/search"
 HEADERS = {
-    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 "
-                  "(KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36",
-    "Accept": "text/html,application/xhtml+xml",
+    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36",
+    "Accept": "application/json",
     "Accept-Language": "pt-BR,pt;q=0.9",
+    "Referer": "https://www.magazineluiza.com.br/",
 }
-IPHONE_RE = re.compile(r"i[Pp]hone", re.IGNORECASE)
-NEXT_DATA_RE = re.compile(r'<script id="__NEXT_DATA__"[^>]*>(.*?)</script>', re.DOTALL)
+BLACKLIST = [
+    "capa", "capinha", "pelicula", "case", "carregador", "cabo", "fone",
+    "airpods", "watch", "ipad", "suporte", "holder", "recondicionado",
+    "seminovo", "usado", "película", "vidro", "bateria",
+]
+
+
+def _is_blacklisted(t: str) -> bool:
+    tl = t.lower()
+    return any(w in tl for w in BLACKLIST)
+
+
+def _try_api_v1() -> list:
+    """Tenta API v1 do Magalu."""
+    try:
+        params = {"query": "iphone", "page": 1, "limit": 40}
+        r = requests.get(SEARCH_URL, params=params, headers=HEADERS, timeout=20)
+        if r.status_code != 200:
+            return []
+        data = r.json()
+        products = data.get("products") or data.get("data") or data.get("result") or []
+        if not isinstance(products, list):
+            return []
+        results = []
+        for p in products:
+            title = p.get("title") or p.get("name") or p.get("description") or ""
+            if not title or _is_blacklisted(title):
+                continue
+            if "iphone" not in title.lower():
+                continue
+            price = (
+                p.get("price")
+                or p.get("sale_price")
+                or p.get("bestPrice")
+                or p.get("priceTag", {}).get("best_price")
+                or 0
+            )
+            if not price or float(price) < 1000:
+                continue
+            pid = p.get("id") or p.get("sku") or f"ml_{abs(hash(title)) % 9999999}"
+            url = p.get("url") or p.get("link") or "https://www.magazineluiza.com.br/"
+            if url and not url.startswith("http"):
+                url = "https://www.magazineluiza.com.br" + url
+            results.append({
+                "store": "magalu",
+                "model": title[:120],
+                "title": title[:120],
+                "price": float(price),
+                "url": url,
+                "seller": "Magazine Luiza",
+                "product_id": f"mg_{pid}",
+            })
+        return results
+    except Exception as e:
+        logger.warning(f"[magalu] api_v1: {e}")
+        return []
+
+
+def _try_api_v3() -> list:
+    """Tenta API v3 alternativa."""
+    try:
+        params = {"query": "iphone", "page": 1, "limit": 40}
+        r = requests.get(SEARCH_URL2, params=params, headers=HEADERS, timeout=20)
+        if r.status_code != 200:
+            r = _http.get(SEARCH_URL2, params=params, headers=HEADERS, timeout=20)
+        if r.status_code != 200:
+            return []
+        data = r.json()
+        products = (
+            data.get("products")
+            or data.get("data", {}).get("products")
+            or data.get("result", {}).get("products")
+            or []
+        )
+        results = []
+        for p in products:
+            title = p.get("title") or p.get("name") or ""
+            if not title or _is_blacklisted(title):
+                continue
+            if "iphone" not in title.lower():
+                continue
+            price = p.get("price") or p.get("sale_price") or 0
+            if not price or float(price) < 1000:
+                continue
+            pid = p.get("id") or p.get("sku") or f"ml_{abs(hash(title)) % 9999999}"
+            url = p.get("url") or "https://www.magazineluiza.com.br/"
+            if url and not url.startswith("http"):
+                url = "https://www.magazineluiza.com.br" + url
+            results.append({
+                "store": "magalu",
+                "model": title[:120],
+                "title": title[:120],
+                "price": float(price),
+                "url": url,
+                "seller": "Magazine Luiza",
+                "product_id": f"mg_{pid}",
+            })
+        return results
+    except Exception as e:
+        logger.warning(f"[magalu] api_v3: {e}")
+        return []
 
 
 def get_prices() -> list[dict]:
-    try:
-        r = _http.get(URL, headers=HEADERS, timeout=20)
-        r.raise_for_status()
-    except Exception as exc:
-        logger.warning("magalu fetch error: %s", exc)
-        get_prices._last_debug = {"error": str(exc)}
-        return []
+    results = _try_api_v1()
+    method = "api_v1"
+    if not results:
+        results = _try_api_v3()
+        method = "api_v3"
 
-    html_size = len(r.text)
-    m = NEXT_DATA_RE.search(r.text)
-    if not m:
-        logger.warning("magalu: __NEXT_DATA__ not found (html=%d)", html_size)
-        get_prices._last_debug = {"error": "__NEXT_DATA__ not found", "html_size": html_size, "preview": r.text[:200]}
-        return []
+    seen = set()
+    deduped = []
+    for r in results:
+        if r["product_id"] not in seen:
+            seen.add(r["product_id"])
+            deduped.append(r)
 
-    try:
-        data = json.loads(m.group(1))
-        products = data["props"]["pageProps"]["data"]["search"]["products"]
-    except (KeyError, json.JSONDecodeError) as exc:
-        logger.warning("magalu parse error: %s", exc)
-        get_prices._last_debug = {"error": str(exc), "html_size": html_size}
-        return []
+    get_prices._last_debug = {"count": len(deduped), "method": method}
+    logger.info(f"[magalu] {len(deduped)} iPhones via {method}")
+    return deduped
 
-    results = []
-    for p in products:
-        title = p.get("title", "")
-        if not IPHONE_RE.search(title):
-            continue
-        price_obj = p.get("price", {})
-        price_str = price_obj.get("fullPrice") or price_obj.get("bestPrice") or price_obj.get("price")
-        if not price_str:
-            continue
-        try:
-            price = float(str(price_str).replace(",", "."))
-        except ValueError:
-            continue
-        if price <= 0:
-            continue
-        results.append({"store": "magalu", "model": title, "price": price})
 
-    get_prices._last_debug = {"count": len(results), "html_size": html_size, "products_in_json": len(products)}
-    logger.info("magalu: %d iPhones", len(results))
-    return results
+get_prices._last_debug = {}
