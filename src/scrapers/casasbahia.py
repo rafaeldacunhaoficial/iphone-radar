@@ -1,151 +1,100 @@
-"""Casas Bahia scraper – HTML listing page + SSR product detail prices."""
-import re
+"""Casas Bahia scraper – vtexcommercestable subdomain (bypassa CF)."""
 import logging
 import requests
-from bs4 import BeautifulSoup
 from . import _http
 
 logger = logging.getLogger(__name__)
 
-LIST_URL = "https://www.casasbahia.com.br/iphone/b"
-BASE_URL = "https://www.casasbahia.com.br"
+BASE = "https://casasbahia.vtexcommercestable.com.br"
+SHELF_URL = BASE + "/_v/api/intelligent-search/product_search/shelf"
+CATALOG_URL = BASE + "/api/catalog_system/pub/products/search"
 HEADERS = {
-    "User-Agent": (
-        "Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
-        "AppleWebKit/537.36 (KHTML, like Gecko) "
-        "Chrome/125.0.0.0 Safari/537.36"
-    ),
-    "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
+    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36",
+    "Accept": "application/json",
     "Accept-Language": "pt-BR,pt;q=0.9",
-    "Referer": "https://www.casasbahia.com.br/",
 }
-PRICE_RE = re.compile(r"R\$\s*([\d.]+),([\d]{2})")
-PRODUCT_URL_RE = re.compile(r"/p/(\d+)$")
-IPHONE_RE = re.compile(r"iphone", re.IGNORECASE)
 BLACKLIST = [
-    "capa", "capinha", "pelicula", "case", "carregador",
-    "cabo", "fone", "airpods", "watch", "ipad", "suporte",
-    "holder", "recondicionado", "seminovo", "usado",
+    "capa", "capinha", "pelicula", "case", "carregador", "cabo", "fone",
+    "airpods", "watch", "ipad", "suporte", "holder", "recondicionado",
+    "seminovo", "usado", "película", "vidro", "bateria",
 ]
-MAX_PRODUCTS = 12
 
 
-def _fetch(url):
-    try:
-        r = requests.get(url, headers=HEADERS, timeout=20)
-        if r.status_code == 200 and len(r.text) > 3000:
-            return r.text
-    except Exception:
-        pass
-    try:
-        r = _http.get(url, headers=HEADERS, timeout=20)
-        if r.status_code == 200:
-            return r.text
-    except Exception:
-        pass
-    return None
+def _is_blacklisted(t: str) -> bool:
+    tl = t.lower()
+    return any(w in tl for w in BLACKLIST)
 
 
-def _parse_pix_price(html: str):
-    """Extract PIX price from product detail page SSR HTML."""
-    # Pattern: "no PIX com X% de desconto" preceded by "por R$X.XXX,XX"
-    # Also try: just find the last visible price on the page (PIX is last/lowest)
-    matches = PRICE_RE.findall(html)
-    prices = []
-    for whole, frac in matches:
-        try:
-            p = float(whole.replace(".", "") + "." + frac)
-            if p > 500:
-                prices.append(p)
-        except ValueError:
-            pass
-    if not prices:
-        return None
-    # PIX price is typically the lowest / last one shown before "no PIX"
-    return min(prices)
-
-
-def _get_product_links(listing_html: str) -> list:
-    """Extract iPhone product URLs from listing page."""
-    soup = BeautifulSoup(listing_html, "html.parser")
-    links = []
-    seen = set()
-    for a in soup.find_all("a", href=True):
-        href = a.get("href", "")
-        title = (a.get_text(strip=True) or a.get("title") or a.get("aria-label") or "")
-        if not IPHONE_RE.search(title) and not IPHONE_RE.search(href):
+def _parse_products(products: list, store_id="casasbahia") -> list:
+    results = []
+    for p in products:
+        name = p.get("productName") or p.get("name") or ""
+        if not name or _is_blacklisted(name):
             continue
-        if any(w in title.lower() for w in BLACKLIST):
+        if "iphone" not in name.lower():
             continue
-        if not PRODUCT_URL_RE.search(href):
-            continue
-        if href in seen:
-            continue
-        seen.add(href)
-        full_url = href if href.startswith("http") else BASE_URL + href
-        links.append((title[:80] or "iPhone", full_url))
-        if len(links) >= MAX_PRODUCTS:
-            break
-    return links
+        for item in p.get("items") or []:
+            for seller in item.get("sellers") or []:
+                co = seller.get("commertialOffer") or {}
+                price = co.get("spotPrice") or co.get("Price") or 0
+                if price and float(price) > 500:
+                    pid = f"cb_{p.get('productId') or abs(hash(name)) % 9999999}"
+                    url = p.get("link") or ""
+                    if url and not url.startswith("http"):
+                        url = "https://www.casasbahia.com.br/" + url
+                    results.append({
+                        "store": "casasbahia",
+                        "model": name[:120],
+                        "title": name[:120],
+                        "price": float(price),
+                        "url": url,
+                        "seller": "Casas Bahia",
+                        "product_id": pid,
+                    })
+                    break
+    return results
 
 
 def get_prices() -> list[dict]:
-    listing_html = _fetch(LIST_URL)
-    if not listing_html:
-        get_prices._last_debug = {"error": "listing fetch failed"}
-        return []
-
-    product_links = _get_product_links(listing_html)
-    if not product_links:
-        get_prices._last_debug = {
-            "error": "no product links found",
-            "listing_size": len(listing_html),
-        }
-        return []
-
     results = []
-    seen_ids = set()
-    price_failures = 0
+    method = "shelf"
+    status = None
+    try:
+        params = {"query": "iphone", "count": "50", "locale": "pt-BR"}
+        r = requests.get(SHELF_URL, params=params, headers=HEADERS, timeout=20)
+        status = r.status_code
+        if r.status_code == 200:
+            data = r.json()
+            products = (
+                data.get("products")
+                or data.get("data", {}).get("productSearch", {}).get("products")
+                or []
+            )
+            results = _parse_products(products)
+    except Exception as e:
+        logger.warning(f"[casasbahia-vtex] shelf: {e}")
 
-    for title, url in product_links:
-        pid_m = PRODUCT_URL_RE.search(url)
-        pid = f"cb_{pid_m.group(1)}" if pid_m else f"cb_{abs(hash(url)) % 9999999}"
-        if pid in seen_ids:
-            continue
+    if not results:
+        method = "catalog"
+        try:
+            params = {"ft": "iphone", "_from": 0, "_to": 49}
+            r = requests.get(CATALOG_URL, params=params, headers=HEADERS, timeout=20)
+            status = r.status_code
+            if r.status_code != 200:
+                r = _http.get(CATALOG_URL, params=params, headers=HEADERS, timeout=20)
+                status = r.status_code
+            if r.status_code == 200:
+                products = r.json()
+                if isinstance(products, list):
+                    results = _parse_products(products)
+        except Exception as e:
+            logger.warning(f"[casasbahia-vtex] catalog: {e}")
 
-        detail_html = _fetch(url)
-        if not detail_html:
-            price_failures += 1
-            continue
-
-        price = _parse_pix_price(detail_html)
-        if not price:
-            price_failures += 1
-            continue
-
-        seen_ids.add(pid)
-        # Clean up title from detail page if we have it
-        soup = BeautifulSoup(detail_html, "html.parser")
-        h1 = soup.find("h1")
-        clean_title = h1.get_text(strip=True)[:120] if h1 else title
-
-        results.append({
-            "store": "casasbahia",
-            "model": clean_title,
-            "title": clean_title,
-            "price": price,
-            "url": url,
-            "seller": "Casas Bahia",
-            "product_id": pid,
-        })
-
-    get_prices._last_debug = {
-        "count": len(results),
-        "links_found": len(product_links),
-        "price_failures": price_failures,
-    }
-    logger.info(f"[casasbahia] {len(results)} iPhones")
-    return results
+    seen = set()
+    deduped = [r for r in results if r["product_id"] not in seen and not seen.add(r["product_id"])]
+    get_prices._last_debug = {"count": len(deduped), "method": method, "status": status, "base": BASE}
+    logger.info(f"[casasbahia] {len(deduped)} iPhones via {method}")
+    return deduped
 
 
 get_prices._last_debug = {}
