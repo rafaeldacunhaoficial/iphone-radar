@@ -1,6 +1,6 @@
 {
-  "run_at": "2026-06-23T10:47:04.579402+00:00",
-  "total_items": 209,
+  "run_at": "2026-06-23T13:42:40.005603+00:00",
+  "total_items": 255,
   "alerts": 0,
   "scrapers": {
     "pmgimports": {
@@ -13,33 +13,33 @@
         "anchors_found": 104
       }
     },
-    "amazon": {
-      "count": 0,
+    "bemol": {
+      "count": 7,
       "error": null,
-      "detail": {
-        "count": 0,
-        "html_size": 675275,
-        "method": "requests",
-        "cards": 48,
-        "no_price": 46,
-        "sample_titles": [
-          "Apple Cabo para recarga de 60W com conector USB-C (1m) ​​​​​",
-          "Celular Samsung Galaxy A17, 256GB, 8GB, 50MP Tela 6.7\", IP54",
-          "Apple iPhone 12 (64 GB) - Preto (Recondicionado)",
-          "Apple iPhone 12 mini (64 GB) - Preto (Recondicionado)",
-          "Apple iPhone 12 (64 GB) - Branco (Recondicionado)"
-        ]
-      }
+      "detail": null
     },
     "kabum": {
       "count": 60,
       "error": null,
       "detail": null
     },
-    "bemol": {
-      "count": 7,
+    "amazon": {
+      "count": 46,
       "error": null,
-      "detail": null
+      "detail": {
+        "count": 46,
+        "html_size": 840767,
+        "method": "requests",
+        "cards": 48,
+        "no_price": 0,
+        "sample_titles": [
+          "Apple Cabo para recarga de 60W com conector USB-C (1m) ​​​​​",
+          "Celular Samsung Galaxy A17, 256GB, 8GB, 50MP Tela 6.7\", IP54",
+          "Apple iPhone 11 (128 GB) (PRODUCT) RED (Recondicionado)",
+          "Apple iPhone 12 (64 GB) - Preto (Recondicionado)",
+          "Apple iPhone 12 mini (64 GB) - Preto (Recondicionado)"
+        ]
+      }
     },
     "apple_store": {
       "count": 46,
@@ -47,25 +47,20 @@
       "detail": {
         "iPhone 17 Pro Max / Pro": {
           "status": 200,
-          "size": 395651,
+          "size": 395600,
           "count": 21
         },
         "iPhone 17 / Plus": {
           "status": 200,
-          "size": 334156,
+          "size": 334097,
           "count": 10
         },
         "iPhone 16 / Plus": {
           "status": 200,
-          "size": 378525,
+          "size": 378485,
           "count": 15
         }
       }
-    },
-    "carrefour": {
-      "count": 49,
-      "error": null,
-      "detail": null
     },
     "iplace": {
       "count": 31,
@@ -80,14 +75,14 @@
         },
         "iphone 17 pro": {
           "query": "iphone 17 pro",
-          "total": 86,
+          "total": 83,
           "count": 7,
           "error": null,
           "status": 200
         },
         "iphone 17": {
           "query": "iphone 17",
-          "total": 124,
+          "total": 121,
           "count": 15,
           "error": null,
           "status": 200
@@ -101,14 +96,14 @@
         },
         "iphone 16 pro": {
           "query": "iphone 16 pro",
-          "total": 136,
+          "total": 133,
           "count": 2,
           "error": null,
           "status": 200
         },
         "iphone 16": {
           "query": "iphone 16",
-          "total": 281,
+          "total": 278,
           "count": 13,
           "error": null,
           "status": 200
@@ -122,7 +117,7 @@
         },
         "iphone 15 pro": {
           "query": "iphone 15 pro",
-          "total": 89,
+          "total": 86,
           "count": 1,
           "error": null,
           "status": 200
@@ -135,6 +130,11 @@
           "status": 200
         }
       }
+    },
+    "carrefour": {
+      "count": 49,
+      "error": null,
+      "detail": null
     },
     "goimports": {
       "count": 9,
