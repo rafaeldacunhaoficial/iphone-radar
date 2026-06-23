@@ -1,5 +1,5 @@
 {
-  "run_at": "2026-06-23T19:11:24.350248+00:00",
+  "run_at": "2026-06-23T21:28:38.931593+00:00",
   "total_items": 209,
   "alerts": 0,
   "scrapers": {
@@ -13,12 +13,38 @@
         "anchors_found": 107
       }
     },
+    "apple_store": {
+      "count": 46,
+      "error": null,
+      "detail": {
+        "iPhone 17 Pro Max / Pro": {
+          "status": 200,
+          "size": 395611,
+          "count": 21
+        },
+        "iPhone 17 / Plus": {
+          "status": 200,
+          "size": 334116,
+          "count": 10
+        },
+        "iPhone 16 / Plus": {
+          "status": 200,
+          "size": 378487,
+          "count": 15
+        }
+      }
+    },
+    "kabum": {
+      "count": 60,
+      "error": null,
+      "detail": null
+    },
     "amazon": {
       "count": 0,
       "error": null,
       "detail": {
         "count": 0,
-        "html_size": 676406,
+        "html_size": 676546,
         "method": "requests",
         "cards": 48,
         "no_price": 46,
@@ -27,38 +53,12 @@
           "Celular Samsung Galaxy A17, 256GB, 8GB, 50MP Tela 6.7\", IP54",
           "Apple iPhone 11 (64 GB) Branco (Recondicionado)",
           "Apple iPhone 11 (128 GB) Branco (Recondicionado)",
-          "Apple iPhone 12 (64 GB) - Preto (Recondicionado)"
+          "Apple iPhone 12 mini (64 GB) - Branco (Recondicionado)"
         ]
       }
     },
     "bemol": {
       "count": 7,
-      "error": null,
-      "detail": null
-    },
-    "apple_store": {
-      "count": 46,
-      "error": null,
-      "detail": {
-        "iPhone 17 Pro Max / Pro": {
-          "status": 200,
-          "size": 395581,
-          "count": 21
-        },
-        "iPhone 17 / Plus": {
-          "status": 200,
-          "size": 334106,
-          "count": 10
-        },
-        "iPhone 16 / Plus": {
-          "status": 200,
-          "size": 378481,
-          "count": 15
-        }
-      }
-    },
-    "kabum": {
-      "count": 60,
       "error": null,
       "detail": null
     },
