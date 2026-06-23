@@ -20,6 +20,7 @@ from scrapers import (
     bemol,
     terabyte,
     pmgimports,
+    ponto,
 )
 
 logging.basicConfig(
@@ -50,6 +51,7 @@ SCRAPERS = [
     bemol.get_prices,
     terabyte.get_prices,
     pmgimports.get_prices,
+    ponto.get_prices,
 ]
 
 DATA_DIR = os.path.join(os.path.dirname(__file__), "..", "data")
@@ -80,7 +82,7 @@ def main() -> None:
             try:
                 offers = _fut.result(timeout=30)
             except concurrent.futures.TimeoutError:
-                logger.warning(f"[{name}] TIMEOUT apos 30s ÃÂ¢ÃÂÃÂ pulando")
+                logger.warning(f"[{name}] TIMEOUT apos 30s ÃÂÃÂ¢ÃÂÃÂÃÂÃÂ pulando")
                 offers = []
             finally:
                 _ex.shutdown(wait=False)
