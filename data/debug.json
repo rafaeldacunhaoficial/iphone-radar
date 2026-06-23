@@ -1,8 +1,20 @@
 {
-  "run_at": "2026-06-23T10:31:30.942339+00:00",
-  "total_items": 255,
+  "run_at": "2026-06-23T10:34:17.708134+00:00",
+  "total_items": 209,
   "alerts": 0,
   "scrapers": {
+    "amazon": {
+      "count": 0,
+      "error": null,
+      "detail": {
+        "count": 0,
+        "html_size": 2485,
+        "method": "cloudscraper",
+        "cards": 0,
+        "no_price": 0,
+        "sample_titles": []
+      }
+    },
     "pmgimports": {
       "count": 7,
       "error": null,
@@ -13,22 +25,25 @@
         "anchors_found": 104
       }
     },
-    "amazon": {
+    "apple_store": {
       "count": 46,
       "error": null,
       "detail": {
-        "count": 46,
-        "html_size": 840852,
-        "method": "requests",
-        "cards": 48,
-        "no_price": 0,
-        "sample_titles": [
-          "Apple Cabo para recarga de 60W com conector USB-C (1m) ​​​​​",
-          "Celular Samsung Galaxy A17, 256GB, 8GB, 50MP Tela 6.7\", IP54",
-          "Apple iPhone 12 (64 GB) - Preto (Recondicionado)",
-          "Apple iPhone 12 mini (64 GB) - Preto (Recondicionado)",
-          "Apple iPhone 12 (64 GB) - Branco (Recondicionado)"
-        ]
+        "iPhone 17 Pro Max / Pro": {
+          "status": 200,
+          "size": 395860,
+          "count": 21
+        },
+        "iPhone 17 / Plus": {
+          "status": 200,
+          "size": 334158,
+          "count": 10
+        },
+        "iPhone 16 / Plus": {
+          "status": 200,
+          "size": 378495,
+          "count": 15
+        }
       }
     },
     "bemol": {
@@ -40,27 +55,6 @@
       "count": 60,
       "error": null,
       "detail": null
-    },
-    "apple_store": {
-      "count": 46,
-      "error": null,
-      "detail": {
-        "iPhone 17 Pro Max / Pro": {
-          "status": 200,
-          "size": 395644,
-          "count": 21
-        },
-        "iPhone 17 / Plus": {
-          "status": 200,
-          "size": 334138,
-          "count": 10
-        },
-        "iPhone 16 / Plus": {
-          "status": 200,
-          "size": 378495,
-          "count": 15
-        }
-      }
     },
     "carrefour": {
       "count": 49,
