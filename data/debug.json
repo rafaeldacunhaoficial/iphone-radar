@@ -1,20 +1,8 @@
 {
-  "run_at": "2026-06-23T10:34:17.708134+00:00",
+  "run_at": "2026-06-23T10:47:04.579402+00:00",
   "total_items": 209,
   "alerts": 0,
   "scrapers": {
-    "amazon": {
-      "count": 0,
-      "error": null,
-      "detail": {
-        "count": 0,
-        "html_size": 2485,
-        "method": "cloudscraper",
-        "cards": 0,
-        "no_price": 0,
-        "sample_titles": []
-      }
-    },
     "pmgimports": {
       "count": 7,
       "error": null,
@@ -25,36 +13,54 @@
         "anchors_found": 104
       }
     },
-    "apple_store": {
-      "count": 46,
+    "amazon": {
+      "count": 0,
       "error": null,
       "detail": {
-        "iPhone 17 Pro Max / Pro": {
-          "status": 200,
-          "size": 395860,
-          "count": 21
-        },
-        "iPhone 17 / Plus": {
-          "status": 200,
-          "size": 334158,
-          "count": 10
-        },
-        "iPhone 16 / Plus": {
-          "status": 200,
-          "size": 378495,
-          "count": 15
-        }
+        "count": 0,
+        "html_size": 675275,
+        "method": "requests",
+        "cards": 48,
+        "no_price": 46,
+        "sample_titles": [
+          "Apple Cabo para recarga de 60W com conector USB-C (1m) ​​​​​",
+          "Celular Samsung Galaxy A17, 256GB, 8GB, 50MP Tela 6.7\", IP54",
+          "Apple iPhone 12 (64 GB) - Preto (Recondicionado)",
+          "Apple iPhone 12 mini (64 GB) - Preto (Recondicionado)",
+          "Apple iPhone 12 (64 GB) - Branco (Recondicionado)"
+        ]
       }
+    },
+    "kabum": {
+      "count": 60,
+      "error": null,
+      "detail": null
     },
     "bemol": {
       "count": 7,
       "error": null,
       "detail": null
     },
-    "kabum": {
-      "count": 60,
+    "apple_store": {
+      "count": 46,
       "error": null,
-      "detail": null
+      "detail": {
+        "iPhone 17 Pro Max / Pro": {
+          "status": 200,
+          "size": 395651,
+          "count": 21
+        },
+        "iPhone 17 / Plus": {
+          "status": 200,
+          "size": 334156,
+          "count": 10
+        },
+        "iPhone 16 / Plus": {
+          "status": 200,
+          "size": 378525,
+          "count": 15
+        }
+      }
     },
     "carrefour": {
       "count": 49,
