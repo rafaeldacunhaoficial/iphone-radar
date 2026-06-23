@@ -1,5 +1,5 @@
 {
-  "run_time": "2026-06-23T02:47:51Z",
+  "run_time": "2026-06-23T06:47:06Z",
   "total_offers": 209,
   "alerts_sent": 0,
   "scrapers": {
@@ -97,17 +97,17 @@
       "detail": {
         "iPhone 17 Pro Max / Pro": {
           "status": 200,
-          "size": 395653,
+          "size": 395613,
           "count": 21
         },
         "iPhone 17 / Plus": {
           "status": 200,
-          "size": 334118,
+          "size": 334142,
           "count": 10
         },
         "iPhone 16 / Plus": {
           "status": 200,
-          "size": 378491,
+          "size": 378468,
           "count": 15
         }
       }
@@ -189,12 +189,8 @@
       "count": 0,
       "error": null,
       "detail": {
-        "count": 0,
-        "html_size": 2483,
-        "method": "cloudscraper",
-        "cards": 0,
-        "no_price": 0,
-        "sample_titles": []
+        "error": "fetch failed",
+        "method": "failed"
       }
     },
     "magalu": {
@@ -279,7 +275,7 @@
       "detail": {
         "count": 0,
         "products": [],
-        "html_size": 644407
+        "html_size": 644406
       }
     },
     "bemol": {
