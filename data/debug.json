@@ -1,17 +1,40 @@
 {
-  "run_at": "2026-06-23T16:25:53.360792+00:00",
+  "run_at": "2026-06-23T19:11:24.350248+00:00",
   "total_items": 209,
   "alerts": 0,
   "scrapers": {
     "pmgimports": {
-      "count": 7,
+      "count": 8,
       "error": null,
       "detail": {
-        "count": 7,
-        "html_size": 650553,
+        "count": 8,
+        "html_size": 660384,
         "method": "requests",
-        "anchors_found": 104
+        "anchors_found": 107
       }
+    },
+    "amazon": {
+      "count": 0,
+      "error": null,
+      "detail": {
+        "count": 0,
+        "html_size": 676406,
+        "method": "requests",
+        "cards": 48,
+        "no_price": 46,
+        "sample_titles": [
+          "Apple Cabo para recarga de 60W com conector USB-C (1m) ​​​​​",
+          "Celular Samsung Galaxy A17, 256GB, 8GB, 50MP Tela 6.7\", IP54",
+          "Apple iPhone 11 (64 GB) Branco (Recondicionado)",
+          "Apple iPhone 11 (128 GB) Branco (Recondicionado)",
+          "Apple iPhone 12 (64 GB) - Preto (Recondicionado)"
+        ]
+      }
+    },
+    "bemol": {
+      "count": 7,
+      "error": null,
+      "detail": null
     },
     "apple_store": {
       "count": 46,
@@ -19,17 +42,17 @@
       "detail": {
         "iPhone 17 Pro Max / Pro": {
           "status": 200,
-          "size": 395582,
+          "size": 395581,
           "count": 21
         },
         "iPhone 17 / Plus": {
           "status": 200,
-          "size": 334098,
+          "size": 334106,
           "count": 10
         },
         "iPhone 16 / Plus": {
           "status": 200,
-          "size": 378487,
+          "size": 378481,
           "count": 15
         }
       }
@@ -39,31 +62,8 @@
       "error": null,
       "detail": null
     },
-    "bemol": {
-      "count": 7,
-      "error": null,
-      "detail": null
-    },
-    "amazon": {
-      "count": 0,
-      "error": null,
-      "detail": {
-        "count": 0,
-        "html_size": 674454,
-        "method": "cloudscraper",
-        "cards": 48,
-        "no_price": 46,
-        "sample_titles": [
-          "Apple Cabo para recarga de 60W com conector USB-C (1m) ​​​​​",
-          "Celular Samsung Galaxy A17, 256GB, 8GB, 50MP Tela 6.7\", IP54",
-          "Apple iPhone 11 (128 GB) (PRODUCT) RED (Recondicionado)",
-          "Apple iPhone 12 (64 GB) - Preto (Recondicionado)",
-          "Apple iPhone 12 mini (64 GB) - Preto (Recondicionado)"
-        ]
-      }
-    },
     "iplace": {
-      "count": 31,
+      "count": 30,
       "error": null,
       "detail": {
         "iphone 17 pro max": {
@@ -75,14 +75,14 @@
         },
         "iphone 17 pro": {
           "query": "iphone 17 pro",
-          "total": 83,
+          "total": 82,
           "count": 7,
           "error": null,
           "status": 200
         },
         "iphone 17": {
           "query": "iphone 17",
-          "total": 121,
+          "total": 120,
           "count": 15,
           "error": null,
           "status": 200
@@ -90,21 +90,21 @@
         "iphone 16 pro max": {
           "query": "iphone 16 pro max",
           "total": 64,
-          "count": 2,
+          "count": 1,
           "error": null,
           "status": 200
         },
         "iphone 16 pro": {
           "query": "iphone 16 pro",
-          "total": 133,
-          "count": 2,
+          "total": 132,
+          "count": 1,
           "error": null,
           "status": 200
         },
         "iphone 16": {
           "query": "iphone 16",
-          "total": 278,
-          "count": 13,
+          "total": 277,
+          "count": 12,
           "error": null,
           "status": 200
         },
@@ -117,14 +117,14 @@
         },
         "iphone 15 pro": {
           "query": "iphone 15 pro",
-          "total": 86,
+          "total": 85,
           "count": 1,
           "error": null,
           "status": 200
         },
         "iphone 15": {
           "query": "iphone 15",
-          "total": 179,
+          "total": 177,
           "count": 3,
           "error": null,
           "status": 200
