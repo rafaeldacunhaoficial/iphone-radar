@@ -1,6 +1,6 @@
 {
-  "run_at": "2026-06-24T18:48:26.180286+00:00",
-  "total_items": 255,
+  "run_at": "2026-06-24T20:45:14.175073+00:00",
+  "total_items": 209,
   "alerts": 0,
   "scrapers": {
     "pmgimports": {
@@ -19,46 +19,36 @@
       "detail": {
         "iPhone 17 Pro Max / Pro": {
           "status": 200,
-          "size": 395862,
+          "size": 395606,
           "count": 21
         },
         "iPhone 17 / Plus": {
           "status": 200,
-          "size": 334113,
+          "size": 334176,
           "count": 10
         },
         "iPhone 16 / Plus": {
           "status": 200,
-          "size": 378482,
+          "size": 378480,
           "count": 15
         }
       }
     },
+    "bemol": {
+      "count": 7,
+      "error": null,
+      "detail": null
+    },
     "amazon": {
-      "count": 46,
+      "count": 0,
       "error": null,
       "detail": {
-        "count": 46,
-        "html_size": 844421,
-        "method": "requests",
-        "cards": 48,
-        "no_price": 0,
-        "sample_titles": [
-          "Apple Cabo para recarga de 60W com conector USB-C (1m) ​​​​​",
-          "Celular Samsung Galaxy A17, 256GB, 8GB, 50MP Tela 6.7\", IP54",
-          "Iphone 11 Apple Preto, 64gb Desbloqueado - Mwlt2bz/a (Recond",
-          "Apple iPhone 11 (128 GB) (PRODUCT) RED (Recondicionado)",
-          "Apple iPhone 12 mini (64 GB) - Branco (Recondicionado)"
-        ]
+        "error": "fetch failed",
+        "method": "failed"
       }
     },
     "kabum": {
       "count": 60,
-      "error": null,
-      "detail": null
-    },
-    "bemol": {
-      "count": 7,
       "error": null,
       "detail": null
     },
