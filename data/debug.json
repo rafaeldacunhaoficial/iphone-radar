@@ -1,5 +1,5 @@
 {
-  "run_at": "2026-06-24T02:48:15.729906+00:00",
+  "run_at": "2026-06-24T06:43:44.060274+00:00",
   "total_items": 209,
   "alerts": 0,
   "scrapers": {
@@ -37,17 +37,17 @@
       "detail": {
         "iPhone 17 Pro Max / Pro": {
           "status": 200,
-          "size": 395518,
+          "size": 395562,
           "count": 21
         },
         "iPhone 17 / Plus": {
           "status": 200,
-          "size": 334094,
+          "size": 334068,
           "count": 10
         },
         "iPhone 16 / Plus": {
           "status": 200,
-          "size": 378476,
+          "size": 378422,
           "count": 15
         }
       }
@@ -93,7 +93,7 @@
         },
         "iphone 16": {
           "query": "iphone 16",
-          "total": 277,
+          "total": 275,
           "count": 12,
           "error": null,
           "status": 200
