@@ -1,6 +1,6 @@
 {
-  "run_at": "2026-06-24T20:45:14.175073+00:00",
-  "total_items": 209,
+  "run_at": "2026-06-24T22:13:02.739733+00:00",
+  "total_items": 184,
   "alerts": 0,
   "scrapers": {
     "pmgimports": {
@@ -11,27 +11,6 @@
         "html_size": 660384,
         "method": "requests",
         "anchors_found": 107
-      }
-    },
-    "apple_store": {
-      "count": 46,
-      "error": null,
-      "detail": {
-        "iPhone 17 Pro Max / Pro": {
-          "status": 200,
-          "size": 395606,
-          "count": 21
-        },
-        "iPhone 17 / Plus": {
-          "status": 200,
-          "size": 334176,
-          "count": 10
-        },
-        "iPhone 16 / Plus": {
-          "status": 200,
-          "size": 378480,
-          "count": 15
-        }
       }
     },
     "bemol": {
@@ -153,6 +132,29 @@
           "status": 200,
           "count": 0,
           "error": null
+        }
+      }
+    },
+    "apple_store": {
+      "count": 21,
+      "error": null,
+      "detail": {
+        "iPhone 17 Pro Max / Pro": {
+          "status": 200,
+          "size": 395547,
+          "count": 21
+        },
+        "iPhone 17 / Plus": {
+          "status": null,
+          "size": 0,
+          "count": 0,
+          "error": "HTTPSConnectionPool(host='www.apple.com', port=443): Read timed out. (read timeout=30)"
+        },
+        "iPhone 16 / Plus": {
+          "status": null,
+          "size": 0,
+          "count": 0,
+          "error": "HTTPSConnectionPool(host='www.apple.com', port=443): Read timed out. (read timeout=30)"
         }
       }
     }
