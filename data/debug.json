@@ -1,5 +1,5 @@
 {
-  "run_at": "2026-06-23T23:05:02.912776+00:00",
+  "run_at": "2026-06-24T02:48:15.729906+00:00",
   "total_items": 209,
   "alerts": 0,
   "scrapers": {
@@ -13,29 +13,13 @@
         "anchors_found": 107
       }
     },
-    "apple_store": {
-      "count": 46,
-      "error": null,
-      "detail": {
-        "iPhone 17 Pro Max / Pro": {
-          "status": 200,
-          "size": 395545,
-          "count": 21
-        },
-        "iPhone 17 / Plus": {
-          "status": 200,
-          "size": 334106,
-          "count": 10
-        },
-        "iPhone 16 / Plus": {
-          "status": 200,
-          "size": 378410,
-          "count": 15
-        }
-      }
-    },
     "bemol": {
       "count": 7,
+      "error": null,
+      "detail": null
+    },
+    "kabum": {
+      "count": 60,
       "error": null,
       "detail": null
     },
@@ -43,24 +27,30 @@
       "count": 0,
       "error": null,
       "detail": {
-        "count": 0,
-        "html_size": 686349,
-        "method": "cloudscraper",
-        "cards": 48,
-        "no_price": 46,
-        "sample_titles": [
-          "Apple Cabo para recarga de 60W com conector USB-C (1m) ​​​​​",
-          "Celular Samsung Galaxy A17, 256GB, 8GB, 50MP Tela 6.7\", IP54",
-          "Apple iPhone 11 (64 GB) Branco (Recondicionado)",
-          "Apple iPhone 11 (128 GB) (PRODUCT) RED (Recondicionado)",
-          "Apple iPhone 12 mini (64 GB) - Branco (Recondicionado)"
-        ]
+        "error": "fetch failed",
+        "method": "failed"
       }
     },
-    "kabum": {
-      "count": 60,
+    "apple_store": {
+      "count": 46,
       "error": null,
-      "detail": null
+      "detail": {
+        "iPhone 17 Pro Max / Pro": {
+          "status": 200,
+          "size": 395518,
+          "count": 21
+        },
+        "iPhone 17 / Plus": {
+          "status": 200,
+          "size": 334094,
+          "count": 10
+        },
+        "iPhone 16 / Plus": {
+          "status": 200,
+          "size": 378476,
+          "count": 15
+        }
+      }
     },
     "iplace": {
       "count": 30,
@@ -131,6 +121,11 @@
         }
       }
     },
+    "carrefour": {
+      "count": 49,
+      "error": null,
+      "detail": null
+    },
     "goimports": {
       "count": 9,
       "error": null,
@@ -160,11 +155,6 @@
           "error": null
         }
       }
-    },
-    "carrefour": {
-      "count": 49,
-      "error": null,
-      "detail": null
     }
   }
 }
