@@ -1,8 +1,29 @@
 {
-  "run_at": "2026-06-25T08:54:00.443894+00:00",
-  "total_items": 225,
+  "run_at": "2026-06-25T11:37:13.431476+00:00",
+  "total_items": 179,
   "alerts": 0,
   "scrapers": {
+    "apple_store": {
+      "count": 46,
+      "error": null,
+      "detail": {
+        "iPhone 17 Pro Max / Pro": {
+          "status": 200,
+          "size": 395560,
+          "count": 21
+        },
+        "iPhone 17 / Plus": {
+          "status": 200,
+          "size": 334095,
+          "count": 10
+        },
+        "iPhone 16 / Plus": {
+          "status": 200,
+          "size": 378443,
+          "count": 15
+        }
+      }
+    },
     "pmgimports": {
       "count": 8,
       "error": null,
@@ -73,53 +94,22 @@
         }
       }
     },
-    "apple_store": {
-      "count": 46,
+    "kabum": {
+      "count": 60,
       "error": null,
-      "detail": {
-        "iPhone 17 Pro Max / Pro": {
-          "status": 200,
-          "size": 395567,
-          "count": 21
-        },
-        "iPhone 17 / Plus": {
-          "status": 200,
-          "size": 334075,
-          "count": 10
-        },
-        "iPhone 16 / Plus": {
-          "status": 200,
-          "size": 378479,
-          "count": 15
-        }
-      }
+      "detail": null
     },
     "bemol": {
       "count": 7,
       "error": null,
       "detail": null
     },
-    "kabum": {
-      "count": 60,
-      "error": null,
-      "detail": null
-    },
     "amazon": {
-      "count": 46,
+      "count": 0,
       "error": null,
       "detail": {
-        "count": 46,
-        "html_size": 1027289,
-        "method": "cloudscraper",
-        "cards": 48,
-        "no_price": 0,
-        "sample_titles": [
-          "Apple Cabo para recarga de 60W com conector USB-C (1m) ​​​​​",
-          "Celular Samsung Galaxy A17, 256GB, 8GB, 50MP Tela 6.7\", IP54",
-          "Iphone 11 Apple Preto, 64gb Desbloqueado - Mwlt2bz/a (Recond",
-          "Apple iPhone 11 (128 GB) (PRODUCT) RED (Recondicionado)",
-          "Apple iPhone 12 mini (64 GB) - Branco (Recondicionado)"
-        ]
+        "error": "fetch failed",
+        "method": "failed"
       }
     },
     "carrefour": {
