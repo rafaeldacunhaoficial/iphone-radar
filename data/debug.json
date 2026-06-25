@@ -1,6 +1,6 @@
 {
-  "run_at": "2026-06-24T22:13:02.739733+00:00",
-  "total_items": 184,
+  "run_at": "2026-06-25T00:05:38.938734+00:00",
+  "total_items": 179,
   "alerts": 0,
   "scrapers": {
     "pmgimports": {
@@ -13,10 +13,31 @@
         "anchors_found": 107
       }
     },
-    "bemol": {
-      "count": 7,
+    "kabum": {
+      "count": 60,
       "error": null,
       "detail": null
+    },
+    "apple_store": {
+      "count": 46,
+      "error": null,
+      "detail": {
+        "iPhone 17 Pro Max / Pro": {
+          "status": 200,
+          "size": 395556,
+          "count": 21
+        },
+        "iPhone 17 / Plus": {
+          "status": 200,
+          "size": 334086,
+          "count": 10
+        },
+        "iPhone 16 / Plus": {
+          "status": 200,
+          "size": 378410,
+          "count": 15
+        }
+      }
     },
     "amazon": {
       "count": 0,
@@ -26,79 +47,70 @@
         "method": "failed"
       }
     },
-    "kabum": {
-      "count": 60,
-      "error": null,
-      "detail": null
-    },
     "iplace": {
-      "count": 30,
+      "count": 0,
       "error": null,
       "detail": {
         "iphone 17 pro max": {
           "query": "iphone 17 pro max",
-          "total": 51,
-          "count": 4,
-          "error": null,
-          "status": 200
+          "total": 0,
+          "count": 0,
+          "error": "HTTPSConnectionPool(host='www.iplace.com.br', port=443): Max retries exceeded with url: /ccstoreui/v1/search?Nrpp=50&No=0&Ntt=iphone+17+pro+max (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: certificate has expired (_ssl.c:1016)')))"
         },
         "iphone 17 pro": {
           "query": "iphone 17 pro",
-          "total": 82,
-          "count": 7,
-          "error": null,
-          "status": 200
+          "total": 0,
+          "count": 0,
+          "error": "HTTPSConnectionPool(host='www.iplace.com.br', port=443): Max retries exceeded with url: /ccstoreui/v1/search?Nrpp=50&No=0&Ntt=iphone+17+pro (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: certificate has expired (_ssl.c:1016)')))"
         },
         "iphone 17": {
           "query": "iphone 17",
-          "total": 121,
-          "count": 15,
-          "error": null,
-          "status": 200
+          "total": 0,
+          "count": 0,
+          "error": "HTTPSConnectionPool(host='www.iplace.com.br', port=443): Max retries exceeded with url: /ccstoreui/v1/search?Nrpp=50&No=0&Ntt=iphone+17 (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: certificate has expired (_ssl.c:1016)')))"
         },
         "iphone 16 pro max": {
           "query": "iphone 16 pro max",
-          "total": 64,
-          "count": 1,
-          "error": null,
-          "status": 200
+          "total": 0,
+          "count": 0,
+          "error": "HTTPSConnectionPool(host='www.iplace.com.br', port=443): Max retries exceeded with url: /ccstoreui/v1/search?Nrpp=50&No=0&Ntt=iphone+16+pro+max (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: certificate has expired (_ssl.c:1016)')))"
         },
         "iphone 16 pro": {
           "query": "iphone 16 pro",
-          "total": 132,
-          "count": 1,
-          "error": null,
-          "status": 200
+          "total": 0,
+          "count": 0,
+          "error": "HTTPSConnectionPool(host='www.iplace.com.br', port=443): Max retries exceeded with url: /ccstoreui/v1/search?Nrpp=50&No=0&Ntt=iphone+16+pro (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: certificate has expired (_ssl.c:1016)')))"
         },
         "iphone 16": {
           "query": "iphone 16",
-          "total": 275,
-          "count": 12,
-          "error": null,
-          "status": 200
+          "total": 0,
+          "count": 0,
+          "error": "HTTPSConnectionPool(host='www.iplace.com.br', port=443): Max retries exceeded with url: /ccstoreui/v1/search?Nrpp=50&No=0&Ntt=iphone+16 (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: certificate has expired (_ssl.c:1016)')))"
         },
         "iphone 15 pro max": {
           "query": "iphone 15 pro max",
-          "total": 39,
-          "count": 1,
-          "error": null,
-          "status": 200
+          "total": 0,
+          "count": 0,
+          "error": "HTTPSConnectionPool(host='www.iplace.com.br', port=443): Max retries exceeded with url: /ccstoreui/v1/search?Nrpp=50&No=0&Ntt=iphone+15+pro+max (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: certificate has expired (_ssl.c:1016)')))"
         },
         "iphone 15 pro": {
           "query": "iphone 15 pro",
-          "total": 85,
-          "count": 1,
-          "error": null,
-          "status": 200
+          "total": 0,
+          "count": 0,
+          "error": "HTTPSConnectionPool(host='www.iplace.com.br', port=443): Max retries exceeded with url: /ccstoreui/v1/search?Nrpp=50&No=0&Ntt=iphone+15+pro (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: certificate has expired (_ssl.c:1016)')))"
         },
         "iphone 15": {
           "query": "iphone 15",
-          "total": 177,
-          "count": 3,
-          "error": null,
-          "status": 200
+          "total": 0,
+          "count": 0,
+          "error": "HTTPSConnectionPool(host='www.iplace.com.br', port=443): Max retries exceeded with url: /ccstoreui/v1/search?Nrpp=50&No=0&Ntt=iphone+15 (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: certificate has expired (_ssl.c:1016)')))"
         }
       }
+    },
+    "bemol": {
+      "count": 7,
+      "error": null,
+      "detail": null
     },
     "carrefour": {
       "count": 49,
@@ -132,29 +144,6 @@
           "status": 200,
           "count": 0,
           "error": null
-        }
-      }
-    },
-    "apple_store": {
-      "count": 21,
-      "error": null,
-      "detail": {
-        "iPhone 17 Pro Max / Pro": {
-          "status": 200,
-          "size": 395547,
-          "count": 21
-        },
-        "iPhone 17 / Plus": {
-          "status": null,
-          "size": 0,
-          "count": 0,
-          "error": "HTTPSConnectionPool(host='www.apple.com', port=443): Read timed out. (read timeout=30)"
-        },
-        "iPhone 16 / Plus": {
-          "status": null,
-          "size": 0,
-          "count": 0,
-          "error": "HTTPSConnectionPool(host='www.apple.com', port=443): Read timed out. (read timeout=30)"
         }
       }
     }
