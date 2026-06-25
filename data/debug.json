@@ -1,39 +1,17 @@
 {
-  "run_at": "2026-06-25T19:52:58.246219+00:00",
-  "total_items": 211,
+  "run_at": "2026-06-25T21:27:51.004263+00:00",
+  "total_items": 210,
   "alerts": 0,
   "scrapers": {
-    "amazon": {
-      "count": 0,
-      "error": null,
-      "detail": {
-        "count": 0,
-        "html_size": 2485,
-        "method": "cloudscraper",
-        "cards": 0,
-        "no_price": 0,
-        "sample_titles": []
-      }
-    },
     "pmgimports": {
       "count": 8,
       "error": null,
       "detail": {
         "count": 8,
-        "html_size": 660384,
+        "html_size": 660204,
         "method": "requests",
         "anchors_found": 107
       }
-    },
-    "kabum": {
-      "count": 60,
-      "error": null,
-      "detail": null
-    },
-    "bemol": {
-      "count": 7,
-      "error": null,
-      "detail": null
     },
     "apple_store": {
       "count": 46,
@@ -41,20 +19,38 @@
       "detail": {
         "iPhone 17 Pro Max / Pro": {
           "status": 200,
-          "size": 395592,
+          "size": 395816,
           "count": 21
         },
         "iPhone 17 / Plus": {
           "status": 200,
-          "size": 334124,
+          "size": 334195,
           "count": 10
         },
         "iPhone 16 / Plus": {
           "status": 200,
-          "size": 378464,
+          "size": 378495,
           "count": 15
         }
       }
+    },
+    "bemol": {
+      "count": 6,
+      "error": null,
+      "detail": null
+    },
+    "amazon": {
+      "count": 0,
+      "error": null,
+      "detail": {
+        "error": "fetch failed",
+        "method": "failed"
+      }
+    },
+    "kabum": {
+      "count": 60,
+      "error": null,
+      "detail": null
     },
     "iplace": {
       "count": 31,
@@ -125,11 +121,6 @@
         }
       }
     },
-    "carrefour": {
-      "count": 50,
-      "error": null,
-      "detail": null
-    },
     "goimports": {
       "count": 9,
       "error": null,
@@ -159,6 +150,11 @@
           "error": null
         }
       }
+    },
+    "carrefour": {
+      "count": 50,
+      "error": null,
+      "detail": null
     }
   }
 }
