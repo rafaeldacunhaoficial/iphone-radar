@@ -1,29 +1,8 @@
 {
-  "run_at": "2026-06-25T11:37:13.431476+00:00",
-  "total_items": 179,
+  "run_at": "2026-06-25T14:21:39.593017+00:00",
+  "total_items": 209,
   "alerts": 0,
   "scrapers": {
-    "apple_store": {
-      "count": 46,
-      "error": null,
-      "detail": {
-        "iPhone 17 Pro Max / Pro": {
-          "status": 200,
-          "size": 395560,
-          "count": 21
-        },
-        "iPhone 17 / Plus": {
-          "status": 200,
-          "size": 334095,
-          "count": 10
-        },
-        "iPhone 16 / Plus": {
-          "status": 200,
-          "size": 378443,
-          "count": 15
-        }
-      }
-    },
     "pmgimports": {
       "count": 8,
       "error": null,
@@ -34,64 +13,37 @@
         "anchors_found": 107
       }
     },
-    "iplace": {
+    "apple_store": {
+      "count": 46,
+      "error": null,
+      "detail": {
+        "iPhone 17 Pro Max / Pro": {
+          "status": 200,
+          "size": 395592,
+          "count": 21
+        },
+        "iPhone 17 / Plus": {
+          "status": 200,
+          "size": 334134,
+          "count": 10
+        },
+        "iPhone 16 / Plus": {
+          "status": 200,
+          "size": 378501,
+          "count": 15
+        }
+      }
+    },
+    "amazon": {
       "count": 0,
       "error": null,
       "detail": {
-        "iphone 17 pro max": {
-          "query": "iphone 17 pro max",
-          "total": 0,
-          "count": 0,
-          "error": "HTTPSConnectionPool(host='www.iplace.com.br', port=443): Max retries exceeded with url: /ccstoreui/v1/search?Nrpp=50&No=0&Ntt=iphone+17+pro+max (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: certificate has expired (_ssl.c:1016)')))"
-        },
-        "iphone 17 pro": {
-          "query": "iphone 17 pro",
-          "total": 0,
-          "count": 0,
-          "error": "HTTPSConnectionPool(host='www.iplace.com.br', port=443): Max retries exceeded with url: /ccstoreui/v1/search?Nrpp=50&No=0&Ntt=iphone+17+pro (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: certificate has expired (_ssl.c:1016)')))"
-        },
-        "iphone 17": {
-          "query": "iphone 17",
-          "total": 0,
-          "count": 0,
-          "error": "HTTPSConnectionPool(host='www.iplace.com.br', port=443): Max retries exceeded with url: /ccstoreui/v1/search?Nrpp=50&No=0&Ntt=iphone+17 (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: certificate has expired (_ssl.c:1016)')))"
-        },
-        "iphone 16 pro max": {
-          "query": "iphone 16 pro max",
-          "total": 0,
-          "count": 0,
-          "error": "HTTPSConnectionPool(host='www.iplace.com.br', port=443): Max retries exceeded with url: /ccstoreui/v1/search?Nrpp=50&No=0&Ntt=iphone+16+pro+max (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: certificate has expired (_ssl.c:1016)')))"
-        },
-        "iphone 16 pro": {
-          "query": "iphone 16 pro",
-          "total": 0,
-          "count": 0,
-          "error": "HTTPSConnectionPool(host='www.iplace.com.br', port=443): Max retries exceeded with url: /ccstoreui/v1/search?Nrpp=50&No=0&Ntt=iphone+16+pro (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: certificate has expired (_ssl.c:1016)')))"
-        },
-        "iphone 16": {
-          "query": "iphone 16",
-          "total": 0,
-          "count": 0,
-          "error": "HTTPSConnectionPool(host='www.iplace.com.br', port=443): Max retries exceeded with url: /ccstoreui/v1/search?Nrpp=50&No=0&Ntt=iphone+16 (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: certificate has expired (_ssl.c:1016)')))"
-        },
-        "iphone 15 pro max": {
-          "query": "iphone 15 pro max",
-          "total": 0,
-          "count": 0,
-          "error": "HTTPSConnectionPool(host='www.iplace.com.br', port=443): Max retries exceeded with url: /ccstoreui/v1/search?Nrpp=50&No=0&Ntt=iphone+15+pro+max (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: certificate has expired (_ssl.c:1016)')))"
-        },
-        "iphone 15 pro": {
-          "query": "iphone 15 pro",
-          "total": 0,
-          "count": 0,
-          "error": "HTTPSConnectionPool(host='www.iplace.com.br', port=443): Max retries exceeded with url: /ccstoreui/v1/search?Nrpp=50&No=0&Ntt=iphone+15+pro (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: certificate has expired (_ssl.c:1016)')))"
-        },
-        "iphone 15": {
-          "query": "iphone 15",
-          "total": 0,
-          "count": 0,
-          "error": "HTTPSConnectionPool(host='www.iplace.com.br', port=443): Max retries exceeded with url: /ccstoreui/v1/search?Nrpp=50&No=0&Ntt=iphone+15 (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: certificate has expired (_ssl.c:1016)')))"
-        }
+        "count": 0,
+        "html_size": 2485,
+        "method": "cloudscraper",
+        "cards": 0,
+        "no_price": 0,
+        "sample_titles": []
       }
     },
     "kabum": {
@@ -104,12 +56,73 @@
       "error": null,
       "detail": null
     },
-    "amazon": {
-      "count": 0,
+    "iplace": {
+      "count": 30,
       "error": null,
       "detail": {
-        "error": "fetch failed",
-        "method": "failed"
+        "iphone 17 pro max": {
+          "query": "iphone 17 pro max",
+          "total": 53,
+          "count": 4,
+          "error": null,
+          "status": 200
+        },
+        "iphone 17 pro": {
+          "query": "iphone 17 pro",
+          "total": 85,
+          "count": 7,
+          "error": null,
+          "status": 200
+        },
+        "iphone 17": {
+          "query": "iphone 17",
+          "total": 124,
+          "count": 15,
+          "error": null,
+          "status": 200
+        },
+        "iphone 16 pro max": {
+          "query": "iphone 16 pro max",
+          "total": 65,
+          "count": 1,
+          "error": null,
+          "status": 200
+        },
+        "iphone 16 pro": {
+          "query": "iphone 16 pro",
+          "total": 136,
+          "count": 1,
+          "error": null,
+          "status": 200
+        },
+        "iphone 16": {
+          "query": "iphone 16",
+          "total": 282,
+          "count": 12,
+          "error": null,
+          "status": 200
+        },
+        "iphone 15 pro max": {
+          "query": "iphone 15 pro max",
+          "total": 40,
+          "count": 1,
+          "error": null,
+          "status": 200
+        },
+        "iphone 15 pro": {
+          "query": "iphone 15 pro",
+          "total": 87,
+          "count": 1,
+          "error": null,
+          "status": 200
+        },
+        "iphone 15": {
+          "query": "iphone 15",
+          "total": 182,
+          "count": 3,
+          "error": null,
+          "status": 200
+        }
       }
     },
     "carrefour": {
