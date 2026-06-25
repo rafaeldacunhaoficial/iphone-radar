@@ -1,6 +1,6 @@
 {
-  "run_at": "2026-06-25T21:27:51.004263+00:00",
-  "total_items": 210,
+  "run_at": "2026-06-25T23:13:42.671783+00:00",
+  "total_items": 257,
   "alerts": 0,
   "scrapers": {
     "pmgimports": {
@@ -13,42 +13,52 @@
         "anchors_found": 107
       }
     },
+    "amazon": {
+      "count": 46,
+      "error": null,
+      "detail": {
+        "count": 46,
+        "html_size": 851921,
+        "method": "requests",
+        "cards": 48,
+        "no_price": 0,
+        "sample_titles": [
+          "Apple Cabo para recarga de 60W com conector USB-C (1m) ​​​​​",
+          "Celular Samsung Galaxy A17, 256GB, 8GB, 50MP Tela 6.7\", IP54",
+          "Iphone 11 Apple Preto, 64gb Desbloqueado - Mwlt2bz/a (Recond",
+          "Apple iPhone 11 (64 GB) Branco (Recondicionado)",
+          "Apple iPhone 11 (64 GB) (PRODUCT) RED (Recondicionado)"
+        ]
+      }
+    },
     "apple_store": {
       "count": 46,
       "error": null,
       "detail": {
         "iPhone 17 Pro Max / Pro": {
           "status": 200,
-          "size": 395816,
+          "size": 395598,
           "count": 21
         },
         "iPhone 17 / Plus": {
           "status": 200,
-          "size": 334195,
+          "size": 334112,
           "count": 10
         },
         "iPhone 16 / Plus": {
           "status": 200,
-          "size": 378495,
+          "size": 378453,
           "count": 15
         }
       }
     },
-    "bemol": {
-      "count": 6,
+    "kabum": {
+      "count": 60,
       "error": null,
       "detail": null
     },
-    "amazon": {
-      "count": 0,
-      "error": null,
-      "detail": {
-        "error": "fetch failed",
-        "method": "failed"
-      }
-    },
-    "kabum": {
-      "count": 60,
+    "bemol": {
+      "count": 7,
       "error": null,
       "detail": null
     },
@@ -121,6 +131,11 @@
         }
       }
     },
+    "carrefour": {
+      "count": 50,
+      "error": null,
+      "detail": null
+    },
     "goimports": {
       "count": 9,
       "error": null,
@@ -150,11 +165,6 @@
           "error": null
         }
       }
-    },
-    "carrefour": {
-      "count": 50,
-      "error": null,
-      "detail": null
     }
   }
 }
