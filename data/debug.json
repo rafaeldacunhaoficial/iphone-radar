@@ -1,6 +1,6 @@
 {
-  "run_at": "2026-06-25T14:21:39.593017+00:00",
-  "total_items": 209,
+  "run_at": "2026-06-25T17:08:48.234218+00:00",
+  "total_items": 210,
   "alerts": 0,
   "scrapers": {
     "pmgimports": {
@@ -19,40 +19,46 @@
       "detail": {
         "iPhone 17 Pro Max / Pro": {
           "status": 200,
-          "size": 395592,
+          "size": 395602,
           "count": 21
         },
         "iPhone 17 / Plus": {
           "status": 200,
-          "size": 334134,
+          "size": 334180,
           "count": 10
         },
         "iPhone 16 / Plus": {
           "status": 200,
-          "size": 378501,
+          "size": 378457,
           "count": 15
         }
       }
+    },
+    "bemol": {
+      "count": 7,
+      "error": null,
+      "detail": null
     },
     "amazon": {
       "count": 0,
       "error": null,
       "detail": {
         "count": 0,
-        "html_size": 2485,
-        "method": "cloudscraper",
-        "cards": 0,
-        "no_price": 0,
-        "sample_titles": []
+        "html_size": 673130,
+        "method": "requests",
+        "cards": 48,
+        "no_price": 46,
+        "sample_titles": [
+          "Apple Cabo para recarga de 60W com conector USB-C (1m) ​​​​​",
+          "iPhone 8 64GB Cinza Espacial (Recondicionado)",
+          "Celular Samsung Galaxy A17, 256GB, 8GB, 50MP Tela 6.7\", IP54",
+          "Iphone 11 Apple Preto, 64gb Desbloqueado - Mwlt2bz/a (Recond",
+          "Apple iPhone 11 (64 GB) Branco (Recondicionado)"
+        ]
       }
     },
     "kabum": {
       "count": 60,
-      "error": null,
-      "detail": null
-    },
-    "bemol": {
-      "count": 7,
       "error": null,
       "detail": null
     },
@@ -125,11 +131,6 @@
         }
       }
     },
-    "carrefour": {
-      "count": 49,
-      "error": null,
-      "detail": null
-    },
     "goimports": {
       "count": 9,
       "error": null,
@@ -159,6 +160,11 @@
           "error": null
         }
       }
+    },
+    "carrefour": {
+      "count": 50,
+      "error": null,
+      "detail": null
     }
   }
 }
