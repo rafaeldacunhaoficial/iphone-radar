@@ -1,5 +1,5 @@
 {
-  "run_at": "2026-06-26T18:28:01.103917+00:00",
+  "run_at": "2026-06-26T20:43:44.152817+00:00",
   "total_items": 261,
   "alerts": 0,
   "scrapers": {
@@ -19,12 +19,12 @@
       "detail": {
         "iPhone 17 Pro Max / Pro": {
           "status": 200,
-          "size": 395606,
+          "size": 395560,
           "count": 21
         },
         "iPhone 17 / Plus": {
           "status": 200,
-          "size": 334136,
+          "size": 334092,
           "count": 10
         },
         "iPhone 16 / Plus": {
@@ -34,23 +34,13 @@
         }
       }
     },
-    "kabum": {
-      "count": 60,
-      "error": null,
-      "detail": null
-    },
-    "bemol": {
-      "count": 7,
-      "error": null,
-      "detail": null
-    },
     "amazon": {
       "count": 46,
       "error": null,
       "detail": {
         "count": 46,
-        "html_size": 967680,
-        "method": "cloudscraper",
+        "html_size": 966101,
+        "method": "requests",
         "cards": 48,
         "no_price": 0,
         "sample_titles": [
@@ -62,8 +52,18 @@
         ]
       }
     },
+    "bemol": {
+      "count": 8,
+      "error": null,
+      "detail": null
+    },
+    "kabum": {
+      "count": 60,
+      "error": null,
+      "detail": null
+    },
     "iplace": {
-      "count": 34,
+      "count": 33,
       "error": null,
       "detail": {
         "iphone 17 pro max": {
@@ -83,7 +83,7 @@
         "iphone 17": {
           "query": "iphone 17",
           "total": 134,
-          "count": 15,
+          "count": 14,
           "error": null,
           "status": 200
         },
