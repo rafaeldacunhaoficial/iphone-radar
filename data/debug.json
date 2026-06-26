@@ -1,6 +1,6 @@
 {
-  "run_at": "2026-06-26T02:53:14.780798+00:00",
-  "total_items": 258,
+  "run_at": "2026-06-26T06:52:24.067006+00:00",
+  "total_items": 259,
   "alerts": 0,
   "scrapers": {
     "pmgimports": {
@@ -19,17 +19,17 @@
       "detail": {
         "iPhone 17 Pro Max / Pro": {
           "status": 200,
-          "size": 395583,
+          "size": 395550,
           "count": 21
         },
         "iPhone 17 / Plus": {
           "status": 200,
-          "size": 334098,
+          "size": 334094,
           "count": 10
         },
         "iPhone 16 / Plus": {
           "status": 200,
-          "size": 378440,
+          "size": 378424,
           "count": 15
         }
       }
@@ -39,7 +39,7 @@
       "error": null,
       "detail": {
         "count": 47,
-        "html_size": 892327,
+        "html_size": 908680,
         "method": "requests",
         "cards": 51,
         "no_price": 0,
@@ -63,7 +63,7 @@
       "detail": null
     },
     "iplace": {
-      "count": 31,
+      "count": 32,
       "error": null,
       "detail": {
         "iphone 17 pro max": {
@@ -97,14 +97,14 @@
         "iphone 16 pro": {
           "query": "iphone 16 pro",
           "total": 137,
-          "count": 1,
+          "count": 2,
           "error": null,
           "status": 200
         },
         "iphone 16": {
           "query": "iphone 16",
           "total": 284,
-          "count": 13,
+          "count": 14,
           "error": null,
           "status": 200
         },
