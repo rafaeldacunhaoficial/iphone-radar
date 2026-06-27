@@ -1,5 +1,5 @@
 {
-  "run_at": "2026-06-27T14:25:47.180505+00:00",
+  "run_at": "2026-06-27T16:01:15.105737+00:00",
   "total_items": 212,
   "alerts": 0,
   "scrapers": {
@@ -13,44 +13,54 @@
         "anchors_found": 107
       }
     },
-    "amazon": {
-      "count": 0,
-      "error": null,
-      "detail": {
-        "error": "fetch failed",
-        "method": "failed"
-      }
-    },
     "apple_store": {
       "count": 46,
       "error": null,
       "detail": {
         "iPhone 17 Pro Max / Pro": {
           "status": 200,
-          "size": 395663,
+          "size": 395680,
           "count": 21
         },
         "iPhone 17 / Plus": {
           "status": 200,
-          "size": 334156,
+          "size": 334138,
           "count": 10
         },
         "iPhone 16 / Plus": {
           "status": 200,
-          "size": 378495,
+          "size": 378523,
           "count": 15
         }
       }
+    },
+    "kabum": {
+      "count": 60,
+      "error": null,
+      "detail": null
     },
     "bemol": {
       "count": 8,
       "error": null,
       "detail": null
     },
-    "kabum": {
-      "count": 60,
+    "amazon": {
+      "count": 0,
       "error": null,
-      "detail": null
+      "detail": {
+        "count": 0,
+        "html_size": 780284,
+        "method": "cloudscraper",
+        "cards": 48,
+        "no_price": 46,
+        "sample_titles": [
+          "Apple Cabo para recarga de 60W com conector USB-C (1m) ​​​​​",
+          "Celular Samsung Galaxy A17, 256GB, 8GB, 50MP Tela 6.7\", IP54",
+          "Apple iPhone 11 (64 GB) (PRODUCT) RED (Recondicionado)",
+          "Apple iPhone 11 (64 GB) Branco (Recondicionado)",
+          "Iphone 11 Apple Preto, 64gb Desbloqueado - Mwlt2bz/a (Recond"
+        ]
+      }
     },
     "iplace": {
       "count": 31,
