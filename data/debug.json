@@ -1,20 +1,8 @@
 {
-  "run_at": "2026-06-27T10:01:49.379138+00:00",
+  "run_at": "2026-06-27T12:07:57.287603+00:00",
   "total_items": 212,
   "alerts": 0,
   "scrapers": {
-    "amazon": {
-      "count": 0,
-      "error": null,
-      "detail": {
-        "count": 0,
-        "html_size": 2483,
-        "method": "cloudscraper",
-        "cards": 0,
-        "no_price": 0,
-        "sample_titles": []
-      }
-    },
     "pmgimports": {
       "count": 8,
       "error": null,
@@ -25,30 +13,38 @@
         "anchors_found": 107
       }
     },
-    "kabum": {
-      "count": 60,
-      "error": null,
-      "detail": null
-    },
     "apple_store": {
       "count": 46,
       "error": null,
       "detail": {
         "iPhone 17 Pro Max / Pro": {
           "status": 200,
-          "size": 395661,
+          "size": 395644,
           "count": 21
         },
         "iPhone 17 / Plus": {
           "status": 200,
-          "size": 334172,
+          "size": 334136,
           "count": 10
         },
         "iPhone 16 / Plus": {
           "status": 200,
-          "size": 378430,
+          "size": 378493,
           "count": 15
         }
+      }
+    },
+    "kabum": {
+      "count": 60,
+      "error": null,
+      "detail": null
+    },
+    "amazon": {
+      "count": 0,
+      "error": null,
+      "detail": {
+        "error": "fetch failed",
+        "method": "failed"
       }
     },
     "bemol": {
