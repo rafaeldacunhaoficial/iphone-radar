@@ -1,6 +1,6 @@
 {
-  "run_at": "2026-06-26T22:08:22.974298+00:00",
-  "total_items": 215,
+  "run_at": "2026-06-27T00:01:52.183107+00:00",
+  "total_items": 213,
   "alerts": 0,
   "scrapers": {
     "pmgimports": {
@@ -13,16 +13,25 @@
         "anchors_found": 107
       }
     },
-    "amazon": {
-      "count": 0,
+    "apple_store": {
+      "count": 46,
       "error": null,
       "detail": {
-        "count": 0,
-        "html_size": 2483,
-        "method": "cloudscraper",
-        "cards": 0,
-        "no_price": 0,
-        "sample_titles": []
+        "iPhone 17 Pro Max / Pro": {
+          "status": 200,
+          "size": 395633,
+          "count": 21
+        },
+        "iPhone 17 / Plus": {
+          "status": 200,
+          "size": 334132,
+          "count": 10
+        },
+        "iPhone 16 / Plus": {
+          "status": 200,
+          "size": 378455,
+          "count": 15
+        }
       }
     },
     "bemol": {
@@ -30,34 +39,21 @@
       "error": null,
       "detail": null
     },
+    "amazon": {
+      "count": 0,
+      "error": null,
+      "detail": {
+        "error": "fetch failed",
+        "method": "failed"
+      }
+    },
     "kabum": {
       "count": 60,
       "error": null,
       "detail": null
     },
-    "apple_store": {
-      "count": 46,
-      "error": null,
-      "detail": {
-        "iPhone 17 Pro Max / Pro": {
-          "status": 200,
-          "size": 395602,
-          "count": 21
-        },
-        "iPhone 17 / Plus": {
-          "status": 200,
-          "size": 334110,
-          "count": 10
-        },
-        "iPhone 16 / Plus": {
-          "status": 200,
-          "size": 378423,
-          "count": 15
-        }
-      }
-    },
     "iplace": {
-      "count": 33,
+      "count": 32,
       "error": null,
       "detail": {
         "iphone 17 pro max": {
@@ -105,28 +101,28 @@
         "iphone 15 pro max": {
           "query": "iphone 15 pro max",
           "total": 40,
-          "count": 1,
+          "count": 0,
           "error": null,
           "status": 200
         },
         "iphone 15 pro": {
           "query": "iphone 15 pro",
           "total": 87,
-          "count": 1,
+          "count": 0,
           "error": null,
           "status": 200
         },
         "iphone 15": {
           "query": "iphone 15",
           "total": 182,
-          "count": 3,
+          "count": 2,
           "error": null,
           "status": 200
         }
       }
     },
     "carrefour": {
-      "count": 51,
+      "count": 50,
       "error": null,
       "detail": null
     },
