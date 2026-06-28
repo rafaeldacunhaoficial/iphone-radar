@@ -1,6 +1,6 @@
 {
-  "run_at": "2026-06-27T23:57:50.007026+00:00",
-  "total_items": 211,
+  "run_at": "2026-06-28T04:05:08.944364+00:00",
+  "total_items": 203,
   "alerts": 0,
   "scrapers": {
     "pmgimports": {
@@ -13,31 +13,31 @@
         "anchors_found": 107
       }
     },
+    "bemol": {
+      "count": 7,
+      "error": null,
+      "detail": null
+    },
     "apple_store": {
       "count": 46,
       "error": null,
       "detail": {
         "iPhone 17 Pro Max / Pro": {
           "status": 200,
-          "size": 395686,
+          "size": 395642,
           "count": 21
         },
         "iPhone 17 / Plus": {
           "status": 200,
-          "size": 334126,
+          "size": 334134,
           "count": 10
         },
         "iPhone 16 / Plus": {
           "status": 200,
-          "size": 378426,
+          "size": 378508,
           "count": 15
         }
       }
-    },
-    "bemol": {
-      "count": 7,
-      "error": null,
-      "detail": null
     },
     "amazon": {
       "count": 0,
@@ -127,25 +127,25 @@
       "detail": null
     },
     "goimports": {
-      "count": 9,
+      "count": 1,
       "error": null,
       "detail": {
         "iPhone 17 Pro Max": {
           "url": "https://www.goimports.com.br/iphoness/iPhone-17-Pro-Max",
           "status": 200,
-          "count": 4,
+          "count": 0,
           "error": null
         },
         "iPhone 17 Pro": {
           "url": "https://www.goimports.com.br/iphoness/iPhone-17-Pro",
           "status": 200,
-          "count": 3,
+          "count": 0,
           "error": null
         },
         "iPhone 17": {
           "url": "https://www.goimports.com.br/iphoness/iPhone-17",
           "status": 200,
-          "count": 2,
+          "count": 1,
           "error": null
         },
         "iPhone 16": {
