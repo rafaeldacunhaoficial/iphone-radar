@@ -1,5 +1,5 @@
 {
-  "run_at": "2026-06-28T15:14:37.815811+00:00",
+  "run_at": "2026-06-28T17:03:58.219636+00:00",
   "total_items": 203,
   "alerts": 0,
   "scrapers": {
@@ -13,27 +13,6 @@
         "anchors_found": 107
       }
     },
-    "apple_store": {
-      "count": 46,
-      "error": null,
-      "detail": {
-        "iPhone 17 Pro Max / Pro": {
-          "status": 200,
-          "size": 395715,
-          "count": 21
-        },
-        "iPhone 17 / Plus": {
-          "status": 200,
-          "size": 334134,
-          "count": 10
-        },
-        "iPhone 16 / Plus": {
-          "status": 200,
-          "size": 378463,
-          "count": 15
-        }
-      }
-    },
     "amazon": {
       "count": 0,
       "error": null,
@@ -42,10 +21,26 @@
         "method": "failed"
       }
     },
-    "bemol": {
-      "count": 7,
+    "apple_store": {
+      "count": 46,
       "error": null,
-      "detail": null
+      "detail": {
+        "iPhone 17 Pro Max / Pro": {
+          "status": 200,
+          "size": 395677,
+          "count": 21
+        },
+        "iPhone 17 / Plus": {
+          "status": 200,
+          "size": 334144,
+          "count": 10
+        },
+        "iPhone 16 / Plus": {
+          "status": 200,
+          "size": 378465,
+          "count": 15
+        }
+      }
     },
     "kabum": {
       "count": 60,
@@ -123,6 +118,11 @@
     },
     "carrefour": {
       "count": 50,
+      "error": null,
+      "detail": null
+    },
+    "bemol": {
+      "count": 7,
       "error": null,
       "detail": null
     },
