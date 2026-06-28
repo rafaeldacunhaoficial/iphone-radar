@@ -1,5 +1,5 @@
 {
-  "run_at": "2026-06-28T20:56:35.824549+00:00",
+  "run_at": "2026-06-28T22:01:16.775782+00:00",
   "total_items": 203,
   "alerts": 0,
   "scrapers": {
@@ -11,27 +11,6 @@
         "html_size": 660226,
         "method": "requests",
         "anchors_found": 107
-      }
-    },
-    "apple_store": {
-      "count": 46,
-      "error": null,
-      "detail": {
-        "iPhone 17 Pro Max / Pro": {
-          "status": 200,
-          "size": 395667,
-          "count": 21
-        },
-        "iPhone 17 / Plus": {
-          "status": 200,
-          "size": 334169,
-          "count": 10
-        },
-        "iPhone 16 / Plus": {
-          "status": 200,
-          "size": 378460,
-          "count": 15
-        }
       }
     },
     "amazon": {
@@ -52,10 +31,26 @@
       "error": null,
       "detail": null
     },
-    "carrefour": {
-      "count": 50,
+    "apple_store": {
+      "count": 46,
       "error": null,
-      "detail": null
+      "detail": {
+        "iPhone 17 Pro Max / Pro": {
+          "status": 200,
+          "size": 395688,
+          "count": 21
+        },
+        "iPhone 17 / Plus": {
+          "status": 200,
+          "size": 334152,
+          "count": 10
+        },
+        "iPhone 16 / Plus": {
+          "status": 200,
+          "size": 378492,
+          "count": 15
+        }
+      }
     },
     "iplace": {
       "count": 31,
@@ -125,6 +120,11 @@
           "status": 200
         }
       }
+    },
+    "carrefour": {
+      "count": 50,
+      "error": null,
+      "detail": null
     },
     "goimports": {
       "count": 1,
