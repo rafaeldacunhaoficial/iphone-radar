@@ -1,8 +1,20 @@
 {
-  "run_at": "2026-06-29T00:03:50.915730+00:00",
-  "total_items": 203,
+  "run_at": "2026-06-29T05:27:05.287436+00:00",
+  "total_items": 202,
   "alerts": 0,
   "scrapers": {
+    "amazon": {
+      "count": 0,
+      "error": null,
+      "detail": {
+        "count": 0,
+        "html_size": 2477,
+        "method": "cloudscraper",
+        "cards": 0,
+        "no_price": 0,
+        "sample_titles": []
+      }
+    },
     "pmgimports": {
       "count": 8,
       "error": null,
@@ -13,31 +25,13 @@
         "anchors_found": 107
       }
     },
-    "amazon": {
-      "count": 0,
-      "error": null,
-      "detail": {
-        "count": 0,
-        "html_size": 689222,
-        "method": "requests",
-        "cards": 48,
-        "no_price": 46,
-        "sample_titles": [
-          "Apple Cabo para recarga de 60W com conector USB-C (1m) ​​​​​",
-          "Celular Samsung Galaxy A17, 256GB, 8GB, 50MP Tela 6.7\", IP54",
-          "Apple iPhone 11 (64 GB) (PRODUCT) RED (Recondicionado)",
-          "Apple iPhone 11 (64 GB) Branco (Recondicionado)",
-          "Iphone 11 Apple Preto, 64gb Desbloqueado - Mwlt2bz/a (Recond"
-        ]
-      }
-    },
-    "bemol": {
-      "count": 7,
+    "kabum": {
+      "count": 60,
       "error": null,
       "detail": null
     },
-    "kabum": {
-      "count": 60,
+    "bemol": {
+      "count": 7,
       "error": null,
       "detail": null
     },
@@ -47,17 +41,17 @@
       "detail": {
         "iPhone 17 Pro Max / Pro": {
           "status": 200,
-          "size": 395844,
+          "size": 395658,
           "count": 21
         },
         "iPhone 17 / Plus": {
           "status": 200,
-          "size": 334154,
+          "size": 334118,
           "count": 10
         },
         "iPhone 16 / Plus": {
           "status": 200,
-          "size": 378527,
+          "size": 378420,
           "count": 15
         }
       }
@@ -137,7 +131,7 @@
       "detail": null
     },
     "goimports": {
-      "count": 1,
+      "count": 0,
       "error": null,
       "detail": {
         "iPhone 17 Pro Max": {
@@ -155,7 +149,7 @@
         "iPhone 17": {
           "url": "https://www.goimports.com.br/iphoness/iPhone-17",
           "status": 200,
-          "count": 1,
+          "count": 0,
           "error": null
         },
         "iPhone 16": {
