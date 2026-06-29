@@ -1,20 +1,48 @@
 {
-  "run_at": "2026-06-29T14:44:54.727314+00:00",
-  "total_items": 203,
+  "run_at": "2026-06-29T17:32:10.914939+00:00",
+  "total_items": 248,
   "alerts": 0,
   "scrapers": {
+    "amazon": {
+      "count": 46,
+      "error": null,
+      "detail": {
+        "count": 46,
+        "html_size": 952699,
+        "method": "requests",
+        "cards": 48,
+        "no_price": 0,
+        "sample_titles": [
+          "Apple Cabo para recarga de 60W com conector USB-C (1m) ​​​​​",
+          "Celular Samsung Galaxy A17, 256GB, 8GB, 50MP Tela 6.7\", IP54",
+          "Apple iPhone 11 (64 GB) (PRODUCT) RED (Recondicionado)",
+          "Apple iPhone 11 (64 GB) Branco (Recondicionado)",
+          "Iphone 11 Apple Preto, 64gb Desbloqueado - Mwlt2bz/a (Recond"
+        ]
+      }
+    },
+    "bemol": {
+      "count": 7,
+      "error": null,
+      "detail": null
+    },
+    "kabum": {
+      "count": 60,
+      "error": null,
+      "detail": null
+    },
     "apple_store": {
       "count": 46,
       "error": null,
       "detail": {
         "iPhone 17 Pro Max / Pro": {
           "status": 200,
-          "size": 395721,
+          "size": 395707,
           "count": 21
         },
         "iPhone 17 / Plus": {
           "status": 200,
-          "size": 334219,
+          "size": 334160,
           "count": 10
         },
         "iPhone 16 / Plus": {
@@ -24,36 +52,23 @@
         }
       }
     },
-    "kabum": {
-      "count": 60,
-      "error": null,
-      "detail": null
-    },
-    "amazon": {
-      "count": 0,
-      "error": null,
-      "detail": {
-        "error": "fetch failed",
-        "method": "failed"
-      }
-    },
-    "bemol": {
-      "count": 7,
-      "error": null,
-      "detail": null
-    },
     "pmgimports": {
       "count": 8,
       "error": null,
       "detail": {
         "count": 8,
-        "html_size": 660226,
+        "html_size": 660235,
         "method": "requests",
         "anchors_found": 107
       }
     },
+    "carrefour": {
+      "count": 50,
+      "error": null,
+      "detail": null
+    },
     "iplace": {
-      "count": 31,
+      "count": 30,
       "error": null,
       "detail": {
         "iphone 17 pro max": {
@@ -94,7 +109,7 @@
         "iphone 16": {
           "query": "iphone 16",
           "total": 287,
-          "count": 15,
+          "count": 14,
           "error": null,
           "status": 200
         },
@@ -120,11 +135,6 @@
           "status": 200
         }
       }
-    },
-    "carrefour": {
-      "count": 50,
-      "error": null,
-      "detail": null
     },
     "goimports": {
       "count": 1,
