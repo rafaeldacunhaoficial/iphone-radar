@@ -1,29 +1,8 @@
 {
-  "run_at": "2026-06-29T19:50:46.883794+00:00",
-  "total_items": 251,
+  "run_at": "2026-06-29T21:21:50.624058+00:00",
+  "total_items": 202,
   "alerts": 0,
   "scrapers": {
-    "apple_store": {
-      "count": 46,
-      "error": null,
-      "detail": {
-        "iPhone 17 Pro Max / Pro": {
-          "status": 200,
-          "size": 395723,
-          "count": 21
-        },
-        "iPhone 17 / Plus": {
-          "status": 200,
-          "size": 334148,
-          "count": 10
-        },
-        "iPhone 16 / Plus": {
-          "status": 200,
-          "size": 378531,
-          "count": 15
-        }
-      }
-    },
     "pmgimports": {
       "count": 8,
       "error": null,
@@ -34,31 +13,34 @@
         "anchors_found": 107
       }
     },
-    "amazon": {
-      "count": 49,
+    "apple_store": {
+      "count": 46,
       "error": null,
       "detail": {
-        "count": 49,
-        "html_size": 896738,
-        "method": "requests",
-        "cards": 51,
-        "no_price": 0,
-        "sample_titles": [
-          "Apple Cabo para recarga de 60W com conector USB-C (1m) ​​​​​",
-          "Celular Samsung Galaxy A17, 256GB, 8GB, 50MP Tela 6.7\", IP54",
-          "Apple iPhone 11 (64 GB) (PRODUCT) RED (Recondicionado)",
-          "Apple iPhone 11 (64 GB) Branco (Recondicionado)",
-          "Iphone 11 Apple Preto, 64gb Desbloqueado - Mwlt2bz/a (Recond"
-        ]
+        "iPhone 17 Pro Max / Pro": {
+          "status": 200,
+          "size": 395648,
+          "count": 21
+        },
+        "iPhone 17 / Plus": {
+          "status": 200,
+          "size": 334131,
+          "count": 10
+        },
+        "iPhone 16 / Plus": {
+          "status": 200,
+          "size": 378489,
+          "count": 15
+        }
       }
-    },
-    "kabum": {
-      "count": 60,
-      "error": null,
-      "detail": null
     },
     "bemol": {
       "count": 7,
+      "error": null,
+      "detail": null
+    },
+    "kabum": {
+      "count": 60,
       "error": null,
       "detail": null
     },
@@ -135,6 +117,18 @@
       "count": 50,
       "error": null,
       "detail": null
+    },
+    "amazon": {
+      "count": 0,
+      "error": null,
+      "detail": {
+        "count": 0,
+        "html_size": 2483,
+        "method": "cloudscraper",
+        "cards": 0,
+        "no_price": 0,
+        "sample_titles": []
+      }
     },
     "goimports": {
       "count": 1,
