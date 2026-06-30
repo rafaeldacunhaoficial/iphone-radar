@@ -1,6 +1,6 @@
 {
-  "run_at": "2026-06-30T19:48:43.922369+00:00",
-  "total_items": 206,
+  "run_at": "2026-06-30T21:24:49.378692+00:00",
+  "total_items": 205,
   "alerts": 0,
   "scrapers": {
     "apple_store": {
@@ -9,17 +9,17 @@
       "detail": {
         "iPhone 17 Pro Max / Pro": {
           "status": 200,
-          "size": 395597,
+          "size": 395619,
           "count": 21
         },
         "iPhone 17 / Plus": {
           "status": 200,
-          "size": 334141,
+          "size": 334133,
           "count": 10
         },
         "iPhone 16 / Plus": {
           "status": 200,
-          "size": 378422,
+          "size": 378442,
           "count": 15
         }
       }
@@ -29,7 +29,7 @@
       "error": null,
       "detail": {
         "count": 8,
-        "html_size": 660236,
+        "html_size": 660255,
         "method": "requests",
         "anchors_found": 107
       }
@@ -39,36 +39,21 @@
       "error": null,
       "detail": null
     },
+    "amazon": {
+      "count": 0,
+      "error": null,
+      "detail": {
+        "error": "fetch failed",
+        "method": "failed"
+      }
+    },
     "bemol": {
       "count": 6,
       "error": null,
       "detail": null
     },
-    "amazon": {
-      "count": 0,
-      "error": null,
-      "detail": {
-        "count": 0,
-        "html_size": 797588,
-        "method": "requests",
-        "cards": 48,
-        "no_price": 46,
-        "sample_titles": [
-          "Apple Cabo para recarga de 60W com conector USB-C (1m) ​​​​​",
-          "iPhone 8 64GB Cinza Espacial (Recondicionado)",
-          "Celular Samsung Galaxy A17, 256GB, 8GB, 50MP Tela 6.7\", IP54",
-          "Apple iPhone 11 (64 GB) (PRODUCT) RED (Recondicionado)",
-          "Apple iPhone 11 (64 GB) Branco (Recondicionado)"
-        ]
-      }
-    },
-    "carrefour": {
-      "count": 50,
-      "error": null,
-      "detail": null
-    },
     "iplace": {
-      "count": 29,
+      "count": 28,
       "error": null,
       "detail": {
         "iphone 17 pro max": {
@@ -94,47 +79,52 @@
         },
         "iphone 16 pro max": {
           "query": "iphone 16 pro max",
-          "total": 67,
+          "total": 74,
           "count": 2,
           "error": null,
           "status": 200
         },
         "iphone 16 pro": {
           "query": "iphone 16 pro",
-          "total": 135,
-          "count": 3,
+          "total": 152,
+          "count": 2,
           "error": null,
           "status": 200
         },
         "iphone 16": {
           "query": "iphone 16",
-          "total": 292,
-          "count": 14,
+          "total": 309,
+          "count": 13,
           "error": null,
           "status": 200
         },
         "iphone 15 pro max": {
           "query": "iphone 15 pro max",
-          "total": 40,
+          "total": 42,
           "count": 0,
           "error": null,
           "status": 200
         },
         "iphone 15 pro": {
           "query": "iphone 15 pro",
-          "total": 87,
+          "total": 90,
           "count": 0,
           "error": null,
           "status": 200
         },
         "iphone 15": {
           "query": "iphone 15",
-          "total": 182,
+          "total": 181,
           "count": 2,
           "error": null,
           "status": 200
         }
       }
+    },
+    "carrefour": {
+      "count": 50,
+      "error": null,
+      "detail": null
     },
     "goimports": {
       "count": 7,
