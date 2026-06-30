@@ -1,5 +1,5 @@
 {
-  "run_at": "2026-06-30T04:14:03.562573+00:00",
+  "run_at": "2026-06-30T08:26:35.784394+00:00",
   "total_items": 202,
   "alerts": 0,
   "scrapers": {
@@ -13,6 +13,39 @@
         "anchors_found": 107
       }
     },
+    "amazon": {
+      "count": 0,
+      "error": null,
+      "detail": {
+        "count": 0,
+        "html_size": 2485,
+        "method": "cloudscraper",
+        "cards": 0,
+        "no_price": 0,
+        "sample_titles": []
+      }
+    },
+    "apple_store": {
+      "count": 46,
+      "error": null,
+      "detail": {
+        "iPhone 17 Pro Max / Pro": {
+          "status": 200,
+          "size": 395634,
+          "count": 21
+        },
+        "iPhone 17 / Plus": {
+          "status": 200,
+          "size": 334121,
+          "count": 10
+        },
+        "iPhone 16 / Plus": {
+          "status": 200,
+          "size": 378462,
+          "count": 15
+        }
+      }
+    },
     "kabum": {
       "count": 60,
       "error": null,
@@ -22,35 +55,6 @@
       "count": 7,
       "error": null,
       "detail": null
-    },
-    "amazon": {
-      "count": 0,
-      "error": null,
-      "detail": {
-        "error": "fetch failed",
-        "method": "failed"
-      }
-    },
-    "apple_store": {
-      "count": 46,
-      "error": null,
-      "detail": {
-        "iPhone 17 Pro Max / Pro": {
-          "status": 200,
-          "size": 395558,
-          "count": 21
-        },
-        "iPhone 17 / Plus": {
-          "status": 200,
-          "size": 334139,
-          "count": 10
-        },
-        "iPhone 16 / Plus": {
-          "status": 200,
-          "size": 378496,
-          "count": 15
-        }
-      }
     },
     "iplace": {
       "count": 30,
@@ -121,11 +125,6 @@
         }
       }
     },
-    "carrefour": {
-      "count": 50,
-      "error": null,
-      "detail": null
-    },
     "goimports": {
       "count": 1,
       "error": null,
@@ -155,6 +154,11 @@
           "error": null
         }
       }
+    },
+    "carrefour": {
+      "count": 50,
+      "error": null,
+      "detail": null
     }
   }
 }
