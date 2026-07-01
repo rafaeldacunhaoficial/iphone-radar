@@ -1,6 +1,6 @@
 {
-  "run_at": "2026-07-01T07:15:06.593740+00:00",
-  "total_items": 206,
+  "run_at": "2026-07-01T11:20:25.617372+00:00",
+  "total_items": 252,
   "alerts": 0,
   "scrapers": {
     "pmgimports": {
@@ -13,23 +13,54 @@
         "anchors_found": 107
       }
     },
+    "bemol": {
+      "count": 7,
+      "error": null,
+      "detail": null
+    },
     "kabum": {
       "count": 60,
       "error": null,
       "detail": null
     },
     "amazon": {
-      "count": 0,
+      "count": 46,
       "error": null,
       "detail": {
-        "error": "fetch failed",
-        "method": "failed"
+        "count": 46,
+        "html_size": 936383,
+        "method": "requests",
+        "cards": 48,
+        "no_price": 0,
+        "sample_titles": [
+          "Apple Cabo para recarga de 60W com conector USB-C (1m) ​​​​​",
+          "iPhone 8 64GB Cinza Espacial (Recondicionado)",
+          "Celular Samsung Galaxy A17, 256GB, 8GB, 50MP Tela 6.7\", IP54",
+          "Apple iPhone 11 (64 GB) (PRODUCT) RED (Recondicionado)",
+          "Apple iPhone 11 (64 GB) Branco (Recondicionado)"
+        ]
       }
     },
-    "bemol": {
-      "count": 7,
+    "apple_store": {
+      "count": 46,
       "error": null,
-      "detail": null
+      "detail": {
+        "iPhone 17 Pro Max / Pro": {
+          "status": 200,
+          "size": 395637,
+          "count": 21
+        },
+        "iPhone 17 / Plus": {
+          "status": 200,
+          "size": 334091,
+          "count": 10
+        },
+        "iPhone 16 / Plus": {
+          "status": 200,
+          "size": 378444,
+          "count": 15
+        }
+      }
     },
     "iplace": {
       "count": 28,
@@ -100,11 +131,6 @@
         }
       }
     },
-    "carrefour": {
-      "count": 50,
-      "error": null,
-      "detail": null
-    },
     "goimports": {
       "count": 7,
       "error": null,
@@ -135,26 +161,10 @@
         }
       }
     },
-    "apple_store": {
-      "count": 46,
+    "carrefour": {
+      "count": 50,
       "error": null,
-      "detail": {
-        "iPhone 17 Pro Max / Pro": {
-          "status": 200,
-          "size": 395583,
-          "count": 21
-        },
-        "iPhone 17 / Plus": {
-          "status": 200,
-          "size": 334123,
-          "count": 10
-        },
-        "iPhone 16 / Plus": {
-          "status": 200,
-          "size": 378438,
-          "count": 15
-        }
-      }
+      "detail": null
     }
   }
 }
