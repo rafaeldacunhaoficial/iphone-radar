@@ -1,5 +1,5 @@
 {
-  "run_at": "2026-07-01T21:23:27.589530+00:00",
+  "run_at": "2026-07-01T23:09:25.494553+00:00",
   "total_items": 251,
   "alerts": 0,
   "scrapers": {
@@ -13,33 +13,17 @@
         "anchors_found": 107
       }
     },
-    "apple_store": {
-      "count": 46,
+    "bemol": {
+      "count": 7,
       "error": null,
-      "detail": {
-        "iPhone 17 Pro Max / Pro": {
-          "status": 200,
-          "size": 395641,
-          "count": 21
-        },
-        "iPhone 17 / Plus": {
-          "status": 200,
-          "size": 334094,
-          "count": 10
-        },
-        "iPhone 16 / Plus": {
-          "status": 200,
-          "size": 378427,
-          "count": 15
-        }
-      }
+      "detail": null
     },
     "amazon": {
       "count": 46,
       "error": null,
       "detail": {
         "count": 46,
-        "html_size": 1132543,
+        "html_size": 1260047,
         "method": "requests",
         "cards": 48,
         "no_price": 0,
@@ -57,10 +41,26 @@
       "error": null,
       "detail": null
     },
-    "bemol": {
-      "count": 7,
+    "apple_store": {
+      "count": 46,
       "error": null,
-      "detail": null
+      "detail": {
+        "iPhone 17 Pro Max / Pro": {
+          "status": 200,
+          "size": 395566,
+          "count": 21
+        },
+        "iPhone 17 / Plus": {
+          "status": 200,
+          "size": 334102,
+          "count": 10
+        },
+        "iPhone 16 / Plus": {
+          "status": 200,
+          "size": 378420,
+          "count": 15
+        }
+      }
     },
     "iplace": {
       "count": 27,
