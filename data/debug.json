@@ -1,6 +1,6 @@
 {
-  "run_at": "2026-07-01T14:25:22.676920+00:00",
-  "total_items": 252,
+  "run_at": "2026-07-01T17:10:14.392218+00:00",
+  "total_items": 205,
   "alerts": 0,
   "scrapers": {
     "pmgimports": {
@@ -8,10 +8,23 @@
       "error": null,
       "detail": {
         "count": 8,
-        "html_size": 660236,
+        "html_size": 660201,
         "method": "requests",
         "anchors_found": 107
       }
+    },
+    "amazon": {
+      "count": 0,
+      "error": null,
+      "detail": {
+        "error": "fetch failed",
+        "method": "failed"
+      }
+    },
+    "kabum": {
+      "count": 60,
+      "error": null,
+      "detail": null
     },
     "apple_store": {
       "count": 46,
@@ -19,37 +32,19 @@
       "detail": {
         "iPhone 17 Pro Max / Pro": {
           "status": 200,
-          "size": 395597,
+          "size": 395632,
           "count": 21
         },
         "iPhone 17 / Plus": {
           "status": 200,
-          "size": 334122,
+          "size": 334125,
           "count": 10
         },
         "iPhone 16 / Plus": {
           "status": 200,
-          "size": 378425,
+          "size": 378427,
           "count": 15
         }
-      }
-    },
-    "amazon": {
-      "count": 46,
-      "error": null,
-      "detail": {
-        "count": 46,
-        "html_size": 949829,
-        "method": "requests",
-        "cards": 48,
-        "no_price": 0,
-        "sample_titles": [
-          "Apple Cabo para recarga de 60W com conector USB-C (1m) ​​​​​",
-          "iPhone 8 64GB Cinza Espacial (Recondicionado)",
-          "Celular Samsung Galaxy A17, 256GB, 8GB, 50MP Tela 6.7\", IP54",
-          "Apple iPhone 11 (64 GB) (PRODUCT) RED (Recondicionado)",
-          "Apple iPhone 11 (64 GB) Branco (Recondicionado)"
-        ]
       }
     },
     "bemol": {
@@ -57,13 +52,8 @@
       "error": null,
       "detail": null
     },
-    "kabum": {
-      "count": 60,
-      "error": null,
-      "detail": null
-    },
     "iplace": {
-      "count": 28,
+      "count": 27,
       "error": null,
       "detail": {
         "iphone 17 pro max": {
@@ -83,7 +73,7 @@
         "iphone 17": {
           "query": "iphone 17",
           "total": 134,
-          "count": 13,
+          "count": 12,
           "error": null,
           "status": 200
         },
@@ -131,6 +121,11 @@
         }
       }
     },
+    "carrefour": {
+      "count": 50,
+      "error": null,
+      "detail": null
+    },
     "goimports": {
       "count": 7,
       "error": null,
@@ -160,11 +155,6 @@
           "error": null
         }
       }
-    },
-    "carrefour": {
-      "count": 50,
-      "error": null,
-      "detail": null
     }
   }
 }
