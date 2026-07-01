@@ -1,8 +1,29 @@
 {
-  "run_at": "2026-07-01T17:10:14.392218+00:00",
+  "run_at": "2026-07-01T19:47:28.954866+00:00",
   "total_items": 205,
   "alerts": 0,
   "scrapers": {
+    "apple_store": {
+      "count": 46,
+      "error": null,
+      "detail": {
+        "iPhone 17 Pro Max / Pro": {
+          "status": 200,
+          "size": 395596,
+          "count": 21
+        },
+        "iPhone 17 / Plus": {
+          "status": 200,
+          "size": 334149,
+          "count": 10
+        },
+        "iPhone 16 / Plus": {
+          "status": 200,
+          "size": 378409,
+          "count": 15
+        }
+      }
+    },
     "pmgimports": {
       "count": 8,
       "error": null,
@@ -17,35 +38,24 @@
       "count": 0,
       "error": null,
       "detail": {
-        "error": "fetch failed",
-        "method": "failed"
+        "count": 0,
+        "html_size": 951112,
+        "method": "requests",
+        "cards": 48,
+        "no_price": 46,
+        "sample_titles": [
+          "Apple Cabo para recarga de 60W com conector USB-C (1m) ​​​​​",
+          "iPhone 8 64GB Cinza Espacial (Recondicionado)",
+          "Celular Samsung Galaxy A17, 256GB, 8GB, 50MP Tela 6.7\", IP54",
+          "Apple iPhone 11 (64 GB) (PRODUCT) RED (Recondicionado)",
+          "Apple iPhone 11 (64 GB) Branco (Recondicionado)"
+        ]
       }
     },
     "kabum": {
       "count": 60,
       "error": null,
       "detail": null
-    },
-    "apple_store": {
-      "count": 46,
-      "error": null,
-      "detail": {
-        "iPhone 17 Pro Max / Pro": {
-          "status": 200,
-          "size": 395632,
-          "count": 21
-        },
-        "iPhone 17 / Plus": {
-          "status": 200,
-          "size": 334125,
-          "count": 10
-        },
-        "iPhone 16 / Plus": {
-          "status": 200,
-          "size": 378427,
-          "count": 15
-        }
-      }
     },
     "bemol": {
       "count": 7,
