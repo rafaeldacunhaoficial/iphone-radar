@@ -1,29 +1,8 @@
 {
-  "run_at": "2026-07-02T06:37:14.869987+00:00",
-  "total_items": 251,
+  "run_at": "2026-07-02T09:58:06.883810+00:00",
+  "total_items": 205,
   "alerts": 0,
   "scrapers": {
-    "apple_store": {
-      "count": 46,
-      "error": null,
-      "detail": {
-        "iPhone 17 Pro Max / Pro": {
-          "status": 200,
-          "size": 395588,
-          "count": 21
-        },
-        "iPhone 17 / Plus": {
-          "status": 200,
-          "size": 334106,
-          "count": 10
-        },
-        "iPhone 16 / Plus": {
-          "status": 200,
-          "size": 378428,
-          "count": 15
-        }
-      }
-    },
     "pmgimports": {
       "count": 8,
       "error": null,
@@ -32,6 +11,35 @@
         "html_size": 660201,
         "method": "requests",
         "anchors_found": 107
+      }
+    },
+    "apple_store": {
+      "count": 46,
+      "error": null,
+      "detail": {
+        "iPhone 17 Pro Max / Pro": {
+          "status": 200,
+          "size": 395687,
+          "count": 21
+        },
+        "iPhone 17 / Plus": {
+          "status": 200,
+          "size": 334154,
+          "count": 10
+        },
+        "iPhone 16 / Plus": {
+          "status": 200,
+          "size": 378512,
+          "count": 15
+        }
+      }
+    },
+    "amazon": {
+      "count": 0,
+      "error": null,
+      "detail": {
+        "error": "fetch failed",
+        "method": "failed"
       }
     },
     "kabum": {
@@ -43,24 +51,6 @@
       "count": 7,
       "error": null,
       "detail": null
-    },
-    "amazon": {
-      "count": 46,
-      "error": null,
-      "detail": {
-        "count": 46,
-        "html_size": 899075,
-        "method": "cloudscraper",
-        "cards": 51,
-        "no_price": 0,
-        "sample_titles": [
-          "Apple Cabo para recarga de 60W com conector USB-C (1m) ​​​​​",
-          "iPhone 8 64GB Cinza Espacial (Recondicionado)",
-          "Celular Samsung Galaxy A17, 256GB, 8GB, 50MP Tela 6.7\", IP54",
-          "Apple iPhone 11 (64 GB) (PRODUCT) RED (Recondicionado)",
-          "Apple iPhone 11 (64 GB) Branco (Recondicionado)"
-        ]
-      }
     },
     "iplace": {
       "count": 27,
