@@ -1,5 +1,5 @@
 {
-  "run_at": "2026-07-01T23:09:25.494553+00:00",
+  "run_at": "2026-07-02T02:48:50.872076+00:00",
   "total_items": 251,
   "alerts": 0,
   "scrapers": {
@@ -13,6 +13,27 @@
         "anchors_found": 107
       }
     },
+    "apple_store": {
+      "count": 46,
+      "error": null,
+      "detail": {
+        "iPhone 17 Pro Max / Pro": {
+          "status": 200,
+          "size": 395621,
+          "count": 21
+        },
+        "iPhone 17 / Plus": {
+          "status": 200,
+          "size": 334288,
+          "count": 10
+        },
+        "iPhone 16 / Plus": {
+          "status": 200,
+          "size": 378431,
+          "count": 15
+        }
+      }
+    },
     "bemol": {
       "count": 7,
       "error": null,
@@ -23,9 +44,9 @@
       "error": null,
       "detail": {
         "count": 46,
-        "html_size": 1260047,
+        "html_size": 991212,
         "method": "requests",
-        "cards": 48,
+        "cards": 51,
         "no_price": 0,
         "sample_titles": [
           "Apple Cabo para recarga de 60W com conector USB-C (1m) ​​​​​",
@@ -40,27 +61,6 @@
       "count": 60,
       "error": null,
       "detail": null
-    },
-    "apple_store": {
-      "count": 46,
-      "error": null,
-      "detail": {
-        "iPhone 17 Pro Max / Pro": {
-          "status": 200,
-          "size": 395566,
-          "count": 21
-        },
-        "iPhone 17 / Plus": {
-          "status": 200,
-          "size": 334102,
-          "count": 10
-        },
-        "iPhone 16 / Plus": {
-          "status": 200,
-          "size": 378420,
-          "count": 15
-        }
-      }
     },
     "iplace": {
       "count": 27,
